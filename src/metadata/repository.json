@@ -1,0 +1,41 @@
+{
+  "schemaVersion": 1,
+  "kind": "library",
+  "title": "Ankhorage Projects",
+  "summary": "Provides standalone project identity, persistence, and repository-oriented project actions.",
+  "purpose": "Offer a reusable boundary for storing, revising, materializing, and managing application project identities without coupling callers to a specific persistence provider.",
+  "domain": "project identity and persistence",
+  "responsibilities": [
+    "Define actions for listing, reading, creating, updating, saving, reloading, materializing, and deleting persisted projects.",
+    "Preserve validated project manifests as immutable revisions.",
+    "Expose reusable project capabilities through published package entrypoints."
+  ],
+  "boundaries": [
+    "Does not provide a concrete database, filesystem, or cloud persistence adapter.",
+    "Does not generate project output itself; materialization delegates through an injected owner generator.",
+    "Does not own application authoring UI, deployment, or source-repository provider implementations."
+  ],
+  "audience": [
+    "Application and tooling authors that need portable project identity and revision actions.",
+    "Adapter authors that provide persistence or materialization implementations."
+  ],
+  "useCases": [
+    "Persist a validated application manifest as a project revision.",
+    "Read project identity and revision history through a provider-neutral API.",
+    "Materialize a stored revision through an injected generator."
+  ],
+  "architecture": {
+    "role": "Provider-neutral project-domain library with public capabilities for project lifecycle actions.",
+    "invariants": [
+      "Project revisions are immutable after persistence.",
+      "Provider-specific persistence and generation remain injected at package boundaries.",
+      "Consumers use declared published APIs rather than repository-local source imports."
+    ]
+  },
+  "constraints": {
+    "limitations": [
+      "A consumer must supply concrete persistence and generation behavior where those operations are required.",
+      "The package does not select or configure external storage providers."
+    ]
+  }
+}
