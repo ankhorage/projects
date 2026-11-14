@@ -1,8 +1,17 @@
 sequenceDiagram
+  participant participant_assertStorageDirectoryAsync as assertStorageDirectoryAsync
+  participant participant_createKeyedAsyncMutex as createKeyedAsyncMutex
   participant participant_createProjectRepositoryFileSystemAsync as createProjectRepositoryFileSystemAsync
   participant participant_join as join
   participant participant_mkdir as mkdir
+  participant participant_open as open
   participant_createProjectRepositoryFileSystemAsync->>participant_join: join()
   participant_join-->>participant_createProjectRepositoryFileSystemAsync: return
   participant_createProjectRepositoryFileSystemAsync->>participant_mkdir: mkdir()
   participant_mkdir-->>participant_createProjectRepositoryFileSystemAsync: return
+  participant_createProjectRepositoryFileSystemAsync->>participant_assertStorageDirectoryAsync: assertStorageDirectoryAsync()
+  participant_assertStorageDirectoryAsync->>participant_open: open()
+  participant_open-->>participant_assertStorageDirectoryAsync: return
+  participant_assertStorageDirectoryAsync-->>participant_createProjectRepositoryFileSystemAsync: return
+  participant_createProjectRepositoryFileSystemAsync->>participant_createKeyedAsyncMutex: createKeyedAsyncMutex()
+  participant_createKeyedAsyncMutex-->>participant_createProjectRepositoryFileSystemAsync: return

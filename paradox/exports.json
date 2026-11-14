@@ -10,7 +10,7 @@
     "modulePath": "src/types/projects.ts",
     "sourceLocation": {
       "filePath": "src/types/projects.ts",
-      "line": 8,
+      "line": 11,
       "column": 1
     },
     "exportPaths": [
@@ -24,7 +24,7 @@
   {
     "name": "createProjectRepositoryFileSystemAsync",
     "title": null,
-    "description": "Create a path-isolated filesystem implementation of the project repository port.",
+    "description": "Create a path-isolated filesystem implementation of the project repository port.\n\nThe keyed mutex coordinates mutations only through this adapter instance in one Node.js process.\nAssign each storage directory to one writer; coordinating separate adapter instances or processes\nrequires external locking and is unsupported by this adapter.",
     "isReadme": false,
     "see": [],
     "security": [],
@@ -32,7 +32,7 @@
     "modulePath": "src/features/projects/adapters/createProjectRepositoryFileSystemAsync.ts",
     "sourceLocation": {
       "filePath": "src/features/projects/adapters/createProjectRepositoryFileSystemAsync.ts",
-      "line": 23,
+      "line": 31,
       "column": 1
     },
     "exportPaths": [
@@ -60,6 +60,28 @@
     "structuredRows": []
   },
   {
+    "name": "MaterializeProjectRevisionInput",
+    "title": null,
+    "description": null,
+    "isReadme": false,
+    "see": [],
+    "security": [],
+    "kind": "unknown",
+    "modulePath": "src/types/projects.ts",
+    "sourceLocation": {
+      "filePath": "src/types/projects.ts",
+      "line": 43,
+      "column": 1
+    },
+    "exportPaths": [
+      "src/index.ts"
+    ],
+    "relatedSymbols": [],
+    "signatures": [],
+    "members": [],
+    "structuredRows": []
+  },
+  {
     "name": "Project",
     "title": null,
     "description": null,
@@ -70,7 +92,7 @@
     "modulePath": "src/types/projects.ts",
     "sourceLocation": {
       "filePath": "src/types/projects.ts",
-      "line": 1,
+      "line": 3,
       "column": 1
     },
     "exportPaths": [
@@ -79,6 +101,105 @@
     "relatedSymbols": [],
     "signatures": [],
     "members": [],
+    "structuredRows": []
+  },
+  {
+    "name": "ProjectManifest",
+    "title": null,
+    "description": "Persisted draft pointer and immutable AppManifest revision history for one project.",
+    "isReadme": false,
+    "see": [],
+    "security": [],
+    "kind": "unknown",
+    "modulePath": "src/types/projects.ts",
+    "sourceLocation": {
+      "filePath": "src/types/projects.ts",
+      "line": 16,
+      "column": 1
+    },
+    "exportPaths": [
+      "src/index.ts"
+    ],
+    "relatedSymbols": [],
+    "signatures": [],
+    "members": [],
+    "structuredRows": []
+  },
+  {
+    "name": "ProjectManifestDraft",
+    "title": null,
+    "description": "A persisted draft always points at the immutable revision produced by its last save.",
+    "isReadme": false,
+    "see": [],
+    "security": [],
+    "kind": "unknown",
+    "modulePath": "src/types/projects.ts",
+    "sourceLocation": {
+      "filePath": "src/types/projects.ts",
+      "line": 22,
+      "column": 1
+    },
+    "exportPaths": [
+      "src/index.ts"
+    ],
+    "relatedSymbols": [],
+    "signatures": [],
+    "members": [],
+    "structuredRows": []
+  },
+  {
+    "name": "ProjectManifestRevision",
+    "title": null,
+    "description": "An immutable, project-local AppManifest snapshot.",
+    "isReadme": false,
+    "see": [],
+    "security": [],
+    "kind": "unknown",
+    "modulePath": "src/types/projects.ts",
+    "sourceLocation": {
+      "filePath": "src/types/projects.ts",
+      "line": 29,
+      "column": 1
+    },
+    "exportPaths": [
+      "src/index.ts"
+    ],
+    "relatedSymbols": [],
+    "signatures": [],
+    "members": [],
+    "structuredRows": []
+  },
+  {
+    "name": "ProjectMaterializer",
+    "title": null,
+    "description": null,
+    "isReadme": false,
+    "see": [],
+    "security": [],
+    "kind": "type",
+    "modulePath": "src/features/projects/ports/ProjectRepository.ts",
+    "sourceLocation": {
+      "filePath": "src/features/projects/ports/ProjectRepository.ts",
+      "line": 3,
+      "column": 1
+    },
+    "exportPaths": [
+      "src/index.ts"
+    ],
+    "relatedSymbols": [
+      "Project",
+      "ProjectManifestRevision"
+    ],
+    "signatures": [],
+    "members": [
+      {
+        "name": "materializeAsync",
+        "kind": "method",
+        "type": "(input: Readonly<{ project: Project; revision: ProjectManifestRevision; }>) => Promise<void>",
+        "required": true,
+        "description": null
+      }
+    ],
     "structuredRows": []
   },
   {
@@ -92,7 +213,7 @@
     "modulePath": "src/features/projects/ports/ProjectRepository.ts",
     "sourceLocation": {
       "filePath": "src/features/projects/ports/ProjectRepository.ts",
-      "line": 3,
+      "line": 9,
       "column": 1
     },
     "exportPaths": [
@@ -134,7 +255,7 @@
       {
         "name": "updateAsync",
         "kind": "method",
-        "type": "(project: Project) => Promise<Project | null>",
+        "type": "(id: string, update: (project: Project) => Project) => Promise<Project | null>",
         "required": true,
         "description": null
       }
@@ -152,8 +273,52 @@
     "modulePath": "src/features/projects/application/projects.ts",
     "sourceLocation": {
       "filePath": "src/features/projects/application/projects.ts",
-      "line": 7,
+      "line": 17,
       "column": 14
+    },
+    "exportPaths": [
+      "src/index.ts"
+    ],
+    "relatedSymbols": [],
+    "signatures": [],
+    "members": [],
+    "structuredRows": []
+  },
+  {
+    "name": "ReloadProjectManifestInput",
+    "title": null,
+    "description": null,
+    "isReadme": false,
+    "see": [],
+    "security": [],
+    "kind": "unknown",
+    "modulePath": "src/types/projects.ts",
+    "sourceLocation": {
+      "filePath": "src/types/projects.ts",
+      "line": 41,
+      "column": 1
+    },
+    "exportPaths": [
+      "src/index.ts"
+    ],
+    "relatedSymbols": [],
+    "signatures": [],
+    "members": [],
+    "structuredRows": []
+  },
+  {
+    "name": "SaveProjectManifestInput",
+    "title": null,
+    "description": null,
+    "isReadme": false,
+    "see": [],
+    "security": [],
+    "kind": "unknown",
+    "modulePath": "src/types/projects.ts",
+    "sourceLocation": {
+      "filePath": "src/types/projects.ts",
+      "line": 35,
+      "column": 1
     },
     "exportPaths": [
       "src/index.ts"
@@ -174,7 +339,7 @@
     "modulePath": "src/types/projects.ts",
     "sourceLocation": {
       "filePath": "src/types/projects.ts",
-      "line": 10,
+      "line": 13,
       "column": 1
     },
     "exportPaths": [

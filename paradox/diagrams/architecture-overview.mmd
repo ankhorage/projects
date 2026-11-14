@@ -2,6 +2,8 @@ graph TD
   package__ankhorage_projects["@ankhorage/projects"]
   entrypoint_src_index_ts["src/index.ts"]
   package__ankhorage_projects --> entrypoint_src_index_ts
+  module_src_capabilities_index_ts["src/capabilities/index.ts"]
+  package__ankhorage_projects -.-> module_src_capabilities_index_ts
   module_src_features_projects_adapters_createProjectRepositoryFileSystemAsync_ts["src/features/projects/adapters/createProjectRepositoryFileSystemAsync.ts"]
   package__ankhorage_projects -.-> module_src_features_projects_adapters_createProjectRepositoryFileSystemAsync_ts
   module_src_features_projects_adapters_createProjectRepositoryFileSystemAsync_ts --> module_src_features_projects_ports_ProjectRepository_ts
@@ -9,6 +11,7 @@ graph TD
   module_src_features_projects_application_projects_ts["src/features/projects/application/projects.ts"]
   package__ankhorage_projects -.-> module_src_features_projects_application_projects_ts
   module_src_features_projects_application_projects_ts --> module_src_features_projects_domain_createProject_ts
+  module_src_features_projects_application_projects_ts --> module_src_features_projects_domain_saveProjectManifest_ts
   module_src_features_projects_application_projects_ts --> module_src_features_projects_domain_updateProject_ts
   module_src_features_projects_application_projects_ts --> module_src_features_projects_ports_ProjectRepository_ts
   module_src_features_projects_application_projects_ts --> module_src_types_projects_ts
@@ -18,6 +21,9 @@ graph TD
   module_src_features_projects_domain_createProject_ts --> module_src_types_projects_ts
   module_src_features_projects_domain_deriveProjectIdentity_ts["src/features/projects/domain/deriveProjectIdentity.ts"]
   package__ankhorage_projects -.-> module_src_features_projects_domain_deriveProjectIdentity_ts
+  module_src_features_projects_domain_saveProjectManifest_ts["src/features/projects/domain/saveProjectManifest.ts"]
+  package__ankhorage_projects -.-> module_src_features_projects_domain_saveProjectManifest_ts
+  module_src_features_projects_domain_saveProjectManifest_ts --> module_src_types_projects_ts
   module_src_features_projects_domain_updateProject_ts["src/features/projects/domain/updateProject.ts"]
   package__ankhorage_projects -.-> module_src_features_projects_domain_updateProject_ts
   module_src_features_projects_domain_updateProject_ts --> module_src_types_projects_ts
@@ -29,4 +35,5 @@ graph TD
   package__ankhorage_projects -.-> module_src_types_projects_ts
   module_test_projects_test_ts["test/projects.test.ts"]
   package__ankhorage_projects -.-> module_test_projects_test_ts
+  module_test_projects_test_ts --> module_src_capabilities_index_ts
   module_test_projects_test_ts --> module_src_index_ts

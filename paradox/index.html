@@ -129,7 +129,7 @@
             <li>
     <button class="nav-button" type="button" data-target="src/features/projects/adapters/createProjectRepositoryFileSystemAsync.ts">
       src/features/projects/adapters/createProjectRepositoryFileSystemAsync.ts
-      <small>6 functions</small>
+      <small>14 functions</small>
     </button>
   </li><li>
     <button class="nav-button" type="button" data-target="src/features/projects/domain/createProject.ts">
@@ -139,6 +139,11 @@
   </li><li>
     <button class="nav-button" type="button" data-target="src/features/projects/domain/deriveProjectIdentity.ts">
       src/features/projects/domain/deriveProjectIdentity.ts
+      <small>1 function</small>
+    </button>
+  </li><li>
+    <button class="nav-button" type="button" data-target="src/features/projects/domain/saveProjectManifest.ts">
+      src/features/projects/domain/saveProjectManifest.ts
       <small>1 function</small>
     </button>
   </li><li>
@@ -156,9 +161,9 @@
     <section class="panel">
       <h2>Package overview</h2>
       <div class="summary">
-        <div><strong>6</strong><span class="muted">public exports</span></div>
+        <div><strong>13</strong><span class="muted">public exports</span></div>
         <div><strong>0</strong><span class="muted">components</span></div>
-        <div><strong>9</strong><span class="muted">modules</span></div>
+        <div><strong>11</strong><span class="muted">modules</span></div>
         <div><strong>1</strong><span class="muted">entrypoints</span></div>
       </div>
       <h3>Entrypoints</h3>
@@ -170,15 +175,20 @@
     <section class="panel"><h2>Policy</h2><p>No documentation findings.</p></section>
     <section class="panel">
       <h2>Modules</h2>
-      <article class="item" data-search="src/features/projects/adapters/createProjectRepositoryFileSystemAsync.ts src/features/projects/ports/ProjectRepository.ts src/types/projects.ts createProjectRepositoryFileSystemAsync">
+      <article class="item" data-search="src/capabilities/index.ts CAPABILITIES">
+    <h3>src/capabilities/index.ts</h3>
+    <p class="muted">Referenced module</p>
+    <p><strong>Dependencies:</strong> <span class="empty">None</span></p>
+    <p><strong>Exports:</strong> <code>CAPABILITIES</code></p>
+  </article><article class="item" data-search="src/features/projects/adapters/createProjectRepositoryFileSystemAsync.ts src/features/projects/ports/ProjectRepository.ts src/types/projects.ts createProjectRepositoryFileSystemAsync">
     <h3>src/features/projects/adapters/createProjectRepositoryFileSystemAsync.ts</h3>
     <p class="muted">Referenced module</p>
     <p><strong>Dependencies:</strong> <code>src/features/projects/ports/ProjectRepository.ts</code>, <code>src/types/projects.ts</code></p>
     <p><strong>Exports:</strong> <code>createProjectRepositoryFileSystemAsync</code></p>
-  </article><article class="item" data-search="src/features/projects/application/projects.ts src/features/projects/domain/createProject.ts src/features/projects/domain/updateProject.ts src/features/projects/ports/ProjectRepository.ts src/types/projects.ts projects">
+  </article><article class="item" data-search="src/features/projects/application/projects.ts src/features/projects/domain/createProject.ts src/features/projects/domain/saveProjectManifest.ts src/features/projects/domain/updateProject.ts src/features/projects/ports/ProjectRepository.ts src/types/projects.ts projects">
     <h3>src/features/projects/application/projects.ts</h3>
     <p class="muted">Referenced module</p>
-    <p><strong>Dependencies:</strong> <code>src/features/projects/domain/createProject.ts</code>, <code>src/features/projects/domain/updateProject.ts</code>, <code>src/features/projects/ports/ProjectRepository.ts</code>, <code>src/types/projects.ts</code></p>
+    <p><strong>Dependencies:</strong> <code>src/features/projects/domain/createProject.ts</code>, <code>src/features/projects/domain/saveProjectManifest.ts</code>, <code>src/features/projects/domain/updateProject.ts</code>, <code>src/features/projects/ports/ProjectRepository.ts</code>, <code>src/types/projects.ts</code></p>
     <p><strong>Exports:</strong> <code>projects</code></p>
   </article><article class="item" data-search="src/features/projects/domain/createProject.ts src/features/projects/domain/deriveProjectIdentity.ts src/types/projects.ts createProject">
     <h3>src/features/projects/domain/createProject.ts</h3>
@@ -190,30 +200,35 @@
     <p class="muted">Referenced module</p>
     <p><strong>Dependencies:</strong> <span class="empty">None</span></p>
     <p><strong>Exports:</strong> <code>deriveProjectIdentity</code></p>
+  </article><article class="item" data-search="src/features/projects/domain/saveProjectManifest.ts src/types/projects.ts saveProjectManifest">
+    <h3>src/features/projects/domain/saveProjectManifest.ts</h3>
+    <p class="muted">Referenced module</p>
+    <p><strong>Dependencies:</strong> <code>src/types/projects.ts</code></p>
+    <p><strong>Exports:</strong> <code>saveProjectManifest</code></p>
   </article><article class="item" data-search="src/features/projects/domain/updateProject.ts src/types/projects.ts updateProject">
     <h3>src/features/projects/domain/updateProject.ts</h3>
     <p class="muted">Referenced module</p>
     <p><strong>Dependencies:</strong> <code>src/types/projects.ts</code></p>
     <p><strong>Exports:</strong> <code>updateProject</code></p>
-  </article><article class="item" data-search="src/features/projects/ports/ProjectRepository.ts src/types/projects.ts ProjectRepository">
+  </article><article class="item" data-search="src/features/projects/ports/ProjectRepository.ts src/types/projects.ts ProjectMaterializer ProjectRepository">
     <h3>src/features/projects/ports/ProjectRepository.ts</h3>
     <p class="muted">Referenced module</p>
     <p><strong>Dependencies:</strong> <code>src/types/projects.ts</code></p>
-    <p><strong>Exports:</strong> <code>ProjectRepository</code></p>
-  </article><article class="item" data-search="src/index.ts CreateProjectInput createProjectRepositoryFileSystemAsync Project ProjectRepository projects UpdateProjectInput">
+    <p><strong>Exports:</strong> <code>ProjectMaterializer</code>, <code>ProjectRepository</code></p>
+  </article><article class="item" data-search="src/index.ts CreateProjectInput createProjectRepositoryFileSystemAsync MaterializeProjectRevisionInput Project ProjectManifest ProjectManifestDraft ProjectManifestRevision ProjectMaterializer ProjectRepository projects ReloadProjectManifestInput SaveProjectManifestInput UpdateProjectInput">
     <h3>src/index.ts</h3>
     <p class="muted">Configured entrypoint</p>
     <p><strong>Dependencies:</strong> <span class="empty">None</span></p>
-    <p><strong>Exports:</strong> <code>CreateProjectInput</code>, <code>createProjectRepositoryFileSystemAsync</code>, <code>Project</code>, <code>ProjectRepository</code>, <code>projects</code>, <code>UpdateProjectInput</code></p>
-  </article><article class="item" data-search="src/types/projects.ts CreateProjectInput Project UpdateProjectInput">
+    <p><strong>Exports:</strong> <code>CreateProjectInput</code>, <code>createProjectRepositoryFileSystemAsync</code>, <code>MaterializeProjectRevisionInput</code>, <code>Project</code>, <code>ProjectManifest</code>, <code>ProjectManifestDraft</code>, <code>ProjectManifestRevision</code>, <code>ProjectMaterializer</code>, <code>ProjectRepository</code>, <code>projects</code>, <code>ReloadProjectManifestInput</code>, <code>SaveProjectManifestInput</code>, <code>UpdateProjectInput</code></p>
+  </article><article class="item" data-search="src/types/projects.ts CreateProjectInput MaterializeProjectRevisionInput Project ProjectManifest ProjectManifestDraft ProjectManifestRevision ReloadProjectManifestInput SaveProjectManifestInput UpdateProjectInput">
     <h3>src/types/projects.ts</h3>
     <p class="muted">Referenced module</p>
     <p><strong>Dependencies:</strong> <span class="empty">None</span></p>
-    <p><strong>Exports:</strong> <code>CreateProjectInput</code>, <code>Project</code>, <code>UpdateProjectInput</code></p>
-  </article><article class="item" data-search="test/projects.test.ts src/index.ts">
+    <p><strong>Exports:</strong> <code>CreateProjectInput</code>, <code>MaterializeProjectRevisionInput</code>, <code>Project</code>, <code>ProjectManifest</code>, <code>ProjectManifestDraft</code>, <code>ProjectManifestRevision</code>, <code>ReloadProjectManifestInput</code>, <code>SaveProjectManifestInput</code>, <code>UpdateProjectInput</code></p>
+  </article><article class="item" data-search="test/projects.test.ts src/capabilities/index.ts src/index.ts">
     <h3>test/projects.test.ts</h3>
     <p class="muted">Referenced module</p>
-    <p><strong>Dependencies:</strong> <code>src/index.ts</code></p>
+    <p><strong>Dependencies:</strong> <code>src/capabilities/index.ts</code>, <code>src/index.ts</code></p>
     <p><strong>Exports:</strong> <span class="empty">None</span></p>
   </article>
     </section>
@@ -222,11 +237,15 @@
       
             <section>
               <h3>src/features/projects/adapters/createProjectRepositoryFileSystemAsync.ts</h3>
-              <article class="item" id="symbol-createprojectrepositoryfilesystemasync" data-search="createProjectRepositoryFileSystemAsync  function src/features/projects/adapters/createProjectRepositoryFileSystemAsync.ts Create a path-isolated filesystem implementation of the project repository port. ProjectRepository (options: Readonly&lt;{ directory: string; }&gt;) =&gt; Promise&lt;ProjectRepository&gt;">
+              <article class="item" id="symbol-createprojectrepositoryfilesystemasync" data-search="createProjectRepositoryFileSystemAsync  function src/features/projects/adapters/createProjectRepositoryFileSystemAsync.ts Create a path-isolated filesystem implementation of the project repository port.&#10;&#10;The keyed mutex coordinates mutations only through this adapter instance in one Node.js process.&#10;Assign each storage directory to one writer; coordinating separate adapter instances or processes&#10;requires external locking and is unsupported by this adapter. ProjectRepository (options: Readonly&lt;{ directory: string; }&gt;) =&gt; Promise&lt;ProjectRepository&gt;">
     <h4>createProjectRepositoryFileSystemAsync</h4>
     
-    <p class="muted">function • <code>src/features/projects/adapters/createProjectRepositoryFileSystemAsync.ts:23:1</code></p>
-    <p>Create a path-isolated filesystem implementation of the project repository port.</p>
+    <p class="muted">function • <code>src/features/projects/adapters/createProjectRepositoryFileSystemAsync.ts:31:1</code></p>
+    <p>Create a path-isolated filesystem implementation of the project repository port.
+
+The keyed mutex coordinates mutations only through this adapter instance in one Node.js process.
+Assign each storage directory to one writer; coordinating separate adapter instances or processes
+requires external locking and is unsupported by this adapter.</p>
     
     <p><strong>Export paths:</strong> <code>src/index.ts</code></p>
     <div><strong>Related symbols:</strong> <ul class="chips"><li class="chip">ProjectRepository</li></ul></div>
@@ -254,7 +273,7 @@
               <article class="item" id="symbol-projects" data-search="projects  value src/features/projects/application/projects.ts Expose the project repository actions through an explicit port.">
     <h4>projects</h4>
     
-    <p class="muted">value • <code>src/features/projects/application/projects.ts:7:14</code></p>
+    <p class="muted">value • <code>src/features/projects/application/projects.ts:17:14</code></p>
     <p>Expose the project repository actions through an explicit port.</p>
     
     <p><strong>Export paths:</strong> <code>src/index.ts</code></p>
@@ -265,10 +284,31 @@
             </section>
             <section>
               <h3>src/features/projects/ports/ProjectRepository.ts</h3>
-              <article class="item" id="symbol-projectrepository" data-search="ProjectRepository  type src/features/projects/ports/ProjectRepository.ts  Project">
-    <h4>ProjectRepository</h4>
+              <article class="item" id="symbol-projectmaterializer" data-search="ProjectMaterializer  type src/features/projects/ports/ProjectRepository.ts  Project ProjectManifestRevision">
+    <h4>ProjectMaterializer</h4>
     
     <p class="muted">type • <code>src/features/projects/ports/ProjectRepository.ts:3:1</code></p>
+    
+    
+    <p><strong>Export paths:</strong> <code>src/index.ts</code></p>
+    <div><strong>Related symbols:</strong> <ul class="chips"><li class="chip">Project</li><li class="chip">ProjectManifestRevision</li></ul></div>
+    
+    <table>
+    <thead><tr><th>Member</th><th>Kind</th><th>Type</th><th>Required</th><th>Description</th></tr></thead>
+    <tbody>
+      <tr>
+            <td><code>materializeAsync</code></td>
+            <td>method</td>
+            <td><code>(input: Readonly&lt;{ project: Project; revision: ProjectManifestRevision; }&gt;) =&gt; Promise&lt;void&gt;</code></td>
+            <td>yes</td>
+            <td></td>
+          </tr>
+    </tbody>
+  </table>
+  </article><article class="item" id="symbol-projectrepository" data-search="ProjectRepository  type src/features/projects/ports/ProjectRepository.ts  Project">
+    <h4>ProjectRepository</h4>
+    
+    <p class="muted">type • <code>src/features/projects/ports/ProjectRepository.ts:9:1</code></p>
     
     
     <p><strong>Export paths:</strong> <code>src/index.ts</code></p>
@@ -304,7 +344,7 @@
           </tr><tr>
             <td><code>updateAsync</code></td>
             <td>method</td>
-            <td><code>(project: Project) =&gt; Promise&lt;Project | null&gt;</code></td>
+            <td><code>(id: string, update: (project: Project) =&gt; Project) =&gt; Promise&lt;Project | null&gt;</code></td>
             <td>yes</td>
             <td></td>
           </tr>
@@ -317,7 +357,17 @@
               <article class="item" id="symbol-createprojectinput" data-search="CreateProjectInput  unknown src/types/projects.ts ">
     <h4>CreateProjectInput</h4>
     
-    <p class="muted">unknown • <code>src/types/projects.ts:8:1</code></p>
+    <p class="muted">unknown • <code>src/types/projects.ts:11:1</code></p>
+    
+    
+    <p><strong>Export paths:</strong> <code>src/index.ts</code></p>
+    <div><strong>Related symbols:</strong> <span class="empty">None</span></div>
+    
+    
+  </article><article class="item" id="symbol-materializeprojectrevisioninput" data-search="MaterializeProjectRevisionInput  unknown src/types/projects.ts ">
+    <h4>MaterializeProjectRevisionInput</h4>
+    
+    <p class="muted">unknown • <code>src/types/projects.ts:43:1</code></p>
     
     
     <p><strong>Export paths:</strong> <code>src/index.ts</code></p>
@@ -327,7 +377,57 @@
   </article><article class="item" id="symbol-project" data-search="Project  unknown src/types/projects.ts ">
     <h4>Project</h4>
     
-    <p class="muted">unknown • <code>src/types/projects.ts:1:1</code></p>
+    <p class="muted">unknown • <code>src/types/projects.ts:3:1</code></p>
+    
+    
+    <p><strong>Export paths:</strong> <code>src/index.ts</code></p>
+    <div><strong>Related symbols:</strong> <span class="empty">None</span></div>
+    
+    
+  </article><article class="item" id="symbol-projectmanifest" data-search="ProjectManifest  unknown src/types/projects.ts Persisted draft pointer and immutable AppManifest revision history for one project.">
+    <h4>ProjectManifest</h4>
+    
+    <p class="muted">unknown • <code>src/types/projects.ts:16:1</code></p>
+    <p>Persisted draft pointer and immutable AppManifest revision history for one project.</p>
+    
+    <p><strong>Export paths:</strong> <code>src/index.ts</code></p>
+    <div><strong>Related symbols:</strong> <span class="empty">None</span></div>
+    
+    
+  </article><article class="item" id="symbol-projectmanifestdraft" data-search="ProjectManifestDraft  unknown src/types/projects.ts A persisted draft always points at the immutable revision produced by its last save.">
+    <h4>ProjectManifestDraft</h4>
+    
+    <p class="muted">unknown • <code>src/types/projects.ts:22:1</code></p>
+    <p>A persisted draft always points at the immutable revision produced by its last save.</p>
+    
+    <p><strong>Export paths:</strong> <code>src/index.ts</code></p>
+    <div><strong>Related symbols:</strong> <span class="empty">None</span></div>
+    
+    
+  </article><article class="item" id="symbol-projectmanifestrevision" data-search="ProjectManifestRevision  unknown src/types/projects.ts An immutable, project-local AppManifest snapshot.">
+    <h4>ProjectManifestRevision</h4>
+    
+    <p class="muted">unknown • <code>src/types/projects.ts:29:1</code></p>
+    <p>An immutable, project-local AppManifest snapshot.</p>
+    
+    <p><strong>Export paths:</strong> <code>src/index.ts</code></p>
+    <div><strong>Related symbols:</strong> <span class="empty">None</span></div>
+    
+    
+  </article><article class="item" id="symbol-reloadprojectmanifestinput" data-search="ReloadProjectManifestInput  unknown src/types/projects.ts ">
+    <h4>ReloadProjectManifestInput</h4>
+    
+    <p class="muted">unknown • <code>src/types/projects.ts:41:1</code></p>
+    
+    
+    <p><strong>Export paths:</strong> <code>src/index.ts</code></p>
+    <div><strong>Related symbols:</strong> <span class="empty">None</span></div>
+    
+    
+  </article><article class="item" id="symbol-saveprojectmanifestinput" data-search="SaveProjectManifestInput  unknown src/types/projects.ts ">
+    <h4>SaveProjectManifestInput</h4>
+    
+    <p class="muted">unknown • <code>src/types/projects.ts:35:1</code></p>
     
     
     <p><strong>Export paths:</strong> <code>src/index.ts</code></p>
@@ -337,7 +437,7 @@
   </article><article class="item" id="symbol-updateprojectinput" data-search="UpdateProjectInput  unknown src/types/projects.ts ">
     <h4>UpdateProjectInput</h4>
     
-    <p class="muted">unknown • <code>src/types/projects.ts:10:1</code></p>
+    <p class="muted">unknown • <code>src/types/projects.ts:13:1</code></p>
     
     
     <p><strong>Export paths:</strong> <code>src/index.ts</code></p>
@@ -360,6 +460,8 @@
   package__ankhorage_projects[&quot;@ankhorage/projects&quot;]
   entrypoint_src_index_ts[&quot;src/index.ts&quot;]
   package__ankhorage_projects --&gt; entrypoint_src_index_ts
+  module_src_capabilities_index_ts[&quot;src/capabilities/index.ts&quot;]
+  package__ankhorage_projects -.-&gt; module_src_capabilities_index_ts
   module_src_features_projects_adapters_createProjectRepositoryFileSystemAsync_ts[&quot;src/features/projects/adapters/createProjectRepositoryFileSystemAsync.ts&quot;]
   package__ankhorage_projects -.-&gt; module_src_features_projects_adapters_createProjectRepositoryFileSystemAsync_ts
   module_src_features_projects_adapters_createProjectRepositoryFileSystemAsync_ts --&gt; module_src_features_projects_ports_ProjectRepository_ts
@@ -367,6 +469,7 @@
   module_src_features_projects_application_projects_ts[&quot;src/features/projects/application/projects.ts&quot;]
   package__ankhorage_projects -.-&gt; module_src_features_projects_application_projects_ts
   module_src_features_projects_application_projects_ts --&gt; module_src_features_projects_domain_createProject_ts
+  module_src_features_projects_application_projects_ts --&gt; module_src_features_projects_domain_saveProjectManifest_ts
   module_src_features_projects_application_projects_ts --&gt; module_src_features_projects_domain_updateProject_ts
   module_src_features_projects_application_projects_ts --&gt; module_src_features_projects_ports_ProjectRepository_ts
   module_src_features_projects_application_projects_ts --&gt; module_src_types_projects_ts
@@ -376,6 +479,9 @@
   module_src_features_projects_domain_createProject_ts --&gt; module_src_types_projects_ts
   module_src_features_projects_domain_deriveProjectIdentity_ts[&quot;src/features/projects/domain/deriveProjectIdentity.ts&quot;]
   package__ankhorage_projects -.-&gt; module_src_features_projects_domain_deriveProjectIdentity_ts
+  module_src_features_projects_domain_saveProjectManifest_ts[&quot;src/features/projects/domain/saveProjectManifest.ts&quot;]
+  package__ankhorage_projects -.-&gt; module_src_features_projects_domain_saveProjectManifest_ts
+  module_src_features_projects_domain_saveProjectManifest_ts --&gt; module_src_types_projects_ts
   module_src_features_projects_domain_updateProject_ts[&quot;src/features/projects/domain/updateProject.ts&quot;]
   package__ankhorage_projects -.-&gt; module_src_features_projects_domain_updateProject_ts
   module_src_features_projects_domain_updateProject_ts --&gt; module_src_types_projects_ts
@@ -387,6 +493,7 @@
   package__ankhorage_projects -.-&gt; module_src_types_projects_ts
   module_test_projects_test_ts[&quot;test/projects.test.ts&quot;]
   package__ankhorage_projects -.-&gt; module_test_projects_test_ts
+  module_test_projects_test_ts --&gt; module_src_capabilities_index_ts
   module_test_projects_test_ts --&gt; module_src_index_ts
 </div>
     <details>
@@ -395,6 +502,8 @@
   package__ankhorage_projects[&quot;@ankhorage/projects&quot;]
   entrypoint_src_index_ts[&quot;src/index.ts&quot;]
   package__ankhorage_projects --&gt; entrypoint_src_index_ts
+  module_src_capabilities_index_ts[&quot;src/capabilities/index.ts&quot;]
+  package__ankhorage_projects -.-&gt; module_src_capabilities_index_ts
   module_src_features_projects_adapters_createProjectRepositoryFileSystemAsync_ts[&quot;src/features/projects/adapters/createProjectRepositoryFileSystemAsync.ts&quot;]
   package__ankhorage_projects -.-&gt; module_src_features_projects_adapters_createProjectRepositoryFileSystemAsync_ts
   module_src_features_projects_adapters_createProjectRepositoryFileSystemAsync_ts --&gt; module_src_features_projects_ports_ProjectRepository_ts
@@ -402,6 +511,7 @@
   module_src_features_projects_application_projects_ts[&quot;src/features/projects/application/projects.ts&quot;]
   package__ankhorage_projects -.-&gt; module_src_features_projects_application_projects_ts
   module_src_features_projects_application_projects_ts --&gt; module_src_features_projects_domain_createProject_ts
+  module_src_features_projects_application_projects_ts --&gt; module_src_features_projects_domain_saveProjectManifest_ts
   module_src_features_projects_application_projects_ts --&gt; module_src_features_projects_domain_updateProject_ts
   module_src_features_projects_application_projects_ts --&gt; module_src_features_projects_ports_ProjectRepository_ts
   module_src_features_projects_application_projects_ts --&gt; module_src_types_projects_ts
@@ -411,6 +521,9 @@
   module_src_features_projects_domain_createProject_ts --&gt; module_src_types_projects_ts
   module_src_features_projects_domain_deriveProjectIdentity_ts[&quot;src/features/projects/domain/deriveProjectIdentity.ts&quot;]
   package__ankhorage_projects -.-&gt; module_src_features_projects_domain_deriveProjectIdentity_ts
+  module_src_features_projects_domain_saveProjectManifest_ts[&quot;src/features/projects/domain/saveProjectManifest.ts&quot;]
+  package__ankhorage_projects -.-&gt; module_src_features_projects_domain_saveProjectManifest_ts
+  module_src_features_projects_domain_saveProjectManifest_ts --&gt; module_src_types_projects_ts
   module_src_features_projects_domain_updateProject_ts[&quot;src/features/projects/domain/updateProject.ts&quot;]
   package__ankhorage_projects -.-&gt; module_src_features_projects_domain_updateProject_ts
   module_src_features_projects_domain_updateProject_ts --&gt; module_src_types_projects_ts
@@ -422,6 +535,7 @@
   package__ankhorage_projects -.-&gt; module_src_types_projects_ts
   module_test_projects_test_ts[&quot;test/projects.test.ts&quot;]
   package__ankhorage_projects -.-&gt; module_test_projects_test_ts
+  module_test_projects_test_ts --&gt; module_src_capabilities_index_ts
   module_test_projects_test_ts --&gt; module_src_index_ts
 </pre>
     </details>
@@ -429,10 +543,12 @@
     <h3>Module relationships</h3>
     <p class="muted"><code>diagrams/module-relationships.mmd</code></p>
     <div class="mermaid">graph LR
+  module_src_capabilities_index_ts[&quot;src/capabilities/index.ts&quot;]
   module_src_features_projects_adapters_createProjectRepositoryFileSystemAsync_ts[&quot;src/features/projects/adapters/createProjectRepositoryFileSystemAsync.ts&quot;]
   module_src_features_projects_application_projects_ts[&quot;src/features/projects/application/projects.ts&quot;]
   module_src_features_projects_domain_createProject_ts[&quot;src/features/projects/domain/createProject.ts&quot;]
   module_src_features_projects_domain_deriveProjectIdentity_ts[&quot;src/features/projects/domain/deriveProjectIdentity.ts&quot;]
+  module_src_features_projects_domain_saveProjectManifest_ts[&quot;src/features/projects/domain/saveProjectManifest.ts&quot;]
   module_src_features_projects_domain_updateProject_ts[&quot;src/features/projects/domain/updateProject.ts&quot;]
   module_src_features_projects_ports_ProjectRepository_ts[&quot;src/features/projects/ports/ProjectRepository.ts&quot;]
   module_src_index_ts[&quot;src/index.ts&quot;]
@@ -441,22 +557,27 @@
   module_src_features_projects_adapters_createProjectRepositoryFileSystemAsync_ts --&gt; module_src_features_projects_ports_ProjectRepository_ts
   module_src_features_projects_adapters_createProjectRepositoryFileSystemAsync_ts --&gt; module_src_types_projects_ts
   module_src_features_projects_application_projects_ts --&gt; module_src_features_projects_domain_createProject_ts
+  module_src_features_projects_application_projects_ts --&gt; module_src_features_projects_domain_saveProjectManifest_ts
   module_src_features_projects_application_projects_ts --&gt; module_src_features_projects_domain_updateProject_ts
   module_src_features_projects_application_projects_ts --&gt; module_src_features_projects_ports_ProjectRepository_ts
   module_src_features_projects_application_projects_ts --&gt; module_src_types_projects_ts
   module_src_features_projects_domain_createProject_ts --&gt; module_src_features_projects_domain_deriveProjectIdentity_ts
   module_src_features_projects_domain_createProject_ts --&gt; module_src_types_projects_ts
+  module_src_features_projects_domain_saveProjectManifest_ts --&gt; module_src_types_projects_ts
   module_src_features_projects_domain_updateProject_ts --&gt; module_src_types_projects_ts
   module_src_features_projects_ports_ProjectRepository_ts --&gt; module_src_types_projects_ts
+  module_test_projects_test_ts --&gt; module_src_capabilities_index_ts
   module_test_projects_test_ts --&gt; module_src_index_ts
 </div>
     <details>
       <summary>View Mermaid source</summary>
       <pre>graph LR
+  module_src_capabilities_index_ts[&quot;src/capabilities/index.ts&quot;]
   module_src_features_projects_adapters_createProjectRepositoryFileSystemAsync_ts[&quot;src/features/projects/adapters/createProjectRepositoryFileSystemAsync.ts&quot;]
   module_src_features_projects_application_projects_ts[&quot;src/features/projects/application/projects.ts&quot;]
   module_src_features_projects_domain_createProject_ts[&quot;src/features/projects/domain/createProject.ts&quot;]
   module_src_features_projects_domain_deriveProjectIdentity_ts[&quot;src/features/projects/domain/deriveProjectIdentity.ts&quot;]
+  module_src_features_projects_domain_saveProjectManifest_ts[&quot;src/features/projects/domain/saveProjectManifest.ts&quot;]
   module_src_features_projects_domain_updateProject_ts[&quot;src/features/projects/domain/updateProject.ts&quot;]
   module_src_features_projects_ports_ProjectRepository_ts[&quot;src/features/projects/ports/ProjectRepository.ts&quot;]
   module_src_index_ts[&quot;src/index.ts&quot;]
@@ -465,13 +586,16 @@
   module_src_features_projects_adapters_createProjectRepositoryFileSystemAsync_ts --&gt; module_src_features_projects_ports_ProjectRepository_ts
   module_src_features_projects_adapters_createProjectRepositoryFileSystemAsync_ts --&gt; module_src_types_projects_ts
   module_src_features_projects_application_projects_ts --&gt; module_src_features_projects_domain_createProject_ts
+  module_src_features_projects_application_projects_ts --&gt; module_src_features_projects_domain_saveProjectManifest_ts
   module_src_features_projects_application_projects_ts --&gt; module_src_features_projects_domain_updateProject_ts
   module_src_features_projects_application_projects_ts --&gt; module_src_features_projects_ports_ProjectRepository_ts
   module_src_features_projects_application_projects_ts --&gt; module_src_types_projects_ts
   module_src_features_projects_domain_createProject_ts --&gt; module_src_features_projects_domain_deriveProjectIdentity_ts
   module_src_features_projects_domain_createProject_ts --&gt; module_src_types_projects_ts
+  module_src_features_projects_domain_saveProjectManifest_ts --&gt; module_src_types_projects_ts
   module_src_features_projects_domain_updateProject_ts --&gt; module_src_types_projects_ts
   module_src_features_projects_ports_ProjectRepository_ts --&gt; module_src_types_projects_ts
+  module_test_projects_test_ts --&gt; module_src_capabilities_index_ts
   module_test_projects_test_ts --&gt; module_src_index_ts
 </pre>
     </details>
@@ -479,10 +603,12 @@
     <h3>Export graph</h3>
     <p class="muted"><code>diagrams/export-graph.mmd</code></p>
     <div class="mermaid">graph LR
+  module_src_capabilities_index_ts[&quot;src/capabilities/index.ts&quot;]
   module_src_features_projects_adapters_createProjectRepositoryFileSystemAsync_ts[&quot;src/features/projects/adapters/createProjectRepositoryFileSystemAsync.ts&quot;]
   module_src_features_projects_application_projects_ts[&quot;src/features/projects/application/projects.ts&quot;]
   module_src_features_projects_domain_createProject_ts[&quot;src/features/projects/domain/createProject.ts&quot;]
   module_src_features_projects_domain_deriveProjectIdentity_ts[&quot;src/features/projects/domain/deriveProjectIdentity.ts&quot;]
+  module_src_features_projects_domain_saveProjectManifest_ts[&quot;src/features/projects/domain/saveProjectManifest.ts&quot;]
   module_src_features_projects_domain_updateProject_ts[&quot;src/features/projects/domain/updateProject.ts&quot;]
   module_src_features_projects_ports_ProjectRepository_ts[&quot;src/features/projects/ports/ProjectRepository.ts&quot;]
   module_src_index_ts[&quot;src/index.ts&quot;]
@@ -493,23 +619,41 @@
   export_createProjectRepositoryFileSystemAsync[&quot;createProjectRepositoryFileSystemAsync&quot;]
   module_src_features_projects_adapters_createProjectRepositoryFileSystemAsync_ts --&gt; export_createProjectRepositoryFileSystemAsync
   export_createProjectRepositoryFileSystemAsync -.-&gt; export_ProjectRepository
+  export_MaterializeProjectRevisionInput[&quot;MaterializeProjectRevisionInput&quot;]
+  module_src_types_projects_ts --&gt; export_MaterializeProjectRevisionInput
   export_Project[&quot;Project&quot;]
   module_src_types_projects_ts --&gt; export_Project
+  export_ProjectManifest[&quot;ProjectManifest&quot;]
+  module_src_types_projects_ts --&gt; export_ProjectManifest
+  export_ProjectManifestDraft[&quot;ProjectManifestDraft&quot;]
+  module_src_types_projects_ts --&gt; export_ProjectManifestDraft
+  export_ProjectManifestRevision[&quot;ProjectManifestRevision&quot;]
+  module_src_types_projects_ts --&gt; export_ProjectManifestRevision
+  export_ProjectMaterializer[&quot;ProjectMaterializer&quot;]
+  module_src_features_projects_ports_ProjectRepository_ts --&gt; export_ProjectMaterializer
+  export_ProjectMaterializer -.-&gt; export_Project
+  export_ProjectMaterializer -.-&gt; export_ProjectManifestRevision
   export_ProjectRepository[&quot;ProjectRepository&quot;]
   module_src_features_projects_ports_ProjectRepository_ts --&gt; export_ProjectRepository
   export_ProjectRepository -.-&gt; export_Project
   export_projects[&quot;projects&quot;]
   module_src_features_projects_application_projects_ts --&gt; export_projects
+  export_ReloadProjectManifestInput[&quot;ReloadProjectManifestInput&quot;]
+  module_src_types_projects_ts --&gt; export_ReloadProjectManifestInput
+  export_SaveProjectManifestInput[&quot;SaveProjectManifestInput&quot;]
+  module_src_types_projects_ts --&gt; export_SaveProjectManifestInput
   export_UpdateProjectInput[&quot;UpdateProjectInput&quot;]
   module_src_types_projects_ts --&gt; export_UpdateProjectInput
 </div>
     <details>
       <summary>View Mermaid source</summary>
       <pre>graph LR
+  module_src_capabilities_index_ts[&quot;src/capabilities/index.ts&quot;]
   module_src_features_projects_adapters_createProjectRepositoryFileSystemAsync_ts[&quot;src/features/projects/adapters/createProjectRepositoryFileSystemAsync.ts&quot;]
   module_src_features_projects_application_projects_ts[&quot;src/features/projects/application/projects.ts&quot;]
   module_src_features_projects_domain_createProject_ts[&quot;src/features/projects/domain/createProject.ts&quot;]
   module_src_features_projects_domain_deriveProjectIdentity_ts[&quot;src/features/projects/domain/deriveProjectIdentity.ts&quot;]
+  module_src_features_projects_domain_saveProjectManifest_ts[&quot;src/features/projects/domain/saveProjectManifest.ts&quot;]
   module_src_features_projects_domain_updateProject_ts[&quot;src/features/projects/domain/updateProject.ts&quot;]
   module_src_features_projects_ports_ProjectRepository_ts[&quot;src/features/projects/ports/ProjectRepository.ts&quot;]
   module_src_index_ts[&quot;src/index.ts&quot;]
@@ -520,13 +664,29 @@
   export_createProjectRepositoryFileSystemAsync[&quot;createProjectRepositoryFileSystemAsync&quot;]
   module_src_features_projects_adapters_createProjectRepositoryFileSystemAsync_ts --&gt; export_createProjectRepositoryFileSystemAsync
   export_createProjectRepositoryFileSystemAsync -.-&gt; export_ProjectRepository
+  export_MaterializeProjectRevisionInput[&quot;MaterializeProjectRevisionInput&quot;]
+  module_src_types_projects_ts --&gt; export_MaterializeProjectRevisionInput
   export_Project[&quot;Project&quot;]
   module_src_types_projects_ts --&gt; export_Project
+  export_ProjectManifest[&quot;ProjectManifest&quot;]
+  module_src_types_projects_ts --&gt; export_ProjectManifest
+  export_ProjectManifestDraft[&quot;ProjectManifestDraft&quot;]
+  module_src_types_projects_ts --&gt; export_ProjectManifestDraft
+  export_ProjectManifestRevision[&quot;ProjectManifestRevision&quot;]
+  module_src_types_projects_ts --&gt; export_ProjectManifestRevision
+  export_ProjectMaterializer[&quot;ProjectMaterializer&quot;]
+  module_src_features_projects_ports_ProjectRepository_ts --&gt; export_ProjectMaterializer
+  export_ProjectMaterializer -.-&gt; export_Project
+  export_ProjectMaterializer -.-&gt; export_ProjectManifestRevision
   export_ProjectRepository[&quot;ProjectRepository&quot;]
   module_src_features_projects_ports_ProjectRepository_ts --&gt; export_ProjectRepository
   export_ProjectRepository -.-&gt; export_Project
   export_projects[&quot;projects&quot;]
   module_src_features_projects_application_projects_ts --&gt; export_projects
+  export_ReloadProjectManifestInput[&quot;ReloadProjectManifestInput&quot;]
+  module_src_types_projects_ts --&gt; export_ReloadProjectManifestInput
+  export_SaveProjectManifestInput[&quot;SaveProjectManifestInput&quot;]
+  module_src_types_projects_ts --&gt; export_SaveProjectManifestInput
   export_UpdateProjectInput[&quot;UpdateProjectInput&quot;]
   module_src_types_projects_ts --&gt; export_UpdateProjectInput
 </pre>
@@ -535,24 +695,42 @@
     <h3>createProjectRepositoryFileSystemAsync sequence</h3>
     <p class="muted"><code>diagrams/sequences/create-project-repository-file-system-async.mmd</code></p>
     <div class="mermaid">sequenceDiagram
+  participant participant_assertStorageDirectoryAsync as assertStorageDirectoryAsync
+  participant participant_createKeyedAsyncMutex as createKeyedAsyncMutex
   participant participant_createProjectRepositoryFileSystemAsync as createProjectRepositoryFileSystemAsync
   participant participant_join as join
   participant participant_mkdir as mkdir
+  participant participant_open as open
   participant_createProjectRepositoryFileSystemAsync-&gt;&gt;participant_join: join()
   participant_join--&gt;&gt;participant_createProjectRepositoryFileSystemAsync: return
   participant_createProjectRepositoryFileSystemAsync-&gt;&gt;participant_mkdir: mkdir()
   participant_mkdir--&gt;&gt;participant_createProjectRepositoryFileSystemAsync: return
+  participant_createProjectRepositoryFileSystemAsync-&gt;&gt;participant_assertStorageDirectoryAsync: assertStorageDirectoryAsync()
+  participant_assertStorageDirectoryAsync-&gt;&gt;participant_open: open()
+  participant_open--&gt;&gt;participant_assertStorageDirectoryAsync: return
+  participant_assertStorageDirectoryAsync--&gt;&gt;participant_createProjectRepositoryFileSystemAsync: return
+  participant_createProjectRepositoryFileSystemAsync-&gt;&gt;participant_createKeyedAsyncMutex: createKeyedAsyncMutex()
+  participant_createKeyedAsyncMutex--&gt;&gt;participant_createProjectRepositoryFileSystemAsync: return
 </div>
     <details>
       <summary>View Mermaid source</summary>
       <pre>sequenceDiagram
+  participant participant_assertStorageDirectoryAsync as assertStorageDirectoryAsync
+  participant participant_createKeyedAsyncMutex as createKeyedAsyncMutex
   participant participant_createProjectRepositoryFileSystemAsync as createProjectRepositoryFileSystemAsync
   participant participant_join as join
   participant participant_mkdir as mkdir
+  participant participant_open as open
   participant_createProjectRepositoryFileSystemAsync-&gt;&gt;participant_join: join()
   participant_join--&gt;&gt;participant_createProjectRepositoryFileSystemAsync: return
   participant_createProjectRepositoryFileSystemAsync-&gt;&gt;participant_mkdir: mkdir()
   participant_mkdir--&gt;&gt;participant_createProjectRepositoryFileSystemAsync: return
+  participant_createProjectRepositoryFileSystemAsync-&gt;&gt;participant_assertStorageDirectoryAsync: assertStorageDirectoryAsync()
+  participant_assertStorageDirectoryAsync-&gt;&gt;participant_open: open()
+  participant_open--&gt;&gt;participant_assertStorageDirectoryAsync: return
+  participant_assertStorageDirectoryAsync--&gt;&gt;participant_createProjectRepositoryFileSystemAsync: return
+  participant_createProjectRepositoryFileSystemAsync-&gt;&gt;participant_createKeyedAsyncMutex: createKeyedAsyncMutex()
+  participant_createKeyedAsyncMutex--&gt;&gt;participant_createProjectRepositoryFileSystemAsync: return
 </pre>
     </details>
   </article>
@@ -561,35 +739,79 @@
         <section id="view-src-features-projects-adapters-createprojectrepositoryfilesystemasync-ts" class="view" data-view="src/features/projects/adapters/createProjectRepositoryFileSystemAsync.ts" hidden>
     <section class="panel">
       <h2>src/features/projects/adapters/createProjectRepositoryFileSystemAsync.ts</h2>
-      <article class="item" data-search="createProjectRepositoryFileSystemAsync src/features/projects/adapters/createProjectRepositoryFileSystemAsync.ts Create a path-isolated filesystem implementation of the project repository port.">
+      <article class="item" data-search="createProjectRepositoryFileSystemAsync src/features/projects/adapters/createProjectRepositoryFileSystemAsync.ts Create a path-isolated filesystem implementation of the project repository port.&#10;&#10;The keyed mutex coordinates mutations only through this adapter instance in one Node.js process.&#10;Assign each storage directory to one writer; coordinating separate adapter instances or processes&#10;requires external locking and is unsupported by this adapter.">
     <h3>createProjectRepositoryFileSystemAsync</h3>
-    <p class="muted"><code>src/features/projects/adapters/createProjectRepositoryFileSystemAsync.ts:23:1</code></p>
-    <p>Create a path-isolated filesystem implementation of the project repository port.</p>
+    <p class="muted"><code>src/features/projects/adapters/createProjectRepositoryFileSystemAsync.ts:31:1</code></p>
+    <p>Create a path-isolated filesystem implementation of the project repository port.
+
+The keyed mutex coordinates mutations only through this adapter instance in one Node.js process.
+Assign each storage directory to one writer; coordinating separate adapter instances or processes
+requires external locking and is unsupported by this adapter.</p>
     
-  </article><article class="item" data-search="readProjectAsync src/features/projects/adapters/createProjectRepositoryFileSystemAsync.ts Read a regular, schema-valid project file without following a symlink.">
+  </article><article class="item" data-search="assertStorageDirectoryAsync src/features/projects/adapters/createProjectRepositoryFileSystemAsync.ts Confirm that the storage directory itself cannot be a symlink.">
+    <h3>assertStorageDirectoryAsync</h3>
+    <p class="muted"><code>src/features/projects/adapters/createProjectRepositoryFileSystemAsync.ts:75:1</code></p>
+    <p>Confirm that the storage directory itself cannot be a symlink.</p>
+    
+  </article><article class="item" data-search="readProjectAsync src/features/projects/adapters/createProjectRepositoryFileSystemAsync.ts Read a regular, schema-valid project file through a no-follow file handle.">
     <h3>readProjectAsync</h3>
-    <p class="muted"><code>src/features/projects/adapters/createProjectRepositoryFileSystemAsync.ts:62:1</code></p>
-    <p>Read a regular, schema-valid project file without following a symlink.</p>
+    <p class="muted"><code>src/features/projects/adapters/createProjectRepositoryFileSystemAsync.ts:90:1</code></p>
+    <p>Read a regular, schema-valid project file through a no-follow file handle.</p>
+    
+  </article><article class="item" data-search="readProjectWithMigrationAsync src/features/projects/adapters/createProjectRepositoryFileSystemAsync.ts Read a project and atomically persist the one supported W1-to-W2 document migration.">
+    <h3>readProjectWithMigrationAsync</h3>
+    <p class="muted"><code>src/features/projects/adapters/createProjectRepositoryFileSystemAsync.ts:126:1</code></p>
+    <p>Read a project and atomically persist the one supported W1-to-W2 document migration.</p>
     
   </article><article class="item" data-search="writeProjectAsync src/features/projects/adapters/createProjectRepositoryFileSystemAsync.ts Atomically create or replace a project file without exposing a partial document.">
     <h3>writeProjectAsync</h3>
-    <p class="muted"><code>src/features/projects/adapters/createProjectRepositoryFileSystemAsync.ts:79:1</code></p>
+    <p class="muted"><code>src/features/projects/adapters/createProjectRepositoryFileSystemAsync.ts:144:1</code></p>
     <p>Atomically create or replace a project file without exposing a partial document.</p>
+    
+  </article><article class="item" data-search="writeTemporaryProjectAsync src/features/projects/adapters/createProjectRepositoryFileSystemAsync.ts Write a private temporary project file without following or replacing an existing entry.">
+    <h3>writeTemporaryProjectAsync</h3>
+    <p class="muted"><code>src/features/projects/adapters/createProjectRepositoryFileSystemAsync.ts:162:1</code></p>
+    <p>Write a private temporary project file without following or replacing an existing entry.</p>
+    
+  </article><article class="item" data-search="deleteProjectAsync src/features/projects/adapters/createProjectRepositoryFileSystemAsync.ts Atomically detach a project, restoring it when validation or deletion cannot complete.">
+    <h3>deleteProjectAsync</h3>
+    <p class="muted"><code>src/features/projects/adapters/createProjectRepositoryFileSystemAsync.ts:176:1</code></p>
+    <p>Atomically detach a project, restoring it when validation or deletion cannot complete.</p>
     
   </article><article class="item" data-search="projectFileName src/features/projects/adapters/createProjectRepositoryFileSystemAsync.ts Convert only canonical project identities into a local storage filename.">
     <h3>projectFileName</h3>
-    <p class="muted"><code>src/features/projects/adapters/createProjectRepositoryFileSystemAsync.ts:100:1</code></p>
+    <p class="muted"><code>src/features/projects/adapters/createProjectRepositoryFileSystemAsync.ts:203:1</code></p>
     <p>Convert only canonical project identities into a local storage filename.</p>
     
-  </article><article class="item" data-search="isStoredProject src/features/projects/adapters/createProjectRepositoryFileSystemAsync.ts Verify a parsed storage document before it enters the application.">
+  </article><article class="item" data-search="isStoredProject src/features/projects/adapters/createProjectRepositoryFileSystemAsync.ts Verify a parsed current or published-W1 storage document before it enters the application.">
     <h3>isStoredProject</h3>
-    <p class="muted"><code>src/features/projects/adapters/createProjectRepositoryFileSystemAsync.ts:108:1</code></p>
-    <p>Verify a parsed storage document before it enters the application.</p>
+    <p class="muted"><code>src/features/projects/adapters/createProjectRepositoryFileSystemAsync.ts:211:1</code></p>
+    <p>Verify a parsed current or published-W1 storage document before it enters the application.</p>
+    
+  </article><article class="item" data-search="isStoredProjectW1 src/features/projects/adapters/createProjectRepositoryFileSystemAsync.ts Recognize only the published W1 document shape that has no persisted manifest field.">
+    <h3>isStoredProjectW1</h3>
+    <p class="muted"><code>src/features/projects/adapters/createProjectRepositoryFileSystemAsync.ts:216:1</code></p>
+    <p>Recognize only the published W1 document shape that has no persisted manifest field.</p>
+    
+  </article><article class="item" data-search="isStoredProjectW2 src/features/projects/adapters/createProjectRepositoryFileSystemAsync.ts Validate the current persisted project document at the filesystem boundary.">
+    <h3>isStoredProjectW2</h3>
+    <p class="muted"><code>src/features/projects/adapters/createProjectRepositoryFileSystemAsync.ts:231:1</code></p>
+    <p>Validate the current persisted project document at the filesystem boundary.</p>
+    
+  </article><article class="item" data-search="isProjectManifest src/features/projects/adapters/createProjectRepositoryFileSystemAsync.ts Validate persisted manifest draft and revision invariants at the filesystem boundary.">
+    <h3>isProjectManifest</h3>
+    <p class="muted"><code>src/features/projects/adapters/createProjectRepositoryFileSystemAsync.ts:246:1</code></p>
+    <p>Validate persisted manifest draft and revision invariants at the filesystem boundary.</p>
     
   </article><article class="item" data-search="isMissingFileError src/features/projects/adapters/createProjectRepositoryFileSystemAsync.ts Identify the missing-file condition that represents an absent project.">
     <h3>isMissingFileError</h3>
-    <p class="muted"><code>src/features/projects/adapters/createProjectRepositoryFileSystemAsync.ts:122:1</code></p>
+    <p class="muted"><code>src/features/projects/adapters/createProjectRepositoryFileSystemAsync.ts:276:1</code></p>
     <p>Identify the missing-file condition that represents an absent project.</p>
+    
+  </article><article class="item" data-search="isSymlinkError src/features/projects/adapters/createProjectRepositoryFileSystemAsync.ts Identify no-follow failures caused by a symbolic link at the opened path.">
+    <h3>isSymlinkError</h3>
+    <p class="muted"><code>src/features/projects/adapters/createProjectRepositoryFileSystemAsync.ts:281:1</code></p>
+    <p>Identify no-follow failures caused by a symbolic link at the opened path.</p>
     
   </article>
     </section>
@@ -603,7 +825,7 @@
     
   </article><article class="item" data-search="normalizeProjectName src/features/projects/domain/createProject.ts Normalize a project name at the domain boundary.">
     <h3>normalizeProjectName</h3>
-    <p class="muted"><code>src/features/projects/domain/createProject.ts:13:1</code></p>
+    <p class="muted"><code>src/features/projects/domain/createProject.ts:19:1</code></p>
     <p>Normalize a project name at the domain boundary.</p>
     
   </article>
@@ -615,6 +837,16 @@
     <h3>deriveProjectIdentity</h3>
     <p class="muted"><code>src/features/projects/domain/deriveProjectIdentity.ts:4:1</code></p>
     <p>Derive the canonical path-safe project identity from a project name.</p>
+    
+  </article>
+    </section>
+  </section><section id="view-src-features-projects-domain-saveprojectmanifest-ts" class="view" data-view="src/features/projects/domain/saveProjectManifest.ts" hidden>
+    <section class="panel">
+      <h2>src/features/projects/domain/saveProjectManifest.ts</h2>
+      <article class="item" data-search="saveProjectManifest src/features/projects/domain/saveProjectManifest.ts Save a validated AppManifest as the next immutable revision after checking the draft version.">
+    <h3>saveProjectManifest</h3>
+    <p class="muted"><code>src/features/projects/domain/saveProjectManifest.ts:6:1</code></p>
+    <p>Save a validated AppManifest as the next immutable revision after checking the draft version.</p>
     
   </article>
     </section>
