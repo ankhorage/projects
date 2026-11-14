@@ -61,7 +61,7 @@
     "typescript": "~6.0.3"
   },
   "dependencies": {
-    "@ankhorage/contracts": "^26.4.0",
+    "@ankhorage/contracts": "^26.10.0",
     "@ankhorage/utility": "^1.10.0"
   },
   "ankh": {
@@ -126,6 +126,51 @@
         },
         "label": "Update project",
         "description": "Update one existing persisted project."
+      },
+      {
+        "id": "projects.save",
+        "owner": "@ankhorage/projects",
+        "access": [
+          "write"
+        ],
+        "binding": {
+          "kind": "storage",
+          "bindableAs": [
+            "target"
+          ]
+        },
+        "label": "Save project manifest",
+        "description": "Persist a validated AppManifest draft as an immutable project revision."
+      },
+      {
+        "id": "projects.reload",
+        "owner": "@ankhorage/projects",
+        "access": [
+          "read"
+        ],
+        "binding": {
+          "kind": "storage",
+          "bindableAs": [
+            "target"
+          ]
+        },
+        "label": "Reload project manifest",
+        "description": "Read the persisted project manifest draft and immutable revision history."
+      },
+      {
+        "id": "projects.materialize",
+        "owner": "@ankhorage/projects",
+        "access": [
+          "write"
+        ],
+        "binding": {
+          "kind": "action",
+          "bindableAs": [
+            "target"
+          ]
+        },
+        "label": "Materialize project revision",
+        "description": "Materialize one stored immutable project revision through an injected owner generator."
       },
       {
         "id": "projects.delete",

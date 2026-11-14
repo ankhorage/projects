@@ -6,7 +6,13 @@ export function createProject(input: CreateProjectInput, now: Date): Project {
   const name = normalizeProjectName(input.name);
   const timestamp = now.toISOString();
 
-  return { id: deriveProjectIdentity(name), name, createdAt: timestamp, updatedAt: timestamp };
+  return {
+    id: deriveProjectIdentity(name),
+    name,
+    createdAt: timestamp,
+    updatedAt: timestamp,
+    manifest: { draft: null, revisions: [] },
+  };
 }
 
 /*** Normalize a project name at the domain boundary. */

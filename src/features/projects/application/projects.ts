@@ -1,7 +1,17 @@
-import type { CreateProjectInput, Project, UpdateProjectInput } from '../../../types/projects.js';
+import type {
+  CreateProjectInput,
+  MaterializeProjectRevisionInput,
+  Project,
+  ProjectManifest,
+  ProjectManifestRevision,
+  ReloadProjectManifestInput,
+  SaveProjectManifestInput,
+  UpdateProjectInput,
+} from '../../../types/projects.js';
 import { createProject } from '../domain/createProject.js';
+import { saveProjectManifest } from '../domain/saveProjectManifest.js';
 import { updateProject } from '../domain/updateProject.js';
-import type { ProjectRepository } from '../ports/ProjectRepository.js';
+import type { ProjectMaterializer, ProjectRepository } from '../ports/ProjectRepository.js';
 
 /*** Expose the project repository actions through an explicit port. */
 export const projects = {
@@ -28,6 +38,29 @@ export const projects = {
     now = new Date(),
   ): Promise<Project | null> =>
     repository.updateAsync(input.id, (project) => updateProject(project, input, now)),
+  save: async (
+    repository: ProjectRepository,
+    input: SaveProjectManifestInput,
+    now = new Date(),
+  ): Promise<Project | null> =>
+    repository.updateAsync(input.id, (project) => saveProjectManifest(project, input, now)),
+  reload: async (
+    repository: ProjectRepository,
+    input: ReloadProjectManifestInput,
+  ): Promise<ProjectManifest | null> => (await repository.readAsync(input.id))?.manifest ?? null,
+  materialize: async (
+    repository: ProjectRepository,
+    materializer: ProjectMaterializer,
+    input: MaterializeProjectRevisionInput,
+  ): Promise<ProjectManifestRevision | null> => {
+    const project = await repository.readAsync(input.id);
+    const revision = project?.manifest.revisions.find(
+      (candidate) => candidate.id === input.revisionId,
+    );
+    if (project === null || revision === undefined) return null;
+    await materializer.materializeAsync({ project, revision });
+    return revision;
+  },
   delete: async (repository: ProjectRepository, id: string): Promise<Project | null> =>
     repository.deleteAsync(id),
 };
