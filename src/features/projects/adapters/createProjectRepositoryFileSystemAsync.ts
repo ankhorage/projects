@@ -1,16 +1,7 @@
-import {
-  link,
-  lstat,
-  mkdir,
-  readdir,
-  readFile,
-  rename,
-  rm,
-  unlink,
-  writeFile,
-} from 'node:fs/promises';
+import { constants, link, mkdir, open, readdir, rename, rm } from 'node:fs/promises';
 import { join } from 'node:path';
 
+import { createKeyedAsyncMutex } from '@ankhorage/utility/concurrency';
 import { isRecord } from '@ankhorage/utility/object';
 
 import type { Project } from '../../../types/projects.js';
@@ -25,6 +16,10 @@ export async function createProjectRepositoryFileSystemAsync(
 ): Promise<ProjectRepository> {
   const directory = join(options.directory, 'projects');
   await mkdir(directory, { recursive: true, mode: 0o700 });
+  await assertStorageDirectoryAsync(directory);
+  const mutations = createKeyedAsyncMutex<string>({
+    createBusyError: (id) => new Error(`Project identity '${id}' is busy.`),
+  });
 
   return {
     listAsync: async (): Promise<readonly Project[]> => {
@@ -41,37 +36,61 @@ export async function createProjectRepositoryFileSystemAsync(
     readAsync: async (id: string): Promise<Project | null> =>
       readProjectAsync(directory, projectFileName(id)),
     createAsync: async (project: Project): Promise<void> =>
-      writeProjectAsync(directory, project, true),
-    updateAsync: async (project: Project): Promise<Project | null> => {
-      const fileName = projectFileName(project.id);
-      if ((await readProjectAsync(directory, fileName)) === null) return null;
-      await writeProjectAsync(directory, project, false);
-      return project;
-    },
-    deleteAsync: async (id: string): Promise<Project | null> => {
-      const fileName = projectFileName(id);
-      const project = await readProjectAsync(directory, fileName);
-      if (project === null) return null;
-      await unlink(join(directory, fileName));
-      return project;
-    },
+      mutations.run(project.id, async () => writeProjectAsync(directory, project, true)),
+    updateAsync: async (project: Project): Promise<Project | null> =>
+      mutations.run(project.id, async () => {
+        const fileName = projectFileName(project.id);
+        if ((await readProjectAsync(directory, fileName)) === null) return null;
+        await writeProjectAsync(directory, project, false);
+        return project;
+      }),
+    deleteAsync: async (id: string): Promise<Project | null> =>
+      mutations.run(id, async () => deleteProjectAsync(directory, id)),
   };
 }
 
-/*** Read a regular, schema-valid project file without following a symlink. */
-async function readProjectAsync(directory: string, fileName: string): Promise<Project | null> {
-  const path = join(directory, fileName);
+/*** Confirm that the storage directory itself cannot be a symlink. */
+async function assertStorageDirectoryAsync(directory: string): Promise<void> {
+  const handle = await open(
+    directory,
+    constants.O_RDONLY | constants.O_DIRECTORY | constants.O_NOFOLLOW,
+  );
   try {
-    if (!(await lstat(path)).isFile())
+    if (!(await handle.stat()).isDirectory()) {
+      throw new Error('Project storage must be a directory.');
+    }
+  } finally {
+    await handle.close();
+  }
+}
+
+/*** Read a regular, schema-valid project file through a no-follow file handle. */
+async function readProjectAsync(
+  directory: string,
+  fileName: string,
+  expectedFileName = fileName,
+): Promise<Project | null> {
+  const path = join(directory, fileName);
+  let handle;
+  try {
+    handle = await open(path, constants.O_RDONLY | constants.O_NOFOLLOW);
+    if (!(await handle.stat()).isFile())
       throw new Error(`Project storage entry '${fileName}' must be a regular file.`);
-    const stored = JSON.parse(await readFile(path, 'utf8')) as unknown;
-    if (!isStoredProject(stored) || projectFileName(stored.project.id) !== fileName) {
+    const stored = JSON.parse(await handle.readFile({ encoding: 'utf8' })) as unknown;
+    if (!isStoredProject(stored) || projectFileName(stored.project.id) !== expectedFileName) {
       throw new Error(`Project storage entry '${fileName}' is invalid.`);
     }
     return stored.project;
   } catch (error: unknown) {
     if (isMissingFileError(error)) return null;
+    if (isSymlinkError(error)) {
+      throw new Error(`Project storage entry '${fileName}' must be a regular file.`, {
+        cause: error,
+      });
+    }
     throw error;
+  } finally {
+    await handle?.close();
   }
 }
 
@@ -84,13 +103,49 @@ async function writeProjectAsync(
   const fileName = projectFileName(project.id);
   const target = join(directory, fileName);
   const temporary = join(directory, `.${fileName}.${crypto.randomUUID()}.tmp`);
-  await writeFile(temporary, JSON.stringify({ version: 1, project } satisfies StoredProject), {
-    encoding: 'utf8',
-    mode: 0o600,
-  });
+  await writeTemporaryProjectAsync(temporary, project);
   try {
     if (createOnly) await link(temporary, target);
     else await rename(temporary, target);
+  } finally {
+    await rm(temporary, { force: true });
+  }
+}
+
+/*** Write a private temporary project file without following or replacing an existing entry. */
+async function writeTemporaryProjectAsync(temporary: string, project: Project): Promise<void> {
+  const handle = await open(
+    temporary,
+    constants.O_WRONLY | constants.O_CREAT | constants.O_EXCL | constants.O_NOFOLLOW,
+    0o600,
+  );
+  try {
+    await handle.writeFile(JSON.stringify({ version: 1, project } satisfies StoredProject), 'utf8');
+  } finally {
+    await handle.close();
+  }
+}
+
+/*** Atomically detach a project before reading and removing its regular-file snapshot. */
+async function deleteProjectAsync(directory: string, id: string): Promise<Project | null> {
+  const fileName = projectFileName(id);
+  const target = join(directory, fileName);
+  const temporary = join(directory, `.${fileName}.${crypto.randomUUID()}.delete`);
+  try {
+    await rename(target, temporary);
+  } catch (error: unknown) {
+    if (isMissingFileError(error)) return null;
+    throw error;
+  }
+
+  try {
+    const project = await readProjectAsync(
+      directory,
+      temporary.slice(directory.length + 1),
+      fileName,
+    );
+    if (project === null) throw new Error(`Project storage entry '${fileName}' disappeared.`);
+    return project;
   } finally {
     await rm(temporary, { force: true });
   }
@@ -121,4 +176,9 @@ function isStoredProject(value: unknown): value is StoredProject {
 /*** Identify the missing-file condition that represents an absent project. */
 function isMissingFileError(error: unknown): error is NodeJS.ErrnoException {
   return typeof error === 'object' && error !== null && 'code' in error && error.code === 'ENOENT';
+}
+
+/*** Identify no-follow failures caused by a symbolic link at the opened path. */
+function isSymlinkError(error: unknown): error is NodeJS.ErrnoException {
+  return typeof error === 'object' && error !== null && 'code' in error && error.code === 'ELOOP';
 }

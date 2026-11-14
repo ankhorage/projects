@@ -2,6 +2,7 @@ import { mkdtemp, readFile, rm, symlink, writeFile } from 'node:fs/promises';
 import { tmpdir } from 'node:os';
 import { join } from 'node:path';
 import { afterEach, describe, expect, test } from 'bun:test';
+import { CAPABILITIES } from '../src/capabilities/index.js';
 import { createProjectRepositoryFileSystemAsync, projects } from '../src/index.js';
 
 const directories: string[] = [];
@@ -13,6 +14,19 @@ afterEach(async () =>
 );
 
 describe('projects', () => {
+  test('publishes the five project capability descriptors', () => {
+    expect(CAPABILITIES.map((capability) => capability.id)).toEqual([
+      'projects.list',
+      'projects.read',
+      'projects.create',
+      'projects.update',
+      'projects.delete',
+    ]);
+    expect(
+      CAPABILITIES.every((capability) => capability.owner === '@ankhorage/projects'),
+    ).toBeTrue();
+  });
+
   test('creates, lists, reads, updates, and deletes a persisted project', async () => {
     const directory = await createDirectoryAsync();
     const repository = await createProjectRepositoryFileSystemAsync({ directory });
@@ -53,7 +67,25 @@ describe('projects', () => {
       'Project identity is invalid.',
     );
     await expect(projects.read(repository, id)).rejects.toThrow('must be a regular file');
+    await expect(projects.delete(repository, id)).rejects.toThrow('must be a regular file');
     expect(await readFile(target, 'utf8')).toBe('{"secret":true}');
+  });
+
+  test('rejects an overlapping delete while an update owns the project identity', async () => {
+    const directory = await createDirectoryAsync();
+    const repository = await createProjectRepositoryFileSystemAsync({ directory });
+    const created = await projects.create(repository, { name: 'First project' });
+    const updated = {
+      ...created,
+      name: 'Updated project',
+      updatedAt: '2026-11-14T11:00:00.000Z',
+    };
+    const updating = repository.updateAsync(updated);
+    const deleting = repository.deleteAsync(created.id);
+
+    await expect(deleting).rejects.toThrow(`Project identity '${created.id}' is busy.`);
+    expect(await updating).toEqual(updated);
+    expect(await projects.read(repository, created.id)).toEqual(updated);
   });
 });
 
