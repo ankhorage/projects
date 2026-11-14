@@ -1,5 +1,5 @@
 ---
-"@ankhorage/projects": patch
+'@ankhorage/projects': patch
 ---
 
 chore: add canonical repository metadata
