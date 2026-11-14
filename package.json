@@ -31,6 +31,10 @@
     ".": {
       "types": "./dist/index.d.ts",
       "import": "./dist/index.js"
+    },
+    "./capabilities": {
+      "types": "./dist/capabilities/index.d.ts",
+      "import": "./dist/capabilities/index.js"
     }
   },
   "packageManager": "bun@1.4.2",
@@ -55,5 +59,89 @@
     "@types/bun": "^1.4.2",
     "@types/node": "^26.6.6",
     "typescript": "~6.0.3"
+  },
+  "dependencies": {
+    "@ankhorage/contracts": "^26.4.0",
+    "@ankhorage/utility": "^1.10.0"
+  },
+  "ankh": {
+    "category": "projects",
+    "capabilities": [
+      {
+        "id": "projects.list",
+        "owner": "@ankhorage/projects",
+        "access": [
+          "read"
+        ],
+        "binding": {
+          "kind": "storage",
+          "bindableAs": [
+            "target"
+          ]
+        },
+        "label": "List projects",
+        "description": "List persisted project identities."
+      },
+      {
+        "id": "projects.read",
+        "owner": "@ankhorage/projects",
+        "access": [
+          "read"
+        ],
+        "binding": {
+          "kind": "storage",
+          "bindableAs": [
+            "target"
+          ]
+        },
+        "label": "Read project",
+        "description": "Read one persisted project by identity."
+      },
+      {
+        "id": "projects.create",
+        "owner": "@ankhorage/projects",
+        "access": [
+          "write"
+        ],
+        "binding": {
+          "kind": "storage",
+          "bindableAs": [
+            "target"
+          ]
+        },
+        "label": "Create project",
+        "description": "Create one persisted project with a canonical identity."
+      },
+      {
+        "id": "projects.update",
+        "owner": "@ankhorage/projects",
+        "access": [
+          "write"
+        ],
+        "binding": {
+          "kind": "storage",
+          "bindableAs": [
+            "target"
+          ]
+        },
+        "label": "Update project",
+        "description": "Update one existing persisted project."
+      },
+      {
+        "id": "projects.delete",
+        "owner": "@ankhorage/projects",
+        "access": [
+          "write"
+        ],
+        "binding": {
+          "kind": "storage",
+          "bindableAs": [
+            "target"
+          ]
+        },
+        "label": "Delete project",
+        "description": "Delete one persisted project by identity."
+      }
+    ]
   }
 }
