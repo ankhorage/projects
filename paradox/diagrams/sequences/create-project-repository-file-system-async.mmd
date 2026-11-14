@@ -1,0 +1,8 @@
+sequenceDiagram
+  participant participant_createProjectRepositoryFileSystemAsync as createProjectRepositoryFileSystemAsync
+  participant participant_join as join
+  participant participant_mkdir as mkdir
+  participant_createProjectRepositoryFileSystemAsync->>participant_join: join()
+  participant_join-->>participant_createProjectRepositoryFileSystemAsync: return
+  participant_createProjectRepositoryFileSystemAsync->>participant_mkdir: mkdir()
+  participant_mkdir-->>participant_createProjectRepositoryFileSystemAsync: return

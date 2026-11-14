@@ -1,0 +1,21 @@
+graph LR
+  module_src_features_projects_adapters_createProjectRepositoryFileSystemAsync_ts["src/features/projects/adapters/createProjectRepositoryFileSystemAsync.ts"]
+  module_src_features_projects_application_projects_ts["src/features/projects/application/projects.ts"]
+  module_src_features_projects_domain_createProject_ts["src/features/projects/domain/createProject.ts"]
+  module_src_features_projects_domain_deriveProjectIdentity_ts["src/features/projects/domain/deriveProjectIdentity.ts"]
+  module_src_features_projects_domain_updateProject_ts["src/features/projects/domain/updateProject.ts"]
+  module_src_features_projects_ports_ProjectRepository_ts["src/features/projects/ports/ProjectRepository.ts"]
+  module_src_index_ts["src/index.ts"]
+  module_src_types_projects_ts["src/types/projects.ts"]
+  module_test_projects_test_ts["test/projects.test.ts"]
+  module_src_features_projects_adapters_createProjectRepositoryFileSystemAsync_ts --> module_src_features_projects_ports_ProjectRepository_ts
+  module_src_features_projects_adapters_createProjectRepositoryFileSystemAsync_ts --> module_src_types_projects_ts
+  module_src_features_projects_application_projects_ts --> module_src_features_projects_domain_createProject_ts
+  module_src_features_projects_application_projects_ts --> module_src_features_projects_domain_updateProject_ts
+  module_src_features_projects_application_projects_ts --> module_src_features_projects_ports_ProjectRepository_ts
+  module_src_features_projects_application_projects_ts --> module_src_types_projects_ts
+  module_src_features_projects_domain_createProject_ts --> module_src_features_projects_domain_deriveProjectIdentity_ts
+  module_src_features_projects_domain_createProject_ts --> module_src_types_projects_ts
+  module_src_features_projects_domain_updateProject_ts --> module_src_types_projects_ts
+  module_src_features_projects_ports_ProjectRepository_ts --> module_src_types_projects_ts
+  module_test_projects_test_ts --> module_src_index_ts

@@ -1,0 +1,188 @@
+[
+  {
+    "name": "CreateProjectInput",
+    "title": null,
+    "description": null,
+    "isReadme": false,
+    "see": [],
+    "security": [],
+    "kind": "unknown",
+    "modulePath": "src/types/projects.ts",
+    "sourceLocation": {
+      "filePath": "src/types/projects.ts",
+      "line": 8,
+      "column": 1
+    },
+    "exportPaths": [
+      "src/index.ts"
+    ],
+    "relatedSymbols": [],
+    "signatures": [],
+    "members": [],
+    "structuredRows": []
+  },
+  {
+    "name": "createProjectRepositoryFileSystemAsync",
+    "title": null,
+    "description": "Create a path-isolated filesystem implementation of the project repository port.",
+    "isReadme": false,
+    "see": [],
+    "security": [],
+    "kind": "function",
+    "modulePath": "src/features/projects/adapters/createProjectRepositoryFileSystemAsync.ts",
+    "sourceLocation": {
+      "filePath": "src/features/projects/adapters/createProjectRepositoryFileSystemAsync.ts",
+      "line": 23,
+      "column": 1
+    },
+    "exportPaths": [
+      "src/index.ts"
+    ],
+    "relatedSymbols": [
+      "ProjectRepository"
+    ],
+    "signatures": [
+      {
+        "label": "(options: Readonly<{ directory: string; }>) => Promise<ProjectRepository>",
+        "parameters": [
+          {
+            "name": "options",
+            "type": "Readonly<{ directory: string; }>",
+            "required": true,
+            "description": null
+          }
+        ],
+        "returnType": "Promise<ProjectRepository>",
+        "returnDescription": null
+      }
+    ],
+    "members": [],
+    "structuredRows": []
+  },
+  {
+    "name": "Project",
+    "title": null,
+    "description": null,
+    "isReadme": false,
+    "see": [],
+    "security": [],
+    "kind": "unknown",
+    "modulePath": "src/types/projects.ts",
+    "sourceLocation": {
+      "filePath": "src/types/projects.ts",
+      "line": 1,
+      "column": 1
+    },
+    "exportPaths": [
+      "src/index.ts"
+    ],
+    "relatedSymbols": [],
+    "signatures": [],
+    "members": [],
+    "structuredRows": []
+  },
+  {
+    "name": "ProjectRepository",
+    "title": null,
+    "description": null,
+    "isReadme": false,
+    "see": [],
+    "security": [],
+    "kind": "type",
+    "modulePath": "src/features/projects/ports/ProjectRepository.ts",
+    "sourceLocation": {
+      "filePath": "src/features/projects/ports/ProjectRepository.ts",
+      "line": 3,
+      "column": 1
+    },
+    "exportPaths": [
+      "src/index.ts"
+    ],
+    "relatedSymbols": [
+      "Project"
+    ],
+    "signatures": [],
+    "members": [
+      {
+        "name": "createAsync",
+        "kind": "method",
+        "type": "(project: Project) => Promise<void>",
+        "required": true,
+        "description": null
+      },
+      {
+        "name": "deleteAsync",
+        "kind": "method",
+        "type": "(id: string) => Promise<Project | null>",
+        "required": true,
+        "description": null
+      },
+      {
+        "name": "listAsync",
+        "kind": "method",
+        "type": "() => Promise<readonly Project[]>",
+        "required": true,
+        "description": null
+      },
+      {
+        "name": "readAsync",
+        "kind": "method",
+        "type": "(id: string) => Promise<Project | null>",
+        "required": true,
+        "description": null
+      },
+      {
+        "name": "updateAsync",
+        "kind": "method",
+        "type": "(project: Project) => Promise<Project | null>",
+        "required": true,
+        "description": null
+      }
+    ],
+    "structuredRows": []
+  },
+  {
+    "name": "projects",
+    "title": null,
+    "description": "Expose the project repository actions through an explicit port.",
+    "isReadme": false,
+    "see": [],
+    "security": [],
+    "kind": "value",
+    "modulePath": "src/features/projects/application/projects.ts",
+    "sourceLocation": {
+      "filePath": "src/features/projects/application/projects.ts",
+      "line": 7,
+      "column": 14
+    },
+    "exportPaths": [
+      "src/index.ts"
+    ],
+    "relatedSymbols": [],
+    "signatures": [],
+    "members": [],
+    "structuredRows": []
+  },
+  {
+    "name": "UpdateProjectInput",
+    "title": null,
+    "description": null,
+    "isReadme": false,
+    "see": [],
+    "security": [],
+    "kind": "unknown",
+    "modulePath": "src/types/projects.ts",
+    "sourceLocation": {
+      "filePath": "src/types/projects.ts",
+      "line": 10,
+      "column": 1
+    },
+    "exportPaths": [
+      "src/index.ts"
+    ],
+    "relatedSymbols": [],
+    "signatures": [],
+    "members": [],
+    "structuredRows": []
+  }
+]

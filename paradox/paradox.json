@@ -1,0 +1,945 @@
+{
+  "packageName": "@ankhorage/projects",
+  "packageId": "@ankhorage/projects",
+  "description": "Standalone project identity and repository actions.",
+  "collaborators": null,
+  "donation": null,
+  "badges": [
+    {
+      "id": "license",
+      "label": "license",
+      "value": "MIT",
+      "color": "2563eb"
+    },
+    {
+      "id": "npm",
+      "label": "npm",
+      "value": "v0.1.0",
+      "color": "cb3837"
+    },
+    {
+      "id": "runtime",
+      "label": "runtime",
+      "value": "bun",
+      "color": "f59e0b"
+    },
+    {
+      "id": "typescript",
+      "label": "typescript",
+      "value": "strict",
+      "color": "2563eb"
+    },
+    {
+      "id": "eslint",
+      "label": "eslint",
+      "value": "checked",
+      "color": "0a7f3f"
+    },
+    {
+      "id": "prettier",
+      "label": "prettier",
+      "value": "checked",
+      "color": "0a7f3f"
+    },
+    {
+      "id": "build",
+      "label": "build",
+      "value": "checked",
+      "color": "0a7f3f"
+    },
+    {
+      "id": "tests",
+      "label": "tests",
+      "value": "configured",
+      "color": "6f42c1"
+    },
+    {
+      "id": "docs",
+      "label": "paradox",
+      "value": "canonical",
+      "color": "0a7f3f"
+    }
+  ],
+  "usage": {
+    "packageName": "@ankhorage/projects",
+    "command": null
+  },
+  "usageEntries": [],
+  "exampleCount": 0,
+  "findings": [],
+  "config": null,
+  "entrypoints": [
+    "src/index.ts"
+  ],
+  "modules": [
+    {
+      "path": "src/features/projects/adapters/createProjectRepositoryFileSystemAsync.ts",
+      "isEntrypoint": false,
+      "dependencies": [
+        "src/features/projects/ports/ProjectRepository.ts",
+        "src/types/projects.ts"
+      ],
+      "exports": [
+        "createProjectRepositoryFileSystemAsync"
+      ]
+    },
+    {
+      "path": "src/features/projects/application/projects.ts",
+      "isEntrypoint": false,
+      "dependencies": [
+        "src/features/projects/domain/createProject.ts",
+        "src/features/projects/domain/updateProject.ts",
+        "src/features/projects/ports/ProjectRepository.ts",
+        "src/types/projects.ts"
+      ],
+      "exports": [
+        "projects"
+      ]
+    },
+    {
+      "path": "src/features/projects/domain/createProject.ts",
+      "isEntrypoint": false,
+      "dependencies": [
+        "src/features/projects/domain/deriveProjectIdentity.ts",
+        "src/types/projects.ts"
+      ],
+      "exports": [
+        "createProject"
+      ]
+    },
+    {
+      "path": "src/features/projects/domain/deriveProjectIdentity.ts",
+      "isEntrypoint": false,
+      "dependencies": [],
+      "exports": [
+        "deriveProjectIdentity"
+      ]
+    },
+    {
+      "path": "src/features/projects/domain/updateProject.ts",
+      "isEntrypoint": false,
+      "dependencies": [
+        "src/types/projects.ts"
+      ],
+      "exports": [
+        "updateProject"
+      ]
+    },
+    {
+      "path": "src/features/projects/ports/ProjectRepository.ts",
+      "isEntrypoint": false,
+      "dependencies": [
+        "src/types/projects.ts"
+      ],
+      "exports": [
+        "ProjectRepository"
+      ]
+    },
+    {
+      "path": "src/index.ts",
+      "isEntrypoint": true,
+      "dependencies": [],
+      "exports": [
+        "CreateProjectInput",
+        "createProjectRepositoryFileSystemAsync",
+        "Project",
+        "ProjectRepository",
+        "projects",
+        "UpdateProjectInput"
+      ]
+    },
+    {
+      "path": "src/types/projects.ts",
+      "isEntrypoint": false,
+      "dependencies": [],
+      "exports": [
+        "CreateProjectInput",
+        "Project",
+        "UpdateProjectInput"
+      ]
+    },
+    {
+      "path": "test/projects.test.ts",
+      "isEntrypoint": false,
+      "dependencies": [
+        "src/index.ts"
+      ],
+      "exports": []
+    }
+  ],
+  "exports": [
+    {
+      "name": "CreateProjectInput",
+      "title": null,
+      "description": null,
+      "isReadme": false,
+      "see": [],
+      "security": [],
+      "kind": "unknown",
+      "modulePath": "src/types/projects.ts",
+      "sourceLocation": {
+        "filePath": "src/types/projects.ts",
+        "line": 8,
+        "column": 1
+      },
+      "exportPaths": [
+        "src/index.ts"
+      ],
+      "relatedSymbols": [],
+      "signatures": [],
+      "members": [],
+      "structuredRows": []
+    },
+    {
+      "name": "createProjectRepositoryFileSystemAsync",
+      "title": null,
+      "description": "Create a path-isolated filesystem implementation of the project repository port.",
+      "isReadme": false,
+      "see": [],
+      "security": [],
+      "kind": "function",
+      "modulePath": "src/features/projects/adapters/createProjectRepositoryFileSystemAsync.ts",
+      "sourceLocation": {
+        "filePath": "src/features/projects/adapters/createProjectRepositoryFileSystemAsync.ts",
+        "line": 23,
+        "column": 1
+      },
+      "exportPaths": [
+        "src/index.ts"
+      ],
+      "relatedSymbols": [
+        "ProjectRepository"
+      ],
+      "signatures": [
+        {
+          "label": "(options: Readonly<{ directory: string; }>) => Promise<ProjectRepository>",
+          "parameters": [
+            {
+              "name": "options",
+              "type": "Readonly<{ directory: string; }>",
+              "required": true,
+              "description": null
+            }
+          ],
+          "returnType": "Promise<ProjectRepository>",
+          "returnDescription": null
+        }
+      ],
+      "members": [],
+      "structuredRows": []
+    },
+    {
+      "name": "Project",
+      "title": null,
+      "description": null,
+      "isReadme": false,
+      "see": [],
+      "security": [],
+      "kind": "unknown",
+      "modulePath": "src/types/projects.ts",
+      "sourceLocation": {
+        "filePath": "src/types/projects.ts",
+        "line": 1,
+        "column": 1
+      },
+      "exportPaths": [
+        "src/index.ts"
+      ],
+      "relatedSymbols": [],
+      "signatures": [],
+      "members": [],
+      "structuredRows": []
+    },
+    {
+      "name": "ProjectRepository",
+      "title": null,
+      "description": null,
+      "isReadme": false,
+      "see": [],
+      "security": [],
+      "kind": "type",
+      "modulePath": "src/features/projects/ports/ProjectRepository.ts",
+      "sourceLocation": {
+        "filePath": "src/features/projects/ports/ProjectRepository.ts",
+        "line": 3,
+        "column": 1
+      },
+      "exportPaths": [
+        "src/index.ts"
+      ],
+      "relatedSymbols": [
+        "Project"
+      ],
+      "signatures": [],
+      "members": [
+        {
+          "name": "createAsync",
+          "kind": "method",
+          "type": "(project: Project) => Promise<void>",
+          "required": true,
+          "description": null
+        },
+        {
+          "name": "deleteAsync",
+          "kind": "method",
+          "type": "(id: string) => Promise<Project | null>",
+          "required": true,
+          "description": null
+        },
+        {
+          "name": "listAsync",
+          "kind": "method",
+          "type": "() => Promise<readonly Project[]>",
+          "required": true,
+          "description": null
+        },
+        {
+          "name": "readAsync",
+          "kind": "method",
+          "type": "(id: string) => Promise<Project | null>",
+          "required": true,
+          "description": null
+        },
+        {
+          "name": "updateAsync",
+          "kind": "method",
+          "type": "(project: Project) => Promise<Project | null>",
+          "required": true,
+          "description": null
+        }
+      ],
+      "structuredRows": []
+    },
+    {
+      "name": "projects",
+      "title": null,
+      "description": "Expose the project repository actions through an explicit port.",
+      "isReadme": false,
+      "see": [],
+      "security": [],
+      "kind": "value",
+      "modulePath": "src/features/projects/application/projects.ts",
+      "sourceLocation": {
+        "filePath": "src/features/projects/application/projects.ts",
+        "line": 7,
+        "column": 14
+      },
+      "exportPaths": [
+        "src/index.ts"
+      ],
+      "relatedSymbols": [],
+      "signatures": [],
+      "members": [],
+      "structuredRows": []
+    },
+    {
+      "name": "UpdateProjectInput",
+      "title": null,
+      "description": null,
+      "isReadme": false,
+      "see": [],
+      "security": [],
+      "kind": "unknown",
+      "modulePath": "src/types/projects.ts",
+      "sourceLocation": {
+        "filePath": "src/types/projects.ts",
+        "line": 10,
+        "column": 1
+      },
+      "exportPaths": [
+        "src/index.ts"
+      ],
+      "relatedSymbols": [],
+      "signatures": [],
+      "members": [],
+      "structuredRows": []
+    }
+  ],
+  "components": [],
+  "sourceFunctions": [
+    {
+      "name": "createProjectRepositoryFileSystemAsync",
+      "description": "Create a path-isolated filesystem implementation of the project repository port.",
+      "see": [],
+      "security": [],
+      "sourceLocation": {
+        "filePath": "src/features/projects/adapters/createProjectRepositoryFileSystemAsync.ts",
+        "line": 23,
+        "column": 1
+      }
+    },
+    {
+      "name": "readProjectAsync",
+      "description": "Read a regular, schema-valid project file without following a symlink.",
+      "see": [],
+      "security": [],
+      "sourceLocation": {
+        "filePath": "src/features/projects/adapters/createProjectRepositoryFileSystemAsync.ts",
+        "line": 62,
+        "column": 1
+      }
+    },
+    {
+      "name": "writeProjectAsync",
+      "description": "Atomically create or replace a project file without exposing a partial document.",
+      "see": [],
+      "security": [],
+      "sourceLocation": {
+        "filePath": "src/features/projects/adapters/createProjectRepositoryFileSystemAsync.ts",
+        "line": 79,
+        "column": 1
+      }
+    },
+    {
+      "name": "projectFileName",
+      "description": "Convert only canonical project identities into a local storage filename.",
+      "see": [],
+      "security": [],
+      "sourceLocation": {
+        "filePath": "src/features/projects/adapters/createProjectRepositoryFileSystemAsync.ts",
+        "line": 100,
+        "column": 1
+      }
+    },
+    {
+      "name": "isStoredProject",
+      "description": "Verify a parsed storage document before it enters the application.",
+      "see": [],
+      "security": [],
+      "sourceLocation": {
+        "filePath": "src/features/projects/adapters/createProjectRepositoryFileSystemAsync.ts",
+        "line": 108,
+        "column": 1
+      }
+    },
+    {
+      "name": "isMissingFileError",
+      "description": "Identify the missing-file condition that represents an absent project.",
+      "see": [],
+      "security": [],
+      "sourceLocation": {
+        "filePath": "src/features/projects/adapters/createProjectRepositoryFileSystemAsync.ts",
+        "line": 122,
+        "column": 1
+      }
+    },
+    {
+      "name": "createProject",
+      "description": "Create a valid project with an immutable identity.",
+      "see": [],
+      "security": [],
+      "sourceLocation": {
+        "filePath": "src/features/projects/domain/createProject.ts",
+        "line": 5,
+        "column": 1
+      }
+    },
+    {
+      "name": "normalizeProjectName",
+      "description": "Normalize a project name at the domain boundary.",
+      "see": [],
+      "security": [],
+      "sourceLocation": {
+        "filePath": "src/features/projects/domain/createProject.ts",
+        "line": 13,
+        "column": 1
+      }
+    },
+    {
+      "name": "deriveProjectIdentity",
+      "description": "Derive the canonical path-safe project identity from a project name.",
+      "see": [],
+      "security": [],
+      "sourceLocation": {
+        "filePath": "src/features/projects/domain/deriveProjectIdentity.ts",
+        "line": 4,
+        "column": 1
+      }
+    },
+    {
+      "name": "updateProject",
+      "description": "Apply a valid mutable project change while preserving identity.",
+      "see": [],
+      "security": [],
+      "sourceLocation": {
+        "filePath": "src/features/projects/domain/updateProject.ts",
+        "line": 4,
+        "column": 1
+      }
+    },
+    {
+      "name": "normalizeProjectName",
+      "description": "Normalize a project name at the domain boundary.",
+      "see": [],
+      "security": [],
+      "sourceLocation": {
+        "filePath": "src/features/projects/domain/updateProject.ts",
+        "line": 11,
+        "column": 1
+      }
+    }
+  ],
+  "sequenceScenarios": [
+    {
+      "kind": "export",
+      "name": "createProjectRepositoryFileSystemAsync",
+      "sourcePath": "src/features/projects/adapters/createProjectRepositoryFileSystemAsync.ts",
+      "symbolName": "createProjectRepositoryFileSystemAsync",
+      "description": "Create a path-isolated filesystem implementation of the project repository port.",
+      "isReadme": false
+    }
+  ],
+  "graphs": {
+    "imports": [
+      {
+        "fromPath": "src/index.ts",
+        "toPath": "src/features/projects/adapters/createProjectRepositoryFileSystemAsync.ts",
+        "sourcePath": "src/index.ts"
+      },
+      {
+        "fromPath": "src/index.ts",
+        "toPath": "src/features/projects/application/projects.ts",
+        "sourcePath": "src/index.ts"
+      },
+      {
+        "fromPath": "src/index.ts",
+        "toPath": "src/features/projects/ports/ProjectRepository.ts",
+        "sourcePath": "src/index.ts"
+      },
+      {
+        "fromPath": "src/index.ts",
+        "toPath": "src/types/projects.ts",
+        "sourcePath": "src/index.ts"
+      },
+      {
+        "fromPath": "test/projects.test.ts",
+        "toPath": "src/index.ts",
+        "sourcePath": "test/projects.test.ts"
+      },
+      {
+        "fromPath": "src/features/projects/adapters/createProjectRepositoryFileSystemAsync.ts",
+        "toPath": "src/types/projects.ts",
+        "sourcePath": "src/features/projects/adapters/createProjectRepositoryFileSystemAsync.ts"
+      },
+      {
+        "fromPath": "src/features/projects/adapters/createProjectRepositoryFileSystemAsync.ts",
+        "toPath": "src/features/projects/ports/ProjectRepository.ts",
+        "sourcePath": "src/features/projects/adapters/createProjectRepositoryFileSystemAsync.ts"
+      },
+      {
+        "fromPath": "src/features/projects/application/projects.ts",
+        "toPath": "src/types/projects.ts",
+        "sourcePath": "src/features/projects/application/projects.ts"
+      },
+      {
+        "fromPath": "src/features/projects/application/projects.ts",
+        "toPath": "src/features/projects/domain/createProject.ts",
+        "sourcePath": "src/features/projects/application/projects.ts"
+      },
+      {
+        "fromPath": "src/features/projects/application/projects.ts",
+        "toPath": "src/features/projects/domain/updateProject.ts",
+        "sourcePath": "src/features/projects/application/projects.ts"
+      },
+      {
+        "fromPath": "src/features/projects/application/projects.ts",
+        "toPath": "src/features/projects/ports/ProjectRepository.ts",
+        "sourcePath": "src/features/projects/application/projects.ts"
+      },
+      {
+        "fromPath": "src/features/projects/domain/createProject.ts",
+        "toPath": "src/types/projects.ts",
+        "sourcePath": "src/features/projects/domain/createProject.ts"
+      },
+      {
+        "fromPath": "src/features/projects/domain/createProject.ts",
+        "toPath": "src/features/projects/domain/deriveProjectIdentity.ts",
+        "sourcePath": "src/features/projects/domain/createProject.ts"
+      },
+      {
+        "fromPath": "src/features/projects/domain/updateProject.ts",
+        "toPath": "src/types/projects.ts",
+        "sourcePath": "src/features/projects/domain/updateProject.ts"
+      },
+      {
+        "fromPath": "src/features/projects/ports/ProjectRepository.ts",
+        "toPath": "src/types/projects.ts",
+        "sourcePath": "src/features/projects/ports/ProjectRepository.ts"
+      }
+    ],
+    "calls": [
+      {
+        "fromSymbol": "test/projects.test.ts",
+        "toSymbol": "afterEach",
+        "callExpression": "afterEach",
+        "sourcePath": "test/projects.test.ts"
+      },
+      {
+        "fromSymbol": "test/projects.test.ts",
+        "toSymbol": "rm",
+        "callExpression": "rm",
+        "sourcePath": "test/projects.test.ts"
+      },
+      {
+        "fromSymbol": "test/projects.test.ts",
+        "toSymbol": "describe",
+        "callExpression": "describe",
+        "sourcePath": "test/projects.test.ts"
+      },
+      {
+        "fromSymbol": "test/projects.test.ts",
+        "toSymbol": "test",
+        "callExpression": "test",
+        "sourcePath": "test/projects.test.ts"
+      },
+      {
+        "fromSymbol": "test/projects.test.ts",
+        "toSymbol": "createDirectoryAsync",
+        "callExpression": "createDirectoryAsync",
+        "sourcePath": "test/projects.test.ts"
+      },
+      {
+        "fromSymbol": "test/projects.test.ts",
+        "toSymbol": "createProjectRepositoryFileSystemAsync",
+        "callExpression": "createProjectRepositoryFileSystemAsync",
+        "sourcePath": "test/projects.test.ts"
+      },
+      {
+        "fromSymbol": "test/projects.test.ts",
+        "toSymbol": "create",
+        "callExpression": "projects.create",
+        "sourcePath": "test/projects.test.ts"
+      },
+      {
+        "fromSymbol": "test/projects.test.ts",
+        "toSymbol": "expect",
+        "callExpression": "expect",
+        "sourcePath": "test/projects.test.ts"
+      },
+      {
+        "fromSymbol": "test/projects.test.ts",
+        "toSymbol": "list",
+        "callExpression": "projects.list",
+        "sourcePath": "test/projects.test.ts"
+      },
+      {
+        "fromSymbol": "test/projects.test.ts",
+        "toSymbol": "read",
+        "callExpression": "projects.read",
+        "sourcePath": "test/projects.test.ts"
+      },
+      {
+        "fromSymbol": "test/projects.test.ts",
+        "toSymbol": "update",
+        "callExpression": "projects.update",
+        "sourcePath": "test/projects.test.ts"
+      },
+      {
+        "fromSymbol": "test/projects.test.ts",
+        "toSymbol": "delete",
+        "callExpression": "projects.delete",
+        "sourcePath": "test/projects.test.ts"
+      },
+      {
+        "fromSymbol": "test/projects.test.ts",
+        "toSymbol": "join",
+        "callExpression": "join",
+        "sourcePath": "test/projects.test.ts"
+      },
+      {
+        "fromSymbol": "test/projects.test.ts",
+        "toSymbol": "writeFile",
+        "callExpression": "writeFile",
+        "sourcePath": "test/projects.test.ts"
+      },
+      {
+        "fromSymbol": "test/projects.test.ts",
+        "toSymbol": "symlink",
+        "callExpression": "symlink",
+        "sourcePath": "test/projects.test.ts"
+      },
+      {
+        "fromSymbol": "test/projects.test.ts",
+        "toSymbol": "readFile",
+        "callExpression": "readFile",
+        "sourcePath": "test/projects.test.ts"
+      },
+      {
+        "fromSymbol": "createDirectoryAsync",
+        "toSymbol": "mkdtemp",
+        "callExpression": "mkdtemp",
+        "sourcePath": "test/projects.test.ts"
+      },
+      {
+        "fromSymbol": "createDirectoryAsync",
+        "toSymbol": "join",
+        "callExpression": "join",
+        "sourcePath": "test/projects.test.ts"
+      },
+      {
+        "fromSymbol": "createDirectoryAsync",
+        "toSymbol": "tmpdir",
+        "callExpression": "tmpdir",
+        "sourcePath": "test/projects.test.ts"
+      },
+      {
+        "fromSymbol": "createProjectRepositoryFileSystemAsync",
+        "toSymbol": "join",
+        "callExpression": "join",
+        "sourcePath": "src/features/projects/adapters/createProjectRepositoryFileSystemAsync.ts"
+      },
+      {
+        "fromSymbol": "createProjectRepositoryFileSystemAsync",
+        "toSymbol": "mkdir",
+        "callExpression": "mkdir",
+        "sourcePath": "src/features/projects/adapters/createProjectRepositoryFileSystemAsync.ts"
+      },
+      {
+        "fromSymbol": "listAsync",
+        "toSymbol": "readdir",
+        "callExpression": "readdir",
+        "sourcePath": "src/features/projects/adapters/createProjectRepositoryFileSystemAsync.ts"
+      },
+      {
+        "fromSymbol": "src/features/projects/adapters/createProjectRepositoryFileSystemAsync.ts",
+        "toSymbol": "readProjectAsync",
+        "callExpression": "readProjectAsync",
+        "sourcePath": "src/features/projects/adapters/createProjectRepositoryFileSystemAsync.ts"
+      },
+      {
+        "fromSymbol": "readAsync",
+        "toSymbol": "readProjectAsync",
+        "callExpression": "readProjectAsync",
+        "sourcePath": "src/features/projects/adapters/createProjectRepositoryFileSystemAsync.ts"
+      },
+      {
+        "fromSymbol": "readAsync",
+        "toSymbol": "projectFileName",
+        "callExpression": "projectFileName",
+        "sourcePath": "src/features/projects/adapters/createProjectRepositoryFileSystemAsync.ts"
+      },
+      {
+        "fromSymbol": "createAsync",
+        "toSymbol": "writeProjectAsync",
+        "callExpression": "writeProjectAsync",
+        "sourcePath": "src/features/projects/adapters/createProjectRepositoryFileSystemAsync.ts"
+      },
+      {
+        "fromSymbol": "updateAsync",
+        "toSymbol": "projectFileName",
+        "callExpression": "projectFileName",
+        "sourcePath": "src/features/projects/adapters/createProjectRepositoryFileSystemAsync.ts"
+      },
+      {
+        "fromSymbol": "updateAsync",
+        "toSymbol": "readProjectAsync",
+        "callExpression": "readProjectAsync",
+        "sourcePath": "src/features/projects/adapters/createProjectRepositoryFileSystemAsync.ts"
+      },
+      {
+        "fromSymbol": "updateAsync",
+        "toSymbol": "writeProjectAsync",
+        "callExpression": "writeProjectAsync",
+        "sourcePath": "src/features/projects/adapters/createProjectRepositoryFileSystemAsync.ts"
+      },
+      {
+        "fromSymbol": "deleteAsync",
+        "toSymbol": "projectFileName",
+        "callExpression": "projectFileName",
+        "sourcePath": "src/features/projects/adapters/createProjectRepositoryFileSystemAsync.ts"
+      },
+      {
+        "fromSymbol": "deleteAsync",
+        "toSymbol": "readProjectAsync",
+        "callExpression": "readProjectAsync",
+        "sourcePath": "src/features/projects/adapters/createProjectRepositoryFileSystemAsync.ts"
+      },
+      {
+        "fromSymbol": "deleteAsync",
+        "toSymbol": "unlink",
+        "callExpression": "unlink",
+        "sourcePath": "src/features/projects/adapters/createProjectRepositoryFileSystemAsync.ts"
+      },
+      {
+        "fromSymbol": "deleteAsync",
+        "toSymbol": "join",
+        "callExpression": "join",
+        "sourcePath": "src/features/projects/adapters/createProjectRepositoryFileSystemAsync.ts"
+      },
+      {
+        "fromSymbol": "readProjectAsync",
+        "toSymbol": "join",
+        "callExpression": "join",
+        "sourcePath": "src/features/projects/adapters/createProjectRepositoryFileSystemAsync.ts"
+      },
+      {
+        "fromSymbol": "readProjectAsync",
+        "toSymbol": "lstat",
+        "callExpression": "lstat",
+        "sourcePath": "src/features/projects/adapters/createProjectRepositoryFileSystemAsync.ts"
+      },
+      {
+        "fromSymbol": "readProjectAsync",
+        "toSymbol": "readFile",
+        "callExpression": "readFile",
+        "sourcePath": "src/features/projects/adapters/createProjectRepositoryFileSystemAsync.ts"
+      },
+      {
+        "fromSymbol": "readProjectAsync",
+        "toSymbol": "isStoredProject",
+        "callExpression": "isStoredProject",
+        "sourcePath": "src/features/projects/adapters/createProjectRepositoryFileSystemAsync.ts"
+      },
+      {
+        "fromSymbol": "readProjectAsync",
+        "toSymbol": "projectFileName",
+        "callExpression": "projectFileName",
+        "sourcePath": "src/features/projects/adapters/createProjectRepositoryFileSystemAsync.ts"
+      },
+      {
+        "fromSymbol": "readProjectAsync",
+        "toSymbol": "isMissingFileError",
+        "callExpression": "isMissingFileError",
+        "sourcePath": "src/features/projects/adapters/createProjectRepositoryFileSystemAsync.ts"
+      },
+      {
+        "fromSymbol": "writeProjectAsync",
+        "toSymbol": "projectFileName",
+        "callExpression": "projectFileName",
+        "sourcePath": "src/features/projects/adapters/createProjectRepositoryFileSystemAsync.ts"
+      },
+      {
+        "fromSymbol": "writeProjectAsync",
+        "toSymbol": "join",
+        "callExpression": "join",
+        "sourcePath": "src/features/projects/adapters/createProjectRepositoryFileSystemAsync.ts"
+      },
+      {
+        "fromSymbol": "writeProjectAsync",
+        "toSymbol": "writeFile",
+        "callExpression": "writeFile",
+        "sourcePath": "src/features/projects/adapters/createProjectRepositoryFileSystemAsync.ts"
+      },
+      {
+        "fromSymbol": "writeProjectAsync",
+        "toSymbol": "link",
+        "callExpression": "link",
+        "sourcePath": "src/features/projects/adapters/createProjectRepositoryFileSystemAsync.ts"
+      },
+      {
+        "fromSymbol": "writeProjectAsync",
+        "toSymbol": "rename",
+        "callExpression": "rename",
+        "sourcePath": "src/features/projects/adapters/createProjectRepositoryFileSystemAsync.ts"
+      },
+      {
+        "fromSymbol": "writeProjectAsync",
+        "toSymbol": "rm",
+        "callExpression": "rm",
+        "sourcePath": "src/features/projects/adapters/createProjectRepositoryFileSystemAsync.ts"
+      },
+      {
+        "fromSymbol": "isStoredProject",
+        "toSymbol": "isRecord",
+        "callExpression": "isRecord",
+        "sourcePath": "src/features/projects/adapters/createProjectRepositoryFileSystemAsync.ts"
+      },
+      {
+        "fromSymbol": "list",
+        "toSymbol": "listAsync",
+        "callExpression": "repository.listAsync",
+        "sourcePath": "src/features/projects/application/projects.ts"
+      },
+      {
+        "fromSymbol": "read",
+        "toSymbol": "readAsync",
+        "callExpression": "repository.readAsync",
+        "sourcePath": "src/features/projects/application/projects.ts"
+      },
+      {
+        "fromSymbol": "create",
+        "toSymbol": "createProject",
+        "callExpression": "createProject",
+        "sourcePath": "src/features/projects/application/projects.ts"
+      },
+      {
+        "fromSymbol": "create",
+        "toSymbol": "listAsync",
+        "callExpression": "repository.listAsync",
+        "sourcePath": "src/features/projects/application/projects.ts"
+      },
+      {
+        "fromSymbol": "create",
+        "toSymbol": "createAsync",
+        "callExpression": "repository.createAsync",
+        "sourcePath": "src/features/projects/application/projects.ts"
+      },
+      {
+        "fromSymbol": "update",
+        "toSymbol": "readAsync",
+        "callExpression": "repository.readAsync",
+        "sourcePath": "src/features/projects/application/projects.ts"
+      },
+      {
+        "fromSymbol": "update",
+        "toSymbol": "updateAsync",
+        "callExpression": "repository.updateAsync",
+        "sourcePath": "src/features/projects/application/projects.ts"
+      },
+      {
+        "fromSymbol": "update",
+        "toSymbol": "updateProject",
+        "callExpression": "updateProject",
+        "sourcePath": "src/features/projects/application/projects.ts"
+      },
+      {
+        "fromSymbol": "delete",
+        "toSymbol": "deleteAsync",
+        "callExpression": "repository.deleteAsync",
+        "sourcePath": "src/features/projects/application/projects.ts"
+      },
+      {
+        "fromSymbol": "createProject",
+        "toSymbol": "normalizeProjectName",
+        "callExpression": "normalizeProjectName",
+        "sourcePath": "src/features/projects/domain/createProject.ts"
+      },
+      {
+        "fromSymbol": "createProject",
+        "toSymbol": "deriveProjectIdentity",
+        "callExpression": "deriveProjectIdentity",
+        "sourcePath": "src/features/projects/domain/createProject.ts"
+      },
+      {
+        "fromSymbol": "deriveProjectIdentity",
+        "toSymbol": "slugifyAscii",
+        "callExpression": "slugifyAscii",
+        "sourcePath": "src/features/projects/domain/deriveProjectIdentity.ts"
+      },
+      {
+        "fromSymbol": "updateProject",
+        "toSymbol": "normalizeProjectName",
+        "callExpression": "normalizeProjectName",
+        "sourcePath": "src/features/projects/domain/updateProject.ts"
+      }
+    ],
+    "typeReferences": [
+      {
+        "fromSymbol": "createProjectRepositoryFileSystemAsync",
+        "toType": "ProjectRepository",
+        "sourcePath": "src/features/projects/adapters/createProjectRepositoryFileSystemAsync.ts"
+      },
+      {
+        "fromSymbol": "createProjectRepositoryFileSystemAsync",
+        "toType": "Readonly",
+        "sourcePath": "src/features/projects/adapters/createProjectRepositoryFileSystemAsync.ts"
+      },
+      {
+        "fromSymbol": "ProjectRepository",
+        "toType": "Project",
+        "sourcePath": "src/features/projects/ports/ProjectRepository.ts"
+      }
+    ],
+    "componentComposition": []
+  }
+}
