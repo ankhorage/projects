@@ -26,10 +26,8 @@ export const projects = {
     repository: ProjectRepository,
     input: UpdateProjectInput,
     now = new Date(),
-  ): Promise<Project | null> => {
-    const project = await repository.readAsync(input.id);
-    return project === null ? null : repository.updateAsync(updateProject(project, input, now));
-  },
+  ): Promise<Project | null> =>
+    repository.updateAsync(input.id, (project) => updateProject(project, input, now)),
   delete: async (repository: ProjectRepository, id: string): Promise<Project | null> =>
     repository.deleteAsync(id),
 };

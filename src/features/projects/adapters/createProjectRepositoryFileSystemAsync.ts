@@ -10,7 +10,13 @@ import type { ProjectRepository } from '../ports/ProjectRepository.js';
 type FileSystemProjectRepositoryOptions = Readonly<{ directory: string }>;
 type StoredProject = Readonly<{ version: 1; project: Project }>;
 
-/*** Create a path-isolated filesystem implementation of the project repository port. */
+/***
+ * Create a path-isolated filesystem implementation of the project repository port.
+ *
+ * The keyed mutex coordinates mutations only through this adapter instance in one Node.js process.
+ * Assign each storage directory to one writer; coordinating separate adapter instances or processes
+ * requires external locking and is unsupported by this adapter.
+ */
 export async function createProjectRepositoryFileSystemAsync(
   options: FileSystemProjectRepositoryOptions,
 ): Promise<ProjectRepository> {
@@ -37,12 +43,17 @@ export async function createProjectRepositoryFileSystemAsync(
       readProjectAsync(directory, projectFileName(id)),
     createAsync: async (project: Project): Promise<void> =>
       mutations.run(project.id, async () => writeProjectAsync(directory, project, true)),
-    updateAsync: async (project: Project): Promise<Project | null> =>
-      mutations.run(project.id, async () => {
-        const fileName = projectFileName(project.id);
-        if ((await readProjectAsync(directory, fileName)) === null) return null;
-        await writeProjectAsync(directory, project, false);
-        return project;
+    updateAsync: async (
+      id: string,
+      update: (project: Project) => Project,
+    ): Promise<Project | null> =>
+      mutations.run(id, async () => {
+        const project = await readProjectAsync(directory, projectFileName(id));
+        if (project === null) return null;
+        const updated = update(project);
+        if (updated.id !== id) throw new Error('Project update cannot change identity.');
+        await writeProjectAsync(directory, updated, false);
+        return updated;
       }),
     deleteAsync: async (id: string): Promise<Project | null> =>
       mutations.run(id, async () => deleteProjectAsync(directory, id)),
@@ -126,7 +137,7 @@ async function writeTemporaryProjectAsync(temporary: string, project: Project): 
   }
 }
 
-/*** Atomically detach a project before reading and removing its regular-file snapshot. */
+/*** Atomically detach a project, restoring it when validation or deletion cannot complete. */
 async function deleteProjectAsync(directory: string, id: string): Promise<Project | null> {
   const fileName = projectFileName(id);
   const target = join(directory, fileName);
@@ -145,9 +156,11 @@ async function deleteProjectAsync(directory: string, id: string): Promise<Projec
       fileName,
     );
     if (project === null) throw new Error(`Project storage entry '${fileName}' disappeared.`);
+    await rm(temporary);
     return project;
-  } finally {
-    await rm(temporary, { force: true });
+  } catch (error: unknown) {
+    await rename(temporary, target);
+    throw error;
   }
 }
 

@@ -4,6 +4,7 @@ import { join } from 'node:path';
 import { afterEach, describe, expect, test } from 'bun:test';
 import { CAPABILITIES } from '../src/capabilities/index.js';
 import { createProjectRepositoryFileSystemAsync, projects } from '../src/index.js';
+import type { Project, ProjectRepository } from '../src/index.js';
 
 const directories: string[] = [];
 
@@ -71,21 +72,65 @@ describe('projects', () => {
     expect(await readFile(target, 'utf8')).toBe('{"secret":true}');
   });
 
+  test('retains a project file when delete validation fails', async () => {
+    const directory = await createDirectoryAsync();
+    const repository = await createProjectRepositoryFileSystemAsync({ directory });
+    const file = join(directory, 'projects', 'first-project.json');
+    const stored = '{"version":1,"project":{"id":"other-project"}}';
+    await writeFile(file, stored);
+
+    await expect(repository.deleteAsync('first-project')).rejects.toThrow('is invalid');
+    expect(await readFile(file, 'utf8')).toBe(stored);
+  });
+
+  test('updates the project snapshot supplied by the atomic repository operation', async () => {
+    const current: Project = {
+      id: 'first-project',
+      name: 'Current project',
+      createdAt: '2026-11-14T10:00:00.000Z',
+      updatedAt: '2026-11-14T10:30:00.000Z',
+    };
+    const repository: ProjectRepository = {
+      listAsync: async () => [],
+      readAsync: async () => {
+        throw new Error('Update must not read outside the repository mutation.');
+      },
+      createAsync: async () => undefined,
+      updateAsync: async (id, update) => (id === current.id ? update(current) : null),
+      deleteAsync: async () => null,
+    };
+
+    expect(
+      await projects.update(
+        repository,
+        { id: current.id, name: 'Updated project' },
+        new Date('2026-11-14T11:00:00.000Z'),
+      ),
+    ).toEqual({ ...current, name: 'Updated project', updatedAt: '2026-11-14T11:00:00.000Z' });
+  });
+
   test('rejects an overlapping delete while an update owns the project identity', async () => {
     const directory = await createDirectoryAsync();
     const repository = await createProjectRepositoryFileSystemAsync({ directory });
     const created = await projects.create(repository, { name: 'First project' });
-    const updated = {
-      ...created,
+    const updating = repository.updateAsync(created.id, (project) => ({
+      ...project,
       name: 'Updated project',
       updatedAt: '2026-11-14T11:00:00.000Z',
-    };
-    const updating = repository.updateAsync(updated);
+    }));
     const deleting = repository.deleteAsync(created.id);
 
     await expect(deleting).rejects.toThrow(`Project identity '${created.id}' is busy.`);
-    expect(await updating).toEqual(updated);
-    expect(await projects.read(repository, created.id)).toEqual(updated);
+    expect(await updating).toEqual({
+      ...created,
+      name: 'Updated project',
+      updatedAt: '2026-11-14T11:00:00.000Z',
+    });
+    expect(await projects.read(repository, created.id)).toEqual({
+      ...created,
+      name: 'Updated project',
+      updatedAt: '2026-11-14T11:00:00.000Z',
+    });
   });
 });
 
