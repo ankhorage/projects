@@ -114,6 +114,65 @@ describe('projects', () => {
     ).toEqual({ ...current, name: 'Updated project', updatedAt: '2026-11-14T11:00:00.000Z' });
   });
 
+  test('migrates a published W1 project file once without changing its identity or timestamps', async () => {
+    const directory = await createDirectoryAsync();
+    const repository = await createProjectRepositoryFileSystemAsync({ directory });
+    const file = join(directory, 'projects', 'first-project.json');
+    const w1 = {
+      version: 1,
+      project: {
+        id: 'first-project',
+        name: 'First project',
+        createdAt: '2026-11-14T10:00:00.000Z',
+        updatedAt: '2026-11-14T10:30:00.000Z',
+      },
+    };
+    await writeFile(file, JSON.stringify(w1));
+
+    expect(await projects.read(repository, 'first-project')).toEqual({
+      ...w1.project,
+      manifest: { draft: null, revisions: [] },
+    });
+    expect(JSON.parse(await readFile(file, 'utf8'))).toEqual({
+      version: 1,
+      project: { ...w1.project, manifest: { draft: null, revisions: [] } },
+    });
+
+    const saved = await projects.save(repository, {
+      id: 'first-project',
+      manifest: createManifest(),
+      expectedRevisionId: null,
+    });
+    expect(saved).toMatchObject({
+      id: w1.project.id,
+      createdAt: w1.project.createdAt,
+      updatedAt: expect.any(String),
+      manifest: { draft: { revisionId: 'revision-1' }, revisions: [{ id: 'revision-1' }] },
+    });
+    expect(await projects.read(repository, 'first-project')).toEqual(saved);
+  });
+
+  test('does not downgrade an invalid current project document into a W1 migration', async () => {
+    const directory = await createDirectoryAsync();
+    const repository = await createProjectRepositoryFileSystemAsync({ directory });
+    const file = join(directory, 'projects', 'first-project.json');
+    await writeFile(
+      file,
+      JSON.stringify({
+        version: 1,
+        project: {
+          id: 'first-project',
+          name: 'First project',
+          createdAt: '2026-11-14T10:00:00.000Z',
+          updatedAt: '2026-11-14T10:30:00.000Z',
+          manifest: { draft: null, revisions: 'not-an-array' },
+        },
+      }),
+    );
+
+    await expect(projects.read(repository, 'first-project')).rejects.toThrow('is invalid');
+  });
+
   test('rejects an overlapping delete while an update owns the project identity', async () => {
     const directory = await createDirectoryAsync();
     const repository = await createProjectRepositoryFileSystemAsync({ directory });

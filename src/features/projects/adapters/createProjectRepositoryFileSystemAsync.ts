@@ -9,7 +9,17 @@ import type { Project } from '../../../types/projects.js';
 import type { ProjectRepository } from '../ports/ProjectRepository.js';
 
 type FileSystemProjectRepositoryOptions = Readonly<{ directory: string }>;
-type StoredProject = Readonly<{ version: 1; project: Project }>;
+type StoredProject = StoredProjectW1 | StoredProjectW2;
+type StoredProjectW1 = Readonly<{ version: 1; project: StoredProjectW1Value }>;
+type StoredProjectW1Value = Readonly<{
+  id: string;
+  name: string;
+  createdAt: string;
+  updatedAt: string;
+  manifest?: never;
+}>;
+type StoredProjectW2 = Readonly<{ version: 1; project: Project }>;
+type ReadProjectResult = Readonly<{ project: Project; requiresMigration: boolean }>;
 
 /***
  * Create a path-isolated filesystem implementation of the project repository port.
@@ -34,14 +44,14 @@ export async function createProjectRepositoryFileSystemAsync(
       const projects = await Promise.all(
         entries
           .filter((entry) => entry.isFile() && entry.name.endsWith('.json'))
-          .map(async (entry) => readProjectAsync(directory, entry.name)),
+          .map(async (entry) => readProjectWithMigrationAsync(directory, mutations, entry.name)),
       );
       return projects
         .filter((project): project is Project => project !== null)
         .sort((left, right) => left.id.localeCompare(right.id));
     },
     readAsync: async (id: string): Promise<Project | null> =>
-      readProjectAsync(directory, projectFileName(id)),
+      readProjectWithMigrationAsync(directory, mutations, projectFileName(id)),
     createAsync: async (project: Project): Promise<void> =>
       mutations.run(project.id, async () => writeProjectAsync(directory, project, true)),
     updateAsync: async (
@@ -49,9 +59,9 @@ export async function createProjectRepositoryFileSystemAsync(
       update: (project: Project) => Project,
     ): Promise<Project | null> =>
       mutations.run(id, async () => {
-        const project = await readProjectAsync(directory, projectFileName(id));
-        if (project === null) return null;
-        const updated = update(project);
+        const result = await readProjectAsync(directory, projectFileName(id));
+        if (result === null) return null;
+        const updated = update(result.project);
         if (updated.id !== id) throw new Error('Project update cannot change identity.');
         await writeProjectAsync(directory, updated, false);
         return updated;
@@ -81,7 +91,7 @@ async function readProjectAsync(
   directory: string,
   fileName: string,
   expectedFileName = fileName,
-): Promise<Project | null> {
+): Promise<ReadProjectResult | null> {
   const path = join(directory, fileName);
   let handle;
   try {
@@ -92,7 +102,13 @@ async function readProjectAsync(
     if (!isStoredProject(stored) || projectFileName(stored.project.id) !== expectedFileName) {
       throw new Error(`Project storage entry '${fileName}' is invalid.`);
     }
-    return stored.project;
+    if (isStoredProjectW1(stored)) {
+      return {
+        project: { ...stored.project, manifest: { draft: null, revisions: [] } },
+        requiresMigration: true,
+      };
+    }
+    return { project: stored.project, requiresMigration: false };
   } catch (error: unknown) {
     if (isMissingFileError(error)) return null;
     if (isSymlinkError(error)) {
@@ -104,6 +120,24 @@ async function readProjectAsync(
   } finally {
     await handle?.close();
   }
+}
+
+/*** Read a project and atomically persist the one supported W1-to-W2 document migration. */
+async function readProjectWithMigrationAsync(
+  directory: string,
+  mutations: ReturnType<typeof createKeyedAsyncMutex<string>>,
+  fileName: string,
+): Promise<Project | null> {
+  const result = await readProjectAsync(directory, fileName);
+  if (result === null) return null;
+  if (!result.requiresMigration) return result.project;
+
+  return mutations.run(result.project.id, async () => {
+    const current = await readProjectAsync(directory, fileName);
+    if (current === null) return null;
+    if (current.requiresMigration) await writeProjectAsync(directory, current.project, false);
+    return current.project;
+  });
 }
 
 /*** Atomically create or replace a project file without exposing a partial document. */
@@ -151,14 +185,14 @@ async function deleteProjectAsync(directory: string, id: string): Promise<Projec
   }
 
   try {
-    const project = await readProjectAsync(
+    const result = await readProjectAsync(
       directory,
       temporary.slice(directory.length + 1),
       fileName,
     );
-    if (project === null) throw new Error(`Project storage entry '${fileName}' disappeared.`);
+    if (result === null) throw new Error(`Project storage entry '${fileName}' disappeared.`);
     await rm(temporary);
-    return project;
+    return result.project;
   } catch (error: unknown) {
     await rename(temporary, target);
     throw error;
@@ -173,8 +207,28 @@ function projectFileName(id: string): string {
   return `${id}.json`;
 }
 
-/*** Verify a parsed storage document before it enters the application. */
+/*** Verify a parsed current or published-W1 storage document before it enters the application. */
 function isStoredProject(value: unknown): value is StoredProject {
+  return isStoredProjectW1(value) || isStoredProjectW2(value);
+}
+
+/*** Recognize only the published W1 document shape that has no persisted manifest field. */
+function isStoredProjectW1(value: unknown): value is StoredProjectW1 {
+  if (!isRecord(value)) return false;
+  const { project } = value;
+  return (
+    value.version === 1 &&
+    isRecord(project) &&
+    typeof project.id === 'string' &&
+    typeof project.name === 'string' &&
+    typeof project.createdAt === 'string' &&
+    typeof project.updatedAt === 'string' &&
+    !('manifest' in project)
+  );
+}
+
+/*** Validate the current persisted project document at the filesystem boundary. */
+function isStoredProjectW2(value: unknown): value is StoredProjectW2 {
   if (!isRecord(value)) return false;
   const { project } = value;
   return (
