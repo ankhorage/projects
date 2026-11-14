@@ -1,4 +1,10 @@
-import type { Project } from '../../../types/projects.js';
+import type { Project, ProjectManifestRevision } from '../../../types/projects.js';
+
+export interface ProjectMaterializer {
+  materializeAsync(
+    input: Readonly<{ project: Project; revision: ProjectManifestRevision }>,
+  ): Promise<void>;
+}
 
 export interface ProjectRepository {
   listAsync(): Promise<readonly Project[]>;

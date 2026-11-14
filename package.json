@@ -61,7 +61,7 @@
     "typescript": "~6.0.3"
   },
   "dependencies": {
-    "@ankhorage/contracts": "^26.4.0",
+    "@ankhorage/contracts": "^26.10.0",
     "@ankhorage/utility": "^1.10.0"
   },
   "ankh": {

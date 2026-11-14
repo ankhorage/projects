@@ -1,6 +1,7 @@
 import { constants, link, mkdir, open, readdir, rename, rm } from 'node:fs/promises';
 import { join } from 'node:path';
 
+import { isAppManifest } from '@ankhorage/contracts';
 import { createKeyedAsyncMutex } from '@ankhorage/utility/concurrency';
 import { isRecord } from '@ankhorage/utility/object';
 
@@ -182,7 +183,38 @@ function isStoredProject(value: unknown): value is StoredProject {
     typeof project.id === 'string' &&
     typeof project.name === 'string' &&
     typeof project.createdAt === 'string' &&
-    typeof project.updatedAt === 'string'
+    typeof project.updatedAt === 'string' &&
+    isProjectManifest(project.manifest)
+  );
+}
+
+/*** Validate persisted manifest draft and revision invariants at the filesystem boundary. */
+function isProjectManifest(value: unknown): boolean {
+  if (!isRecord(value) || !Array.isArray(value.revisions)) return false;
+  const { revisions, draft } = value;
+  const ids = new Set<string>();
+  const areRevisionsValid = revisions.every(
+    (revision) =>
+      isRecord(revision) &&
+      typeof revision.id === 'string' &&
+      typeof revision.savedAt === 'string' &&
+      isAppManifest(revision.manifest) &&
+      !ids.has(revision.id) &&
+      (ids.add(revision.id), true),
+  );
+  if (!areRevisionsValid || (draft !== null && !isRecord(draft))) return false;
+  return (
+    draft === null ||
+    (typeof draft.revisionId === 'string' &&
+      typeof draft.savedAt === 'string' &&
+      isAppManifest(draft.manifest) &&
+      revisions.some(
+        (revision) =>
+          isRecord(revision) &&
+          revision.id === draft.revisionId &&
+          revision.savedAt === draft.savedAt &&
+          JSON.stringify(revision.manifest) === JSON.stringify(draft.manifest),
+      ))
   );
 }
 
