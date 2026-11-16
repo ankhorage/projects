@@ -48,6 +48,15 @@ export const projects = {
     repository: ProjectRepository,
     input: ReloadProjectManifestInput,
   ): Promise<ProjectManifest | null> => (await repository.readAsync(input.id))?.manifest ?? null,
+  revision: async (
+    repository: ProjectRepository,
+    input: MaterializeProjectRevisionInput,
+  ): Promise<ProjectManifestRevision | null> => {
+    const project = await repository.readAsync(input.id);
+    return (
+      project?.manifest.revisions.find((candidate) => candidate.id === input.revisionId) ?? null
+    );
+  },
   materialize: async (
     repository: ProjectRepository,
     materializer: ProjectMaterializer,

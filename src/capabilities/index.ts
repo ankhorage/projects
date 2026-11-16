@@ -51,9 +51,17 @@ export const CAPABILITIES = [
     description: 'Read the persisted project manifest draft and immutable revision history.',
   },
   {
+    id: 'projects.revision',
+    owner: '@ankhorage/projects',
+    access: ['read'],
+    binding: { kind: 'storage', bindableAs: ['target'] },
+    label: 'Read project manifest revision',
+    description: 'Read one immutable project manifest revision by identity.',
+  },
+  {
     id: 'projects.materialize',
     owner: '@ankhorage/projects',
-    access: ['write'],
+    access: ['invoke'],
     binding: { kind: 'action', bindableAs: ['target'] },
     label: 'Materialize project revision',
     description:

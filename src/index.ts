@@ -1,5 +1,6 @@
 export { createProjectRepositoryFileSystemAsync } from './features/projects/adapters/createProjectRepositoryFileSystemAsync.js';
 export { projects } from './features/projects/application/projects.js';
+export { createProjectsApiHandlerResolver } from './features/projects/composition/createProjectsApiHandlerResolver.js';
 export type {
   ProjectMaterializer,
   ProjectRepository,
