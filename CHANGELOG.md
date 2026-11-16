@@ -1,5 +1,11 @@
 # Changelog
 
+## 0.3.0
+
+### Minor Changes
+
+- 1b58709: Expose the approved API handler resolver for scoped project actions and immutable revision lookup.
+
 ## 0.2.1
 
 ### Patch Changes

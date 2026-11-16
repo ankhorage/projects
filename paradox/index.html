@@ -132,6 +132,11 @@
       <small>14 functions</small>
     </button>
   </li><li>
+    <button class="nav-button" type="button" data-target="src/features/projects/composition/createProjectsApiHandlerResolver.ts">
+      src/features/projects/composition/createProjectsApiHandlerResolver.ts
+      <small>19 functions</small>
+    </button>
+  </li><li>
     <button class="nav-button" type="button" data-target="src/features/projects/domain/createProject.ts">
       src/features/projects/domain/createProject.ts
       <small>2 functions</small>
@@ -161,9 +166,9 @@
     <section class="panel">
       <h2>Package overview</h2>
       <div class="summary">
-        <div><strong>13</strong><span class="muted">public exports</span></div>
+        <div><strong>14</strong><span class="muted">public exports</span></div>
         <div><strong>0</strong><span class="muted">components</span></div>
-        <div><strong>11</strong><span class="muted">modules</span></div>
+        <div><strong>12</strong><span class="muted">modules</span></div>
         <div><strong>1</strong><span class="muted">entrypoints</span></div>
       </div>
       <h3>Entrypoints</h3>
@@ -190,6 +195,11 @@
     <p class="muted">Referenced module</p>
     <p><strong>Dependencies:</strong> <code>src/features/projects/domain/createProject.ts</code>, <code>src/features/projects/domain/saveProjectManifest.ts</code>, <code>src/features/projects/domain/updateProject.ts</code>, <code>src/features/projects/ports/ProjectRepository.ts</code>, <code>src/types/projects.ts</code></p>
     <p><strong>Exports:</strong> <code>projects</code></p>
+  </article><article class="item" data-search="src/features/projects/composition/createProjectsApiHandlerResolver.ts src/capabilities/index.ts src/features/projects/application/projects.ts src/features/projects/domain/deriveProjectIdentity.ts src/features/projects/ports/ProjectRepository.ts createProjectsApiHandlerResolver">
+    <h3>src/features/projects/composition/createProjectsApiHandlerResolver.ts</h3>
+    <p class="muted">Referenced module</p>
+    <p><strong>Dependencies:</strong> <code>src/capabilities/index.ts</code>, <code>src/features/projects/application/projects.ts</code>, <code>src/features/projects/domain/deriveProjectIdentity.ts</code>, <code>src/features/projects/ports/ProjectRepository.ts</code></p>
+    <p><strong>Exports:</strong> <code>createProjectsApiHandlerResolver</code></p>
   </article><article class="item" data-search="src/features/projects/domain/createProject.ts src/features/projects/domain/deriveProjectIdentity.ts src/types/projects.ts createProject">
     <h3>src/features/projects/domain/createProject.ts</h3>
     <p class="muted">Referenced module</p>
@@ -215,11 +225,11 @@
     <p class="muted">Referenced module</p>
     <p><strong>Dependencies:</strong> <code>src/types/projects.ts</code></p>
     <p><strong>Exports:</strong> <code>ProjectMaterializer</code>, <code>ProjectRepository</code></p>
-  </article><article class="item" data-search="src/index.ts CreateProjectInput createProjectRepositoryFileSystemAsync MaterializeProjectRevisionInput Project ProjectManifest ProjectManifestDraft ProjectManifestRevision ProjectMaterializer ProjectRepository projects ReloadProjectManifestInput SaveProjectManifestInput UpdateProjectInput">
+  </article><article class="item" data-search="src/index.ts CreateProjectInput createProjectRepositoryFileSystemAsync createProjectsApiHandlerResolver MaterializeProjectRevisionInput Project ProjectManifest ProjectManifestDraft ProjectManifestRevision ProjectMaterializer ProjectRepository projects ReloadProjectManifestInput SaveProjectManifestInput UpdateProjectInput">
     <h3>src/index.ts</h3>
     <p class="muted">Configured entrypoint</p>
     <p><strong>Dependencies:</strong> <span class="empty">None</span></p>
-    <p><strong>Exports:</strong> <code>CreateProjectInput</code>, <code>createProjectRepositoryFileSystemAsync</code>, <code>MaterializeProjectRevisionInput</code>, <code>Project</code>, <code>ProjectManifest</code>, <code>ProjectManifestDraft</code>, <code>ProjectManifestRevision</code>, <code>ProjectMaterializer</code>, <code>ProjectRepository</code>, <code>projects</code>, <code>ReloadProjectManifestInput</code>, <code>SaveProjectManifestInput</code>, <code>UpdateProjectInput</code></p>
+    <p><strong>Exports:</strong> <code>CreateProjectInput</code>, <code>createProjectRepositoryFileSystemAsync</code>, <code>createProjectsApiHandlerResolver</code>, <code>MaterializeProjectRevisionInput</code>, <code>Project</code>, <code>ProjectManifest</code>, <code>ProjectManifestDraft</code>, <code>ProjectManifestRevision</code>, <code>ProjectMaterializer</code>, <code>ProjectRepository</code>, <code>projects</code>, <code>ReloadProjectManifestInput</code>, <code>SaveProjectManifestInput</code>, <code>UpdateProjectInput</code></p>
   </article><article class="item" data-search="src/types/projects.ts CreateProjectInput MaterializeProjectRevisionInput Project ProjectManifest ProjectManifestDraft ProjectManifestRevision ReloadProjectManifestInput SaveProjectManifestInput UpdateProjectInput">
     <h3>src/types/projects.ts</h3>
     <p class="muted">Referenced module</p>
@@ -279,6 +289,35 @@ requires external locking and is unsupported by this adapter.</p>
     <p><strong>Export paths:</strong> <code>src/index.ts</code></p>
     <div><strong>Related symbols:</strong> <span class="empty">None</span></div>
     
+    
+  </article>
+            </section>
+            <section>
+              <h3>src/features/projects/composition/createProjectsApiHandlerResolver.ts</h3>
+              <article class="item" id="symbol-createprojectsapihandlerresolver" data-search="createProjectsApiHandlerResolver  function src/features/projects/composition/createProjectsApiHandlerResolver.ts Create the Projects-owned resolver for host-approved server API operations. ProjectMaterializer ProjectRepository (input: Readonly&lt;{ repository: ProjectRepository; materializer?: ProjectMaterializer; allowDelete?: boolean; }&gt;) =&gt; ApiHandlerResolver">
+    <h4>createProjectsApiHandlerResolver</h4>
+    
+    <p class="muted">function • <code>src/features/projects/composition/createProjectsApiHandlerResolver.ts:30:1</code></p>
+    <p>Create the Projects-owned resolver for host-approved server API operations.</p>
+    
+    <p><strong>Export paths:</strong> <code>src/index.ts</code></p>
+    <div><strong>Related symbols:</strong> <ul class="chips"><li class="chip">ProjectMaterializer</li><li class="chip">ProjectRepository</li></ul></div>
+    <div>
+        <h5>Signature</h5>
+        <pre>(input: Readonly&lt;{ repository: ProjectRepository; materializer?: ProjectMaterializer; allowDelete?: boolean; }&gt;) =&gt; ApiHandlerResolver</pre>
+        <table>
+                <thead><tr><th>Parameter</th><th>Type</th><th>Required</th><th>Description</th></tr></thead>
+                <tbody>
+                  <tr>
+                        <td><code>input</code></td>
+                        <td><code>Readonly&lt;{ repository: ProjectRepository; materializer?: ProjectMaterializer; allowDelete?: boolean; }&gt;</code></td>
+                        <td>yes</td>
+                        <td></td>
+                      </tr>
+                </tbody>
+              </table>
+        <p><strong>Returns:</strong> <code>ApiHandlerResolver</code></p>
+      </div>
     
   </article>
             </section>
@@ -473,6 +512,12 @@ requires external locking and is unsupported by this adapter.</p>
   module_src_features_projects_application_projects_ts --&gt; module_src_features_projects_domain_updateProject_ts
   module_src_features_projects_application_projects_ts --&gt; module_src_features_projects_ports_ProjectRepository_ts
   module_src_features_projects_application_projects_ts --&gt; module_src_types_projects_ts
+  module_src_features_projects_composition_createProjectsApiHandlerResolver_ts[&quot;src/features/projects/composition/createProjectsApiHandlerResolver.ts&quot;]
+  package__ankhorage_projects -.-&gt; module_src_features_projects_composition_createProjectsApiHandlerResolver_ts
+  module_src_features_projects_composition_createProjectsApiHandlerResolver_ts --&gt; module_src_capabilities_index_ts
+  module_src_features_projects_composition_createProjectsApiHandlerResolver_ts --&gt; module_src_features_projects_application_projects_ts
+  module_src_features_projects_composition_createProjectsApiHandlerResolver_ts --&gt; module_src_features_projects_domain_deriveProjectIdentity_ts
+  module_src_features_projects_composition_createProjectsApiHandlerResolver_ts --&gt; module_src_features_projects_ports_ProjectRepository_ts
   module_src_features_projects_domain_createProject_ts[&quot;src/features/projects/domain/createProject.ts&quot;]
   package__ankhorage_projects -.-&gt; module_src_features_projects_domain_createProject_ts
   module_src_features_projects_domain_createProject_ts --&gt; module_src_features_projects_domain_deriveProjectIdentity_ts
@@ -515,6 +560,12 @@ requires external locking and is unsupported by this adapter.</p>
   module_src_features_projects_application_projects_ts --&gt; module_src_features_projects_domain_updateProject_ts
   module_src_features_projects_application_projects_ts --&gt; module_src_features_projects_ports_ProjectRepository_ts
   module_src_features_projects_application_projects_ts --&gt; module_src_types_projects_ts
+  module_src_features_projects_composition_createProjectsApiHandlerResolver_ts[&quot;src/features/projects/composition/createProjectsApiHandlerResolver.ts&quot;]
+  package__ankhorage_projects -.-&gt; module_src_features_projects_composition_createProjectsApiHandlerResolver_ts
+  module_src_features_projects_composition_createProjectsApiHandlerResolver_ts --&gt; module_src_capabilities_index_ts
+  module_src_features_projects_composition_createProjectsApiHandlerResolver_ts --&gt; module_src_features_projects_application_projects_ts
+  module_src_features_projects_composition_createProjectsApiHandlerResolver_ts --&gt; module_src_features_projects_domain_deriveProjectIdentity_ts
+  module_src_features_projects_composition_createProjectsApiHandlerResolver_ts --&gt; module_src_features_projects_ports_ProjectRepository_ts
   module_src_features_projects_domain_createProject_ts[&quot;src/features/projects/domain/createProject.ts&quot;]
   package__ankhorage_projects -.-&gt; module_src_features_projects_domain_createProject_ts
   module_src_features_projects_domain_createProject_ts --&gt; module_src_features_projects_domain_deriveProjectIdentity_ts
@@ -546,6 +597,7 @@ requires external locking and is unsupported by this adapter.</p>
   module_src_capabilities_index_ts[&quot;src/capabilities/index.ts&quot;]
   module_src_features_projects_adapters_createProjectRepositoryFileSystemAsync_ts[&quot;src/features/projects/adapters/createProjectRepositoryFileSystemAsync.ts&quot;]
   module_src_features_projects_application_projects_ts[&quot;src/features/projects/application/projects.ts&quot;]
+  module_src_features_projects_composition_createProjectsApiHandlerResolver_ts[&quot;src/features/projects/composition/createProjectsApiHandlerResolver.ts&quot;]
   module_src_features_projects_domain_createProject_ts[&quot;src/features/projects/domain/createProject.ts&quot;]
   module_src_features_projects_domain_deriveProjectIdentity_ts[&quot;src/features/projects/domain/deriveProjectIdentity.ts&quot;]
   module_src_features_projects_domain_saveProjectManifest_ts[&quot;src/features/projects/domain/saveProjectManifest.ts&quot;]
@@ -561,6 +613,10 @@ requires external locking and is unsupported by this adapter.</p>
   module_src_features_projects_application_projects_ts --&gt; module_src_features_projects_domain_updateProject_ts
   module_src_features_projects_application_projects_ts --&gt; module_src_features_projects_ports_ProjectRepository_ts
   module_src_features_projects_application_projects_ts --&gt; module_src_types_projects_ts
+  module_src_features_projects_composition_createProjectsApiHandlerResolver_ts --&gt; module_src_capabilities_index_ts
+  module_src_features_projects_composition_createProjectsApiHandlerResolver_ts --&gt; module_src_features_projects_application_projects_ts
+  module_src_features_projects_composition_createProjectsApiHandlerResolver_ts --&gt; module_src_features_projects_domain_deriveProjectIdentity_ts
+  module_src_features_projects_composition_createProjectsApiHandlerResolver_ts --&gt; module_src_features_projects_ports_ProjectRepository_ts
   module_src_features_projects_domain_createProject_ts --&gt; module_src_features_projects_domain_deriveProjectIdentity_ts
   module_src_features_projects_domain_createProject_ts --&gt; module_src_types_projects_ts
   module_src_features_projects_domain_saveProjectManifest_ts --&gt; module_src_types_projects_ts
@@ -575,6 +631,7 @@ requires external locking and is unsupported by this adapter.</p>
   module_src_capabilities_index_ts[&quot;src/capabilities/index.ts&quot;]
   module_src_features_projects_adapters_createProjectRepositoryFileSystemAsync_ts[&quot;src/features/projects/adapters/createProjectRepositoryFileSystemAsync.ts&quot;]
   module_src_features_projects_application_projects_ts[&quot;src/features/projects/application/projects.ts&quot;]
+  module_src_features_projects_composition_createProjectsApiHandlerResolver_ts[&quot;src/features/projects/composition/createProjectsApiHandlerResolver.ts&quot;]
   module_src_features_projects_domain_createProject_ts[&quot;src/features/projects/domain/createProject.ts&quot;]
   module_src_features_projects_domain_deriveProjectIdentity_ts[&quot;src/features/projects/domain/deriveProjectIdentity.ts&quot;]
   module_src_features_projects_domain_saveProjectManifest_ts[&quot;src/features/projects/domain/saveProjectManifest.ts&quot;]
@@ -590,6 +647,10 @@ requires external locking and is unsupported by this adapter.</p>
   module_src_features_projects_application_projects_ts --&gt; module_src_features_projects_domain_updateProject_ts
   module_src_features_projects_application_projects_ts --&gt; module_src_features_projects_ports_ProjectRepository_ts
   module_src_features_projects_application_projects_ts --&gt; module_src_types_projects_ts
+  module_src_features_projects_composition_createProjectsApiHandlerResolver_ts --&gt; module_src_capabilities_index_ts
+  module_src_features_projects_composition_createProjectsApiHandlerResolver_ts --&gt; module_src_features_projects_application_projects_ts
+  module_src_features_projects_composition_createProjectsApiHandlerResolver_ts --&gt; module_src_features_projects_domain_deriveProjectIdentity_ts
+  module_src_features_projects_composition_createProjectsApiHandlerResolver_ts --&gt; module_src_features_projects_ports_ProjectRepository_ts
   module_src_features_projects_domain_createProject_ts --&gt; module_src_features_projects_domain_deriveProjectIdentity_ts
   module_src_features_projects_domain_createProject_ts --&gt; module_src_types_projects_ts
   module_src_features_projects_domain_saveProjectManifest_ts --&gt; module_src_types_projects_ts
@@ -606,6 +667,7 @@ requires external locking and is unsupported by this adapter.</p>
   module_src_capabilities_index_ts[&quot;src/capabilities/index.ts&quot;]
   module_src_features_projects_adapters_createProjectRepositoryFileSystemAsync_ts[&quot;src/features/projects/adapters/createProjectRepositoryFileSystemAsync.ts&quot;]
   module_src_features_projects_application_projects_ts[&quot;src/features/projects/application/projects.ts&quot;]
+  module_src_features_projects_composition_createProjectsApiHandlerResolver_ts[&quot;src/features/projects/composition/createProjectsApiHandlerResolver.ts&quot;]
   module_src_features_projects_domain_createProject_ts[&quot;src/features/projects/domain/createProject.ts&quot;]
   module_src_features_projects_domain_deriveProjectIdentity_ts[&quot;src/features/projects/domain/deriveProjectIdentity.ts&quot;]
   module_src_features_projects_domain_saveProjectManifest_ts[&quot;src/features/projects/domain/saveProjectManifest.ts&quot;]
@@ -619,6 +681,10 @@ requires external locking and is unsupported by this adapter.</p>
   export_createProjectRepositoryFileSystemAsync[&quot;createProjectRepositoryFileSystemAsync&quot;]
   module_src_features_projects_adapters_createProjectRepositoryFileSystemAsync_ts --&gt; export_createProjectRepositoryFileSystemAsync
   export_createProjectRepositoryFileSystemAsync -.-&gt; export_ProjectRepository
+  export_createProjectsApiHandlerResolver[&quot;createProjectsApiHandlerResolver&quot;]
+  module_src_features_projects_composition_createProjectsApiHandlerResolver_ts --&gt; export_createProjectsApiHandlerResolver
+  export_createProjectsApiHandlerResolver -.-&gt; export_ProjectMaterializer
+  export_createProjectsApiHandlerResolver -.-&gt; export_ProjectRepository
   export_MaterializeProjectRevisionInput[&quot;MaterializeProjectRevisionInput&quot;]
   module_src_types_projects_ts --&gt; export_MaterializeProjectRevisionInput
   export_Project[&quot;Project&quot;]
@@ -651,6 +717,7 @@ requires external locking and is unsupported by this adapter.</p>
   module_src_capabilities_index_ts[&quot;src/capabilities/index.ts&quot;]
   module_src_features_projects_adapters_createProjectRepositoryFileSystemAsync_ts[&quot;src/features/projects/adapters/createProjectRepositoryFileSystemAsync.ts&quot;]
   module_src_features_projects_application_projects_ts[&quot;src/features/projects/application/projects.ts&quot;]
+  module_src_features_projects_composition_createProjectsApiHandlerResolver_ts[&quot;src/features/projects/composition/createProjectsApiHandlerResolver.ts&quot;]
   module_src_features_projects_domain_createProject_ts[&quot;src/features/projects/domain/createProject.ts&quot;]
   module_src_features_projects_domain_deriveProjectIdentity_ts[&quot;src/features/projects/domain/deriveProjectIdentity.ts&quot;]
   module_src_features_projects_domain_saveProjectManifest_ts[&quot;src/features/projects/domain/saveProjectManifest.ts&quot;]
@@ -664,6 +731,10 @@ requires external locking and is unsupported by this adapter.</p>
   export_createProjectRepositoryFileSystemAsync[&quot;createProjectRepositoryFileSystemAsync&quot;]
   module_src_features_projects_adapters_createProjectRepositoryFileSystemAsync_ts --&gt; export_createProjectRepositoryFileSystemAsync
   export_createProjectRepositoryFileSystemAsync -.-&gt; export_ProjectRepository
+  export_createProjectsApiHandlerResolver[&quot;createProjectsApiHandlerResolver&quot;]
+  module_src_features_projects_composition_createProjectsApiHandlerResolver_ts --&gt; export_createProjectsApiHandlerResolver
+  export_createProjectsApiHandlerResolver -.-&gt; export_ProjectMaterializer
+  export_createProjectsApiHandlerResolver -.-&gt; export_ProjectRepository
   export_MaterializeProjectRevisionInput[&quot;MaterializeProjectRevisionInput&quot;]
   module_src_types_projects_ts --&gt; export_MaterializeProjectRevisionInput
   export_Project[&quot;Project&quot;]
@@ -812,6 +883,106 @@ requires external locking and is unsupported by this adapter.</p>
     <h3>isSymlinkError</h3>
     <p class="muted"><code>src/features/projects/adapters/createProjectRepositoryFileSystemAsync.ts:281:1</code></p>
     <p>Identify no-follow failures caused by a symbolic link at the opened path.</p>
+    
+  </article>
+    </section>
+  </section><section id="view-src-features-projects-composition-createprojectsapihandlerresolver-ts" class="view" data-view="src/features/projects/composition/createProjectsApiHandlerResolver.ts" hidden>
+    <section class="panel">
+      <h2>src/features/projects/composition/createProjectsApiHandlerResolver.ts</h2>
+      <article class="item" data-search="createProjectsApiHandlerResolver src/features/projects/composition/createProjectsApiHandlerResolver.ts Create the Projects-owned resolver for host-approved server API operations.">
+    <h3>createProjectsApiHandlerResolver</h3>
+    <p class="muted"><code>src/features/projects/composition/createProjectsApiHandlerResolver.ts:30:1</code></p>
+    <p>Create the Projects-owned resolver for host-approved server API operations.</p>
+    
+  </article><article class="item" data-search="resolveProjectsApiHandler src/features/projects/composition/createProjectsApiHandlerResolver.ts Resolve only canonical Projects operations declared by the host API definition.">
+    <h3>resolveProjectsApiHandler</h3>
+    <p class="muted"><code>src/features/projects/composition/createProjectsApiHandlerResolver.ts:37:1</code></p>
+    <p>Resolve only canonical Projects operations declared by the host API definition.</p>
+    
+  </article><article class="item" data-search="createProjectsApiOperations src/features/projects/composition/createProjectsApiHandlerResolver.ts Bind each fixed Projects capability to its existing owner action.">
+    <h3>createProjectsApiOperations</h3>
+    <p class="muted"><code>src/features/projects/composition/createProjectsApiHandlerResolver.ts:72:1</code></p>
+    <p>Bind each fixed Projects capability to its existing owner action.</p>
+    
+  </article><article class="item" data-search="createReadOperation src/features/projects/composition/createProjectsApiHandlerResolver.ts Read exactly the project selected by the API composition scope.">
+    <h3>createReadOperation</h3>
+    <p class="muted"><code>src/features/projects/composition/createProjectsApiHandlerResolver.ts:97:1</code></p>
+    <p>Read exactly the project selected by the API composition scope.</p>
+    
+  </article><article class="item" data-search="createCreateOperation src/features/projects/composition/createProjectsApiHandlerResolver.ts Create only the project identity selected by the API composition scope.">
+    <h3>createCreateOperation</h3>
+    <p class="muted"><code>src/features/projects/composition/createProjectsApiHandlerResolver.ts:107:1</code></p>
+    <p>Create only the project identity selected by the API composition scope.</p>
+    
+  </article><article class="item" data-search="createUpdateOperation src/features/projects/composition/createProjectsApiHandlerResolver.ts Update exactly the project selected by the API composition scope.">
+    <h3>createUpdateOperation</h3>
+    <p class="muted"><code>src/features/projects/composition/createProjectsApiHandlerResolver.ts:127:1</code></p>
+    <p>Update exactly the project selected by the API composition scope.</p>
+    
+  </article><article class="item" data-search="createSaveOperation src/features/projects/composition/createProjectsApiHandlerResolver.ts Save a validated manifest only for the project selected by the composition scope.">
+    <h3>createSaveOperation</h3>
+    <p class="muted"><code>src/features/projects/composition/createProjectsApiHandlerResolver.ts:146:1</code></p>
+    <p>Save a validated manifest only for the project selected by the composition scope.</p>
+    
+  </article><article class="item" data-search="createReloadOperation src/features/projects/composition/createProjectsApiHandlerResolver.ts Reload the draft and revision history only for the scoped project.">
+    <h3>createReloadOperation</h3>
+    <p class="muted"><code>src/features/projects/composition/createProjectsApiHandlerResolver.ts:165:1</code></p>
+    <p>Reload the draft and revision history only for the scoped project.</p>
+    
+  </article><article class="item" data-search="createRevisionOperation src/features/projects/composition/createProjectsApiHandlerResolver.ts Read one immutable revision only from the scoped project.">
+    <h3>createRevisionOperation</h3>
+    <p class="muted"><code>src/features/projects/composition/createProjectsApiHandlerResolver.ts:179:1</code></p>
+    <p>Read one immutable revision only from the scoped project.</p>
+    
+  </article><article class="item" data-search="createMaterializeOperation src/features/projects/composition/createProjectsApiHandlerResolver.ts Delegate materialization only when the host explicitly provides its owner port.">
+    <h3>createMaterializeOperation</h3>
+    <p class="muted"><code>src/features/projects/composition/createProjectsApiHandlerResolver.ts:194:1</code></p>
+    <p>Delegate materialization only when the host explicitly provides its owner port.</p>
+    
+  </article><article class="item" data-search="createDeleteOperation src/features/projects/composition/createProjectsApiHandlerResolver.ts Delete only the scoped project after the host explicitly enables destructive resolution.">
+    <h3>createDeleteOperation</h3>
+    <p class="muted"><code>src/features/projects/composition/createProjectsApiHandlerResolver.ts:215:1</code></p>
+    <p>Delete only the scoped project after the host explicitly enables destructive resolution.</p>
+    
+  </article><article class="item" data-search="readProjectResponse src/features/projects/composition/createProjectsApiHandlerResolver.ts Read one project using only the resource id equal to the approved project scope.">
+    <h3>readProjectResponse</h3>
+    <p class="muted"><code>src/features/projects/composition/createProjectsApiHandlerResolver.ts:229:1</code></p>
+    <p>Read one project using only the resource id equal to the approved project scope.</p>
+    
+  </article><article class="item" data-search="missingResponse src/features/projects/composition/createProjectsApiHandlerResolver.ts Return a typed missing-resource response without exposing storage details.">
+    <h3>missingResponse</h3>
+    <p class="muted"><code>src/features/projects/composition/createProjectsApiHandlerResolver.ts:241:1</code></p>
+    <p>Return a typed missing-resource response without exposing storage details.</p>
+    
+  </article><article class="item" data-search="invalidResponse src/features/projects/composition/createProjectsApiHandlerResolver.ts Return an invalid-request response before a repository action receives untrusted input.">
+    <h3>invalidResponse</h3>
+    <p class="muted"><code>src/features/projects/composition/createProjectsApiHandlerResolver.ts:248:1</code></p>
+    <p>Return an invalid-request response before a repository action receives untrusted input.</p>
+    
+  </article><article class="item" data-search="unavailableResponse src/features/projects/composition/createProjectsApiHandlerResolver.ts Return an explicit blocked result when no host materializer has been configured.">
+    <h3>unavailableResponse</h3>
+    <p class="muted"><code>src/features/projects/composition/createProjectsApiHandlerResolver.ts:253:1</code></p>
+    <p>Return an explicit blocked result when no host materializer has been configured.</p>
+    
+  </article><article class="item" data-search="projectActionFailureResponse src/features/projects/composition/createProjectsApiHandlerResolver.ts Translate only expected owner-domain failures while preserving unexpected storage failures.">
+    <h3>projectActionFailureResponse</h3>
+    <p class="muted"><code>src/features/projects/composition/createProjectsApiHandlerResolver.ts:258:1</code></p>
+    <p>Translate only expected owner-domain failures while preserving unexpected storage failures.</p>
+    
+  </article><article class="item" data-search="readScopedProjectId src/features/projects/composition/createProjectsApiHandlerResolver.ts Accept only a resource parameter exactly matching the API composition project scope.">
+    <h3>readScopedProjectId</h3>
+    <p class="muted"><code>src/features/projects/composition/createProjectsApiHandlerResolver.ts:273:1</code></p>
+    <p>Accept only a resource parameter exactly matching the API composition project scope.</p>
+    
+  </article><article class="item" data-search="readName src/features/projects/composition/createProjectsApiHandlerResolver.ts Read a non-empty project name from one untrusted API request body.">
+    <h3>readName</h3>
+    <p class="muted"><code>src/features/projects/composition/createProjectsApiHandlerResolver.ts:282:1</code></p>
+    <p>Read a non-empty project name from one untrusted API request body.</p>
+    
+  </article><article class="item" data-search="readManifestSaveBody src/features/projects/composition/createProjectsApiHandlerResolver.ts Validate the one manifest-save body shape accepted by the Projects API handler.">
+    <h3>readManifestSaveBody</h3>
+    <p class="muted"><code>src/features/projects/composition/createProjectsApiHandlerResolver.ts:287:1</code></p>
+    <p>Validate the one manifest-save body shape accepted by the Projects API handler.</p>
     
   </article>
     </section>

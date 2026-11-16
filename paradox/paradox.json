@@ -14,7 +14,7 @@
     {
       "id": "npm",
       "label": "npm",
-      "value": "v0.2.1",
+      "value": "v0.3.0",
       "color": "cb3837"
     },
     {
@@ -106,6 +106,19 @@
       ]
     },
     {
+      "path": "src/features/projects/composition/createProjectsApiHandlerResolver.ts",
+      "isEntrypoint": false,
+      "dependencies": [
+        "src/capabilities/index.ts",
+        "src/features/projects/application/projects.ts",
+        "src/features/projects/domain/deriveProjectIdentity.ts",
+        "src/features/projects/ports/ProjectRepository.ts"
+      ],
+      "exports": [
+        "createProjectsApiHandlerResolver"
+      ]
+    },
+    {
       "path": "src/features/projects/domain/createProject.ts",
       "isEntrypoint": false,
       "dependencies": [
@@ -162,6 +175,7 @@
       "exports": [
         "CreateProjectInput",
         "createProjectRepositoryFileSystemAsync",
+        "createProjectsApiHandlerResolver",
         "MaterializeProjectRevisionInput",
         "Project",
         "ProjectManifest",
@@ -256,6 +270,45 @@
             }
           ],
           "returnType": "Promise<ProjectRepository>",
+          "returnDescription": null
+        }
+      ],
+      "members": [],
+      "structuredRows": []
+    },
+    {
+      "name": "createProjectsApiHandlerResolver",
+      "title": null,
+      "description": "Create the Projects-owned resolver for host-approved server API operations.",
+      "isReadme": false,
+      "see": [],
+      "security": [],
+      "kind": "function",
+      "modulePath": "src/features/projects/composition/createProjectsApiHandlerResolver.ts",
+      "sourceLocation": {
+        "filePath": "src/features/projects/composition/createProjectsApiHandlerResolver.ts",
+        "line": 30,
+        "column": 1
+      },
+      "exportPaths": [
+        "src/index.ts"
+      ],
+      "relatedSymbols": [
+        "ProjectMaterializer",
+        "ProjectRepository"
+      ],
+      "signatures": [
+        {
+          "label": "(input: Readonly<{ repository: ProjectRepository; materializer?: ProjectMaterializer; allowDelete?: boolean; }>) => ApiHandlerResolver",
+          "parameters": [
+            {
+              "name": "input",
+              "type": "Readonly<{ repository: ProjectRepository; materializer?: ProjectMaterializer; allowDelete?: boolean; }>",
+              "required": true,
+              "description": null
+            }
+          ],
+          "returnType": "ApiHandlerResolver",
           "returnDescription": null
         }
       ],
@@ -711,6 +764,215 @@
       }
     },
     {
+      "name": "createProjectsApiHandlerResolver",
+      "description": "Create the Projects-owned resolver for host-approved server API operations.",
+      "see": [],
+      "security": [],
+      "sourceLocation": {
+        "filePath": "src/features/projects/composition/createProjectsApiHandlerResolver.ts",
+        "line": 30,
+        "column": 1
+      }
+    },
+    {
+      "name": "resolveProjectsApiHandler",
+      "description": "Resolve only canonical Projects operations declared by the host API definition.",
+      "see": [],
+      "security": [],
+      "sourceLocation": {
+        "filePath": "src/features/projects/composition/createProjectsApiHandlerResolver.ts",
+        "line": 37,
+        "column": 1
+      }
+    },
+    {
+      "name": "createProjectsApiOperations",
+      "description": "Bind each fixed Projects capability to its existing owner action.",
+      "see": [],
+      "security": [],
+      "sourceLocation": {
+        "filePath": "src/features/projects/composition/createProjectsApiHandlerResolver.ts",
+        "line": 72,
+        "column": 1
+      }
+    },
+    {
+      "name": "createReadOperation",
+      "description": "Read exactly the project selected by the API composition scope.",
+      "see": [],
+      "security": [],
+      "sourceLocation": {
+        "filePath": "src/features/projects/composition/createProjectsApiHandlerResolver.ts",
+        "line": 97,
+        "column": 1
+      }
+    },
+    {
+      "name": "createCreateOperation",
+      "description": "Create only the project identity selected by the API composition scope.",
+      "see": [],
+      "security": [],
+      "sourceLocation": {
+        "filePath": "src/features/projects/composition/createProjectsApiHandlerResolver.ts",
+        "line": 107,
+        "column": 1
+      }
+    },
+    {
+      "name": "createUpdateOperation",
+      "description": "Update exactly the project selected by the API composition scope.",
+      "see": [],
+      "security": [],
+      "sourceLocation": {
+        "filePath": "src/features/projects/composition/createProjectsApiHandlerResolver.ts",
+        "line": 127,
+        "column": 1
+      }
+    },
+    {
+      "name": "createSaveOperation",
+      "description": "Save a validated manifest only for the project selected by the composition scope.",
+      "see": [],
+      "security": [],
+      "sourceLocation": {
+        "filePath": "src/features/projects/composition/createProjectsApiHandlerResolver.ts",
+        "line": 146,
+        "column": 1
+      }
+    },
+    {
+      "name": "createReloadOperation",
+      "description": "Reload the draft and revision history only for the scoped project.",
+      "see": [],
+      "security": [],
+      "sourceLocation": {
+        "filePath": "src/features/projects/composition/createProjectsApiHandlerResolver.ts",
+        "line": 165,
+        "column": 1
+      }
+    },
+    {
+      "name": "createRevisionOperation",
+      "description": "Read one immutable revision only from the scoped project.",
+      "see": [],
+      "security": [],
+      "sourceLocation": {
+        "filePath": "src/features/projects/composition/createProjectsApiHandlerResolver.ts",
+        "line": 179,
+        "column": 1
+      }
+    },
+    {
+      "name": "createMaterializeOperation",
+      "description": "Delegate materialization only when the host explicitly provides its owner port.",
+      "see": [],
+      "security": [],
+      "sourceLocation": {
+        "filePath": "src/features/projects/composition/createProjectsApiHandlerResolver.ts",
+        "line": 194,
+        "column": 1
+      }
+    },
+    {
+      "name": "createDeleteOperation",
+      "description": "Delete only the scoped project after the host explicitly enables destructive resolution.",
+      "see": [],
+      "security": [],
+      "sourceLocation": {
+        "filePath": "src/features/projects/composition/createProjectsApiHandlerResolver.ts",
+        "line": 215,
+        "column": 1
+      }
+    },
+    {
+      "name": "readProjectResponse",
+      "description": "Read one project using only the resource id equal to the approved project scope.",
+      "see": [],
+      "security": [],
+      "sourceLocation": {
+        "filePath": "src/features/projects/composition/createProjectsApiHandlerResolver.ts",
+        "line": 229,
+        "column": 1
+      }
+    },
+    {
+      "name": "missingResponse",
+      "description": "Return a typed missing-resource response without exposing storage details.",
+      "see": [],
+      "security": [],
+      "sourceLocation": {
+        "filePath": "src/features/projects/composition/createProjectsApiHandlerResolver.ts",
+        "line": 241,
+        "column": 1
+      }
+    },
+    {
+      "name": "invalidResponse",
+      "description": "Return an invalid-request response before a repository action receives untrusted input.",
+      "see": [],
+      "security": [],
+      "sourceLocation": {
+        "filePath": "src/features/projects/composition/createProjectsApiHandlerResolver.ts",
+        "line": 248,
+        "column": 1
+      }
+    },
+    {
+      "name": "unavailableResponse",
+      "description": "Return an explicit blocked result when no host materializer has been configured.",
+      "see": [],
+      "security": [],
+      "sourceLocation": {
+        "filePath": "src/features/projects/composition/createProjectsApiHandlerResolver.ts",
+        "line": 253,
+        "column": 1
+      }
+    },
+    {
+      "name": "projectActionFailureResponse",
+      "description": "Translate only expected owner-domain failures while preserving unexpected storage failures.",
+      "see": [],
+      "security": [],
+      "sourceLocation": {
+        "filePath": "src/features/projects/composition/createProjectsApiHandlerResolver.ts",
+        "line": 258,
+        "column": 1
+      }
+    },
+    {
+      "name": "readScopedProjectId",
+      "description": "Accept only a resource parameter exactly matching the API composition project scope.",
+      "see": [],
+      "security": [],
+      "sourceLocation": {
+        "filePath": "src/features/projects/composition/createProjectsApiHandlerResolver.ts",
+        "line": 273,
+        "column": 1
+      }
+    },
+    {
+      "name": "readName",
+      "description": "Read a non-empty project name from one untrusted API request body.",
+      "see": [],
+      "security": [],
+      "sourceLocation": {
+        "filePath": "src/features/projects/composition/createProjectsApiHandlerResolver.ts",
+        "line": 282,
+        "column": 1
+      }
+    },
+    {
+      "name": "readManifestSaveBody",
+      "description": "Validate the one manifest-save body shape accepted by the Projects API handler.",
+      "see": [],
+      "security": [],
+      "sourceLocation": {
+        "filePath": "src/features/projects/composition/createProjectsApiHandlerResolver.ts",
+        "line": 287,
+        "column": 1
+      }
+    },
+    {
       "name": "createProject",
       "description": "Create a valid project with an immutable identity.",
       "see": [],
@@ -785,6 +1047,14 @@
       "symbolName": "createProjectRepositoryFileSystemAsync",
       "description": "Create a path-isolated filesystem implementation of the project repository port.\n\nThe keyed mutex coordinates mutations only through this adapter instance in one Node.js process.\nAssign each storage directory to one writer; coordinating separate adapter instances or processes\nrequires external locking and is unsupported by this adapter.",
       "isReadme": false
+    },
+    {
+      "kind": "export",
+      "name": "createProjectsApiHandlerResolver",
+      "sourcePath": "src/features/projects/composition/createProjectsApiHandlerResolver.ts",
+      "symbolName": "createProjectsApiHandlerResolver",
+      "description": "Create the Projects-owned resolver for host-approved server API operations.",
+      "isReadme": false
     }
   ],
   "graphs": {
@@ -797,6 +1067,11 @@
       {
         "fromPath": "src/index.ts",
         "toPath": "src/features/projects/application/projects.ts",
+        "sourcePath": "src/index.ts"
+      },
+      {
+        "fromPath": "src/index.ts",
+        "toPath": "src/features/projects/composition/createProjectsApiHandlerResolver.ts",
         "sourcePath": "src/index.ts"
       },
       {
@@ -853,6 +1128,26 @@
         "fromPath": "src/features/projects/application/projects.ts",
         "toPath": "src/features/projects/ports/ProjectRepository.ts",
         "sourcePath": "src/features/projects/application/projects.ts"
+      },
+      {
+        "fromPath": "src/features/projects/composition/createProjectsApiHandlerResolver.ts",
+        "toPath": "src/capabilities/index.ts",
+        "sourcePath": "src/features/projects/composition/createProjectsApiHandlerResolver.ts"
+      },
+      {
+        "fromPath": "src/features/projects/composition/createProjectsApiHandlerResolver.ts",
+        "toPath": "src/features/projects/application/projects.ts",
+        "sourcePath": "src/features/projects/composition/createProjectsApiHandlerResolver.ts"
+      },
+      {
+        "fromPath": "src/features/projects/composition/createProjectsApiHandlerResolver.ts",
+        "toPath": "src/features/projects/domain/deriveProjectIdentity.ts",
+        "sourcePath": "src/features/projects/composition/createProjectsApiHandlerResolver.ts"
+      },
+      {
+        "fromPath": "src/features/projects/composition/createProjectsApiHandlerResolver.ts",
+        "toPath": "src/features/projects/ports/ProjectRepository.ts",
+        "sourcePath": "src/features/projects/composition/createProjectsApiHandlerResolver.ts"
       },
       {
         "fromPath": "src/features/projects/domain/createProject.ts",
@@ -1015,8 +1310,44 @@
       },
       {
         "fromSymbol": "test/projects.test.ts",
+        "toSymbol": "revision",
+        "callExpression": "projects.revision",
+        "sourcePath": "test/projects.test.ts"
+      },
+      {
+        "fromSymbol": "test/projects.test.ts",
         "toSymbol": "materialize",
         "callExpression": "projects.materialize",
+        "sourcePath": "test/projects.test.ts"
+      },
+      {
+        "fromSymbol": "test/projects.test.ts",
+        "toSymbol": "composeProjectsApiRuntime",
+        "callExpression": "composeProjectsApiRuntime",
+        "sourcePath": "test/projects.test.ts"
+      },
+      {
+        "fromSymbol": "test/projects.test.ts",
+        "toSymbol": "apiRequest",
+        "callExpression": "apiRequest",
+        "sourcePath": "test/projects.test.ts"
+      },
+      {
+        "fromSymbol": "test/projects.test.ts",
+        "toSymbol": "createProjectsApiHandlerResolver",
+        "callExpression": "createProjectsApiHandlerResolver",
+        "sourcePath": "test/projects.test.ts"
+      },
+      {
+        "fromSymbol": "test/projects.test.ts",
+        "toSymbol": "createProjectsApiDefinition",
+        "callExpression": "createProjectsApiDefinition",
+        "sourcePath": "test/projects.test.ts"
+      },
+      {
+        "fromSymbol": "test/projects.test.ts",
+        "toSymbol": "composeAuthorizedApiRuntime",
+        "callExpression": "composeAuthorizedApiRuntime",
         "sourcePath": "test/projects.test.ts"
       },
       {
@@ -1035,6 +1366,30 @@
         "fromSymbol": "createDirectoryAsync",
         "toSymbol": "tmpdir",
         "callExpression": "tmpdir",
+        "sourcePath": "test/projects.test.ts"
+      },
+      {
+        "fromSymbol": "composeProjectsApiRuntime",
+        "toSymbol": "composeAuthorizedApiRuntime",
+        "callExpression": "composeAuthorizedApiRuntime",
+        "sourcePath": "test/projects.test.ts"
+      },
+      {
+        "fromSymbol": "composeProjectsApiRuntime",
+        "toSymbol": "createProjectsApiDefinition",
+        "callExpression": "createProjectsApiDefinition",
+        "sourcePath": "test/projects.test.ts"
+      },
+      {
+        "fromSymbol": "composeProjectsApiRuntime",
+        "toSymbol": "createProjectsApiHandlerResolver",
+        "callExpression": "createProjectsApiHandlerResolver",
+        "sourcePath": "test/projects.test.ts"
+      },
+      {
+        "fromSymbol": "test/projects.test.ts",
+        "toSymbol": "projectOperationDefinition",
+        "callExpression": "projectOperationDefinition",
         "sourcePath": "test/projects.test.ts"
       },
       {
@@ -1362,6 +1717,12 @@
         "sourcePath": "src/features/projects/application/projects.ts"
       },
       {
+        "fromSymbol": "revision",
+        "toSymbol": "readAsync",
+        "callExpression": "repository.readAsync",
+        "sourcePath": "src/features/projects/application/projects.ts"
+      },
+      {
         "fromSymbol": "materialize",
         "toSymbol": "readAsync",
         "callExpression": "repository.readAsync",
@@ -1378,6 +1739,216 @@
         "toSymbol": "deleteAsync",
         "callExpression": "repository.deleteAsync",
         "sourcePath": "src/features/projects/application/projects.ts"
+      },
+      {
+        "fromSymbol": "src/features/projects/composition/createProjectsApiHandlerResolver.ts",
+        "toSymbol": "resolveProjectsApiHandler",
+        "callExpression": "resolveProjectsApiHandler",
+        "sourcePath": "src/features/projects/composition/createProjectsApiHandlerResolver.ts"
+      },
+      {
+        "fromSymbol": "resolveProjectsApiHandler",
+        "toSymbol": "createProjectsApiOperations",
+        "callExpression": "createProjectsApiOperations",
+        "sourcePath": "src/features/projects/composition/createProjectsApiHandlerResolver.ts"
+      },
+      {
+        "fromSymbol": "handler",
+        "toSymbol": "list",
+        "callExpression": "projects.list",
+        "sourcePath": "src/features/projects/composition/createProjectsApiHandlerResolver.ts"
+      },
+      {
+        "fromSymbol": "createProjectsApiOperations",
+        "toSymbol": "createReadOperation",
+        "callExpression": "createReadOperation",
+        "sourcePath": "src/features/projects/composition/createProjectsApiHandlerResolver.ts"
+      },
+      {
+        "fromSymbol": "createProjectsApiOperations",
+        "toSymbol": "createCreateOperation",
+        "callExpression": "createCreateOperation",
+        "sourcePath": "src/features/projects/composition/createProjectsApiHandlerResolver.ts"
+      },
+      {
+        "fromSymbol": "createProjectsApiOperations",
+        "toSymbol": "createUpdateOperation",
+        "callExpression": "createUpdateOperation",
+        "sourcePath": "src/features/projects/composition/createProjectsApiHandlerResolver.ts"
+      },
+      {
+        "fromSymbol": "createProjectsApiOperations",
+        "toSymbol": "createSaveOperation",
+        "callExpression": "createSaveOperation",
+        "sourcePath": "src/features/projects/composition/createProjectsApiHandlerResolver.ts"
+      },
+      {
+        "fromSymbol": "createProjectsApiOperations",
+        "toSymbol": "createReloadOperation",
+        "callExpression": "createReloadOperation",
+        "sourcePath": "src/features/projects/composition/createProjectsApiHandlerResolver.ts"
+      },
+      {
+        "fromSymbol": "createProjectsApiOperations",
+        "toSymbol": "createRevisionOperation",
+        "callExpression": "createRevisionOperation",
+        "sourcePath": "src/features/projects/composition/createProjectsApiHandlerResolver.ts"
+      },
+      {
+        "fromSymbol": "createProjectsApiOperations",
+        "toSymbol": "createMaterializeOperation",
+        "callExpression": "createMaterializeOperation",
+        "sourcePath": "src/features/projects/composition/createProjectsApiHandlerResolver.ts"
+      },
+      {
+        "fromSymbol": "createProjectsApiOperations",
+        "toSymbol": "createDeleteOperation",
+        "callExpression": "createDeleteOperation",
+        "sourcePath": "src/features/projects/composition/createProjectsApiHandlerResolver.ts"
+      },
+      {
+        "fromSymbol": "handler",
+        "toSymbol": "readProjectResponse",
+        "callExpression": "readProjectResponse",
+        "sourcePath": "src/features/projects/composition/createProjectsApiHandlerResolver.ts"
+      },
+      {
+        "fromSymbol": "handler",
+        "toSymbol": "readName",
+        "callExpression": "readName",
+        "sourcePath": "src/features/projects/composition/createProjectsApiHandlerResolver.ts"
+      },
+      {
+        "fromSymbol": "handler",
+        "toSymbol": "deriveProjectIdentity",
+        "callExpression": "deriveProjectIdentity",
+        "sourcePath": "src/features/projects/composition/createProjectsApiHandlerResolver.ts"
+      },
+      {
+        "fromSymbol": "handler",
+        "toSymbol": "invalidResponse",
+        "callExpression": "invalidResponse",
+        "sourcePath": "src/features/projects/composition/createProjectsApiHandlerResolver.ts"
+      },
+      {
+        "fromSymbol": "handler",
+        "toSymbol": "create",
+        "callExpression": "projects.create",
+        "sourcePath": "src/features/projects/composition/createProjectsApiHandlerResolver.ts"
+      },
+      {
+        "fromSymbol": "handler",
+        "toSymbol": "projectActionFailureResponse",
+        "callExpression": "projectActionFailureResponse",
+        "sourcePath": "src/features/projects/composition/createProjectsApiHandlerResolver.ts"
+      },
+      {
+        "fromSymbol": "handler",
+        "toSymbol": "readScopedProjectId",
+        "callExpression": "readScopedProjectId",
+        "sourcePath": "src/features/projects/composition/createProjectsApiHandlerResolver.ts"
+      },
+      {
+        "fromSymbol": "handler",
+        "toSymbol": "missingResponse",
+        "callExpression": "missingResponse",
+        "sourcePath": "src/features/projects/composition/createProjectsApiHandlerResolver.ts"
+      },
+      {
+        "fromSymbol": "handler",
+        "toSymbol": "update",
+        "callExpression": "projects.update",
+        "sourcePath": "src/features/projects/composition/createProjectsApiHandlerResolver.ts"
+      },
+      {
+        "fromSymbol": "handler",
+        "toSymbol": "readManifestSaveBody",
+        "callExpression": "readManifestSaveBody",
+        "sourcePath": "src/features/projects/composition/createProjectsApiHandlerResolver.ts"
+      },
+      {
+        "fromSymbol": "handler",
+        "toSymbol": "save",
+        "callExpression": "projects.save",
+        "sourcePath": "src/features/projects/composition/createProjectsApiHandlerResolver.ts"
+      },
+      {
+        "fromSymbol": "handler",
+        "toSymbol": "reload",
+        "callExpression": "projects.reload",
+        "sourcePath": "src/features/projects/composition/createProjectsApiHandlerResolver.ts"
+      },
+      {
+        "fromSymbol": "handler",
+        "toSymbol": "revision",
+        "callExpression": "projects.revision",
+        "sourcePath": "src/features/projects/composition/createProjectsApiHandlerResolver.ts"
+      },
+      {
+        "fromSymbol": "handler",
+        "toSymbol": "unavailableResponse",
+        "callExpression": "unavailableResponse",
+        "sourcePath": "src/features/projects/composition/createProjectsApiHandlerResolver.ts"
+      },
+      {
+        "fromSymbol": "handler",
+        "toSymbol": "materialize",
+        "callExpression": "projects.materialize",
+        "sourcePath": "src/features/projects/composition/createProjectsApiHandlerResolver.ts"
+      },
+      {
+        "fromSymbol": "handler",
+        "toSymbol": "delete",
+        "callExpression": "projects.delete",
+        "sourcePath": "src/features/projects/composition/createProjectsApiHandlerResolver.ts"
+      },
+      {
+        "fromSymbol": "readProjectResponse",
+        "toSymbol": "readScopedProjectId",
+        "callExpression": "readScopedProjectId",
+        "sourcePath": "src/features/projects/composition/createProjectsApiHandlerResolver.ts"
+      },
+      {
+        "fromSymbol": "readProjectResponse",
+        "toSymbol": "missingResponse",
+        "callExpression": "missingResponse",
+        "sourcePath": "src/features/projects/composition/createProjectsApiHandlerResolver.ts"
+      },
+      {
+        "fromSymbol": "readProjectResponse",
+        "toSymbol": "read",
+        "callExpression": "projects.read",
+        "sourcePath": "src/features/projects/composition/createProjectsApiHandlerResolver.ts"
+      },
+      {
+        "fromSymbol": "readProjectResponse",
+        "toSymbol": "invalidResponse",
+        "callExpression": "invalidResponse",
+        "sourcePath": "src/features/projects/composition/createProjectsApiHandlerResolver.ts"
+      },
+      {
+        "fromSymbol": "projectActionFailureResponse",
+        "toSymbol": "invalidResponse",
+        "callExpression": "invalidResponse",
+        "sourcePath": "src/features/projects/composition/createProjectsApiHandlerResolver.ts"
+      },
+      {
+        "fromSymbol": "readName",
+        "toSymbol": "isRecord",
+        "callExpression": "isRecord",
+        "sourcePath": "src/features/projects/composition/createProjectsApiHandlerResolver.ts"
+      },
+      {
+        "fromSymbol": "readManifestSaveBody",
+        "toSymbol": "isRecord",
+        "callExpression": "isRecord",
+        "sourcePath": "src/features/projects/composition/createProjectsApiHandlerResolver.ts"
+      },
+      {
+        "fromSymbol": "readManifestSaveBody",
+        "toSymbol": "isAppManifest",
+        "callExpression": "isAppManifest",
+        "sourcePath": "src/features/projects/composition/createProjectsApiHandlerResolver.ts"
       },
       {
         "fromSymbol": "createProject",
@@ -1420,6 +1991,26 @@
         "fromSymbol": "createProjectRepositoryFileSystemAsync",
         "toType": "Readonly",
         "sourcePath": "src/features/projects/adapters/createProjectRepositoryFileSystemAsync.ts"
+      },
+      {
+        "fromSymbol": "createProjectsApiHandlerResolver",
+        "toType": "ApiHandlerResolver",
+        "sourcePath": "src/features/projects/composition/createProjectsApiHandlerResolver.ts"
+      },
+      {
+        "fromSymbol": "createProjectsApiHandlerResolver",
+        "toType": "ProjectMaterializer",
+        "sourcePath": "src/features/projects/composition/createProjectsApiHandlerResolver.ts"
+      },
+      {
+        "fromSymbol": "createProjectsApiHandlerResolver",
+        "toType": "ProjectRepository",
+        "sourcePath": "src/features/projects/composition/createProjectsApiHandlerResolver.ts"
+      },
+      {
+        "fromSymbol": "createProjectsApiHandlerResolver",
+        "toType": "Readonly",
+        "sourcePath": "src/features/projects/composition/createProjectsApiHandlerResolver.ts"
       },
       {
         "fromSymbol": "ProjectMaterializer",

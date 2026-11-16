@@ -60,6 +60,45 @@
     "structuredRows": []
   },
   {
+    "name": "createProjectsApiHandlerResolver",
+    "title": null,
+    "description": "Create the Projects-owned resolver for host-approved server API operations.",
+    "isReadme": false,
+    "see": [],
+    "security": [],
+    "kind": "function",
+    "modulePath": "src/features/projects/composition/createProjectsApiHandlerResolver.ts",
+    "sourceLocation": {
+      "filePath": "src/features/projects/composition/createProjectsApiHandlerResolver.ts",
+      "line": 30,
+      "column": 1
+    },
+    "exportPaths": [
+      "src/index.ts"
+    ],
+    "relatedSymbols": [
+      "ProjectMaterializer",
+      "ProjectRepository"
+    ],
+    "signatures": [
+      {
+        "label": "(input: Readonly<{ repository: ProjectRepository; materializer?: ProjectMaterializer; allowDelete?: boolean; }>) => ApiHandlerResolver",
+        "parameters": [
+          {
+            "name": "input",
+            "type": "Readonly<{ repository: ProjectRepository; materializer?: ProjectMaterializer; allowDelete?: boolean; }>",
+            "required": true,
+            "description": null
+          }
+        ],
+        "returnType": "ApiHandlerResolver",
+        "returnDescription": null
+      }
+    ],
+    "members": [],
+    "structuredRows": []
+  },
+  {
     "name": "MaterializeProjectRevisionInput",
     "title": null,
     "description": null,

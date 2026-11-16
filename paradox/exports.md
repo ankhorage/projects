@@ -24,6 +24,20 @@ requires external locking and is unsupported by this adapter.
   - options: `Readonly<{ directory: string; }>`
   - returns: `Promise<ProjectRepository>`
 
+## createProjectsApiHandlerResolver
+
+Kind: `function`
+Module: `src/features/projects/composition/createProjectsApiHandlerResolver.ts`
+Source: `src/features/projects/composition/createProjectsApiHandlerResolver.ts:30:1`
+
+Create the Projects-owned resolver for host-approved server API operations.
+
+### Signatures
+
+- `(input: Readonly<{ repository: ProjectRepository; materializer?: ProjectMaterializer; allowDelete?: boolean; }>) => ApiHandlerResolver`
+  - input: `Readonly<{ repository: ProjectRepository; materializer?: ProjectMaterializer; allowDelete?: boolean; }>`
+  - returns: `ApiHandlerResolver`
+
 ## MaterializeProjectRevisionInput
 
 Kind: `unknown`
