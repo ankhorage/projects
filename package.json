@@ -61,7 +61,8 @@
     "typescript": "~6.0.3"
   },
   "dependencies": {
-    "@ankhorage/contracts": "^26.10.0",
+    "@ankhorage/api": "^0.5.1",
+    "@ankhorage/contracts": "^26.11.1",
     "@ankhorage/utility": "^1.10.0"
   },
   "ankh": {
@@ -158,10 +159,25 @@
         "description": "Read the persisted project manifest draft and immutable revision history."
       },
       {
+        "id": "projects.revision",
+        "owner": "@ankhorage/projects",
+        "access": [
+          "read"
+        ],
+        "binding": {
+          "kind": "storage",
+          "bindableAs": [
+            "target"
+          ]
+        },
+        "label": "Read project manifest revision",
+        "description": "Read one immutable project manifest revision by identity."
+      },
+      {
         "id": "projects.materialize",
         "owner": "@ankhorage/projects",
         "access": [
-          "write"
+          "invoke"
         ],
         "binding": {
           "kind": "action",

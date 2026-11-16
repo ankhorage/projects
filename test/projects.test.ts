@@ -2,9 +2,20 @@ import { mkdtemp, readFile, rm, symlink, writeFile } from 'node:fs/promises';
 import { tmpdir } from 'node:os';
 import { join } from 'node:path';
 import { afterEach, describe, expect, test } from 'bun:test';
+import { composeAuthorizedApiRuntime } from '@ankhorage/api';
 import type { AppManifest } from '@ankhorage/contracts';
+import type {
+  DataOperationConfig,
+  DataOperationIntent,
+  DataOperationMethod,
+  InternalRestApiDefinition,
+} from '@ankhorage/contracts/data';
 import { CAPABILITIES } from '../src/capabilities/index.js';
-import { createProjectRepositoryFileSystemAsync, projects } from '../src/index.js';
+import {
+  createProjectRepositoryFileSystemAsync,
+  createProjectsApiHandlerResolver,
+  projects,
+} from '../src/index.js';
 import type { Project, ProjectRepository } from '../src/index.js';
 
 const directories: string[] = [];
@@ -24,6 +35,7 @@ describe('projects', () => {
       'projects.update',
       'projects.save',
       'projects.reload',
+      'projects.revision',
       'projects.materialize',
       'projects.delete',
     ]);
@@ -220,6 +232,9 @@ describe('projects', () => {
     });
     expect(await projects.reload(repository, { id: project.id })).toEqual(saved.manifest);
     expect((await projects.reload(repository, { id: project.id }))?.revisions).toEqual([revision]);
+    expect(
+      await projects.revision(repository, { id: project.id, revisionId: revision.id }),
+    ).toEqual(revision);
 
     const materialized: string[] = [];
     expect(
@@ -292,6 +307,131 @@ describe('projects', () => {
   });
 });
 
+describe('Projects API handler resolver', () => {
+  test('executes only allowed scoped project operations through the API runtime', async () => {
+    const directory = await createDirectoryAsync();
+    const repository = await createProjectRepositoryFileSystemAsync({ directory });
+    const runtime = composeProjectsApiRuntime(repository, ['projects.create', 'projects.read']);
+
+    expect(
+      await runtime.dispatchAsync(
+        apiRequest('projects.create', 'POST', {}, { name: 'First project' }),
+      ),
+    ).toMatchObject({ status: 201, body: { id: 'first-project' } });
+    expect(
+      await runtime.dispatchAsync(
+        apiRequest('projects.read', 'GET', { projectId: 'first-project' }),
+      ),
+    ).toMatchObject({ status: 200, body: { id: 'first-project' } });
+    expect(
+      await runtime.dispatchAsync(
+        apiRequest('projects.create', 'POST', {}, { name: 'First project' }),
+      ),
+    ).toMatchObject({ status: 409, body: { error: { code: 'project_conflict' } } });
+    expect(
+      await runtime.dispatchAsync(apiRequest('projects.create', 'POST', {}, { name: '   ' })),
+    ).toMatchObject({ status: 400, body: { error: { code: 'invalid_request' } } });
+    expect(await projects.read(repository, 'first-project')).not.toBeNull();
+  });
+
+  test('denies before executing a project handler when the API authorization policy rejects it', async () => {
+    const directory = await createDirectoryAsync();
+    const repository = await createProjectRepositoryFileSystemAsync({ directory });
+    const runtime = composeProjectsApiRuntime(repository, ['projects.create'], false);
+
+    expect(
+      await runtime.dispatchAsync(
+        apiRequest('projects.create', 'POST', {}, { name: 'First project' }),
+      ),
+    ).toEqual({
+      status: 403,
+      headers: { 'content-type': 'application/json' },
+      body: { error: { code: 'forbidden', operationId: 'projects.create' } },
+    });
+    expect(await projects.read(repository, 'first-project')).toBeNull();
+  });
+
+  test('returns invalid, missing, failed, and unavailable operation outcomes without crossing boundaries', async () => {
+    const directory = await createDirectoryAsync();
+    const repository = await createProjectRepositoryFileSystemAsync({ directory });
+    const invalidRuntime = composeProjectsApiRuntime(repository, ['projects.create']);
+    const missingRuntime = composeProjectsApiRuntime(repository, ['projects.read']);
+    const unavailableRuntime = composeProjectsApiRuntime(repository, ['projects.materialize']);
+    const failingRepository: ProjectRepository = {
+      listAsync: async () => {
+        throw new Error('storage failure');
+      },
+      readAsync: async () => null,
+      createAsync: async () => undefined,
+      updateAsync: async () => null,
+      deleteAsync: async () => null,
+    };
+    const failedRuntime = composeProjectsApiRuntime(failingRepository, ['projects.list']);
+
+    expect(
+      await invalidRuntime.dispatchAsync(apiRequest('projects.create', 'POST', {}, { name: 42 })),
+    ).toMatchObject({ status: 400, body: { error: { code: 'invalid_request' } } });
+    expect(
+      await missingRuntime.dispatchAsync(
+        apiRequest('projects.read', 'GET', { projectId: 'first-project' }),
+      ),
+    ).toMatchObject({ status: 404, body: { error: { code: 'project_not_found' } } });
+    expect(
+      await missingRuntime.dispatchAsync(
+        apiRequest('projects.read', 'GET', { projectId: 'outside-project' }),
+      ),
+    ).toMatchObject({ status: 400, body: { error: { code: 'invalid_request' } } });
+    expect(
+      await unavailableRuntime.dispatchAsync(
+        apiRequest('projects.materialize', 'POST', {
+          projectId: 'first-project',
+          revisionId: 'revision-1',
+        }),
+      ),
+    ).toMatchObject({ status: 503, body: { error: { code: 'materialization_unavailable' } } });
+    expect(await failedRuntime.dispatchAsync(apiRequest('projects.list', 'GET'))).toMatchObject({
+      status: 500,
+      body: { error: { code: 'handler_failed', operationId: 'projects.list' } },
+    });
+  });
+
+  test('rejects unapproved destructive, mismatched, and out-of-scope operations at resolution', async () => {
+    const directory = await createDirectoryAsync();
+    const repository = await createProjectRepositoryFileSystemAsync({ directory });
+    const resolver = createProjectsApiHandlerResolver({ repository });
+    const definition = createProjectsApiDefinition(['projects.delete']);
+
+    expect(() =>
+      composeAuthorizedApiRuntime({
+        definition,
+        context: { appId: 'app', projectId: 'first-project' },
+        resolveHandler: resolver,
+        authorizeAsync: () => true,
+      }),
+    ).toThrow('No approved handler is registered for API operation projects.delete.');
+    expect(() =>
+      composeAuthorizedApiRuntime({
+        definition: createProjectsApiDefinition(['projects.read'], { method: 'POST' }),
+        context: { appId: 'app', projectId: 'first-project' },
+        resolveHandler: resolver,
+        authorizeAsync: () => true,
+      }),
+    ).toThrow('No approved handler is registered for API operation projects.read.');
+    expect(() =>
+      composeAuthorizedApiRuntime({
+        definition: createProjectsApiDefinition(
+          CAPABILITIES.filter((capability) => capability.id !== 'projects.delete').map(
+            (capability) => capability.id,
+          ),
+        ),
+        context: { appId: 'app', projectId: 'first-project' },
+        resolveHandler: resolver,
+        authorizeAsync: () => true,
+      }),
+    ).not.toThrow();
+  });
+});
+
 /*** Create the smallest canonical AppManifest accepted by the released Contracts parser. */
 function createManifest(): AppManifest {
   return {
@@ -334,4 +474,87 @@ async function createDirectoryAsync(): Promise<string> {
   const directory = await mkdtemp(join(tmpdir(), 'ankhorage-projects-'));
   directories.push(directory);
   return directory;
+}
+
+/*** Compose the released API runtime around the Projects-owned resolver for one scoped test app. */
+function composeProjectsApiRuntime(
+  repository: ProjectRepository,
+  operationIds: readonly string[],
+  authorized = true,
+) {
+  return composeAuthorizedApiRuntime({
+    definition: createProjectsApiDefinition(operationIds),
+    context: { appId: 'app', projectId: 'first-project' },
+    resolveHandler: createProjectsApiHandlerResolver({ repository }),
+    authorizeAsync: () => authorized,
+  });
+}
+
+/*** Create a declared API definition whose operation ids match the fixed Projects capability map. */
+function createProjectsApiDefinition(
+  operationIds: readonly string[],
+  override: Readonly<{ method?: string }> = {},
+): InternalRestApiDefinition {
+  const operations = Object.fromEntries(
+    operationIds.map((id) => {
+      const operation = projectOperationDefinition(id, override);
+      return [id, operation];
+    }),
+  );
+  const handlers = Object.fromEntries(
+    operationIds.map((operationId) => {
+      const capability = CAPABILITIES.find((candidate) => candidate.id === operationId);
+      if (!capability) throw new Error(`Unknown test project capability '${operationId}'.`);
+      return [operationId, { operationId, capability: capability.id }];
+    }),
+  );
+
+  return {
+    id: 'projects-api',
+    origin: 'internal',
+    protocol: 'rest',
+    basePath: '/projects',
+    endpoints: { projects: { id: 'projects', kind: 'http', operations } },
+    handlers,
+  };
+}
+
+/*** Define the fixed API intent and HTTP method expected for one Projects capability. */
+function projectOperationDefinition(
+  id: string,
+  override: Readonly<{ method?: DataOperationMethod }>,
+): DataOperationConfig {
+  const definitions: Readonly<
+    Record<string, Readonly<{ intent: DataOperationIntent; method: DataOperationMethod }>>
+  > = {
+    'projects.list': { intent: 'read', method: 'GET' },
+    'projects.read': { intent: 'read', method: 'GET' },
+    'projects.create': { intent: 'create', method: 'POST' },
+    'projects.update': { intent: 'update', method: 'PATCH' },
+    'projects.save': { intent: 'update', method: 'PUT' },
+    'projects.reload': { intent: 'read', method: 'GET' },
+    'projects.revision': { intent: 'read', method: 'GET' },
+    'projects.materialize': { intent: 'action', method: 'POST' },
+    'projects.delete': { intent: 'delete', method: 'DELETE' },
+  };
+  const definition = definitions[id];
+  if (!definition) throw new Error(`Unknown test project operation '${id}'.`);
+  return { id, protocol: 'http', ...definition, method: override.method ?? definition.method };
+}
+
+/*** Create one normalized API request without any transport-specific values. */
+function apiRequest(
+  operationId: string,
+  method: string,
+  params: Readonly<Record<string, string>> = {},
+  body?: unknown,
+) {
+  return {
+    operationId,
+    method,
+    params,
+    query: {},
+    headers: {},
+    ...(body === undefined ? {} : { body }),
+  };
 }
