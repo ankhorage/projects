@@ -6,6 +6,7 @@ import { createKeyedAsyncMutex } from '@ankhorage/utility/concurrency';
 import { isRecord } from '@ankhorage/utility/object';
 
 import type { Project } from '../../../types/projects.js';
+import { isProjectIdentity } from '../domain/isProjectIdentity.js';
 import type { ProjectRepository } from '../ports/ProjectRepository.js';
 
 type FileSystemProjectRepositoryOptions = Readonly<{ directory: string }>;
@@ -201,7 +202,7 @@ async function deleteProjectAsync(directory: string, id: string): Promise<Projec
 
 /*** Convert only canonical project identities into a local storage filename. */
 function projectFileName(id: string): string {
-  if (!/^[a-z0-9]+(?:-[a-z0-9]+)*$/.test(id)) {
+  if (!isProjectIdentity(id)) {
     throw new Error('Project identity is invalid.');
   }
   return `${id}.json`;
