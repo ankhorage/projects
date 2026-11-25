@@ -1,0 +1,147 @@
+import { mkdtemp, mkdir, readFile, rm, writeFile } from 'node:fs/promises';
+import { tmpdir } from 'node:os';
+import { join } from 'node:path';
+import { afterEach, describe, expect, test } from 'bun:test';
+import type { AppManifest } from '@ankhorage/contracts';
+import { createExpoProjectMaterializer } from '../src/index.js';
+import type { Project, ProjectManifestRevision } from '../src/index.js';
+
+const directories: string[] = [];
+
+afterEach(async () =>
+  Promise.all(
+    directories.map(async (directory) => rm(directory, { recursive: true, force: true })),
+  ),
+);
+
+describe('createExpoProjectMaterializer', () => {
+  test('materializes one immutable revision into an empty caller-owned Expo target', async () => {
+    const parentDirectory = await createDirectoryAsync();
+    const targetDirectory = join(parentDirectory, 'generated');
+    await mkdir(targetDirectory);
+    const materializer = createExpoProjectMaterializer({
+      targetDirectory,
+      template: { category: 'books_reading', slug: 'reader' },
+      navigator: {
+        bindings: { screens: {}, guards: {} },
+        platform: 'web',
+        expoRouterVersion: '57.0.32',
+      },
+    });
+
+    const result = await materializer.materializeAsync({
+      project: createProject(),
+      revision: createRevision(),
+    });
+
+    expect(result).toMatchObject({
+      projectId: 'reader-project',
+      revisionId: 'revision-1',
+      targetDirectory,
+    });
+    expect(result.files).toEqual(
+      expect.arrayContaining([
+        'README.md',
+        'ankh.config.json',
+        'ankh.template.json',
+        'app.config.ts',
+        'assets/images/the-jungle-book.png',
+        'package.json',
+        'src/app/_layout.tsx',
+        'src/generated/runtimeShell.tsx',
+      ]),
+    );
+    expect(JSON.parse(await readFile(join(targetDirectory, 'package.json'), 'utf8'))).toMatchObject(
+      {
+        main: 'expo-router/entry',
+        dependencies: { expo: '57.0.34', 'expo-router': '~57.0.32' },
+      },
+    );
+    expect(await readFile(join(targetDirectory, 'src/app/_layout.tsx'), 'utf8')).toContain('Stack');
+  });
+
+  test('refuses a nonempty target before an owner materializer can write into it', async () => {
+    const parentDirectory = await createDirectoryAsync();
+    const targetDirectory = join(parentDirectory, 'generated');
+    await mkdir(targetDirectory);
+    await writeFile(join(targetDirectory, 'keep.txt'), 'keep');
+    const materializer = createExpoProjectMaterializer({
+      targetDirectory,
+      template: { category: 'books_reading', slug: 'reader' },
+      navigator: {
+        bindings: { screens: {}, guards: {} },
+        platform: 'web',
+        expoRouterVersion: '57.0.32',
+      },
+    });
+
+    await expect(
+      materializer.materializeAsync({ project: createProject(), revision: createRevision() }),
+    ).rejects.toThrow('Materialization target must be empty');
+    expect(await readFile(join(targetDirectory, 'keep.txt'), 'utf8')).toBe('keep');
+  });
+});
+
+/*** Create the smallest persisted Project that owns the immutable revision used in this composition test. */
+function createProject(): Project {
+  return {
+    id: 'reader-project',
+    name: 'Reader project',
+    createdAt: '2026-11-25T00:00:00.000Z',
+    updatedAt: '2026-11-25T00:00:00.000Z',
+    manifest: { draft: null, revisions: [] },
+  };
+}
+
+/*** Create a minimal published AppManifest revision accepted by every composed owner API. */
+function createRevision(): ProjectManifestRevision {
+  return {
+    id: 'revision-1',
+    savedAt: '2026-11-25T00:00:00.000Z',
+    manifest: createManifest(),
+  };
+}
+
+/*** Create a stack-only manifest so Navigator emits the owner-owned Expo Router entry layout. */
+function createManifest(): AppManifest {
+  return {
+    metadata: {
+      name: 'Reader',
+      slug: 'reader',
+      version: '1.0.0',
+      category: 'books_reading',
+      themeId: 'default',
+    },
+    themes: {
+      default: {
+        id: 'default',
+        name: 'Default',
+        light: { primaryColor: '#3366ff', harmony: 'analogous' },
+        dark: { primaryColor: '#6699ff', harmony: 'analogous' },
+      },
+    },
+    activeThemeId: 'default',
+    infra: {
+      environments: {
+        local: {
+          deployment: { compute: { provider: 'local' }, runtime: { provider: 'minikube' } },
+          database: { provider: 'supabase', tier: 'dev' },
+          objectStorage: { provider: 'supabase', buckets: { media: true } },
+          networking: { domain: 'reader.test' },
+        },
+      },
+      apis: {},
+      modules: {},
+    },
+    navigator: { type: 'stack', routes: [] },
+    screens: {},
+    settings: { localization: { defaultLocale: 'en', locales: ['en'] } },
+  };
+}
+
+/*** Create and retain a temporary parent whose child is the caller-owned materialization target. */
+async function createDirectoryAsync(): Promise<string> {
+  const directory = await mkdtemp(join(tmpdir(), 'ankhorage-projects-expo-'));
+  directories.push(directory);
+  return directory;
+}

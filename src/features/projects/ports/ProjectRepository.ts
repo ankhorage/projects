@@ -3,7 +3,7 @@ import type { Project, ProjectManifestRevision } from '../../../types/projects.j
 export interface ProjectMaterializer {
   materializeAsync(
     input: Readonly<{ project: Project; revision: ProjectManifestRevision }>,
-  ): Promise<void>;
+  ): Promise<unknown>;
 }
 
 export interface ProjectRepository {

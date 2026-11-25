@@ -1,5 +1,11 @@
 export { createProjectRepositoryFileSystemAsync } from './features/projects/adapters/createProjectRepositoryFileSystemAsync.js';
 export { projects } from './features/projects/application/projects.js';
+export {
+  createExpoProjectMaterializer,
+  type CreateExpoProjectMaterializerInput,
+  type ExpoProjectMaterializationResult,
+  type ExpoProjectMaterializer,
+} from './features/projects/composition/createExpoProjectMaterializer.js';
 export { createProjectsApiHandlerResolver } from './features/projects/composition/createProjectsApiHandlerResolver.js';
 export type {
   ProjectMaterializer,

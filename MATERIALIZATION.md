@@ -9,21 +9,17 @@ no-follow reads, atomic replacement, validation on every read, and a per-adapter
 single-writer mutex. A storage directory therefore has one designated adapter writer. Separate
 processes or adapter instances still require external locking.
 
-## Current composition blocker
+## Published Expo composition
 
-The published public APIs were audited on 2026-11-14:
+`createExpoProjectMaterializer` is the Projects-owned concrete composition for one immutable
+revision and one caller-owned empty target directory. It uses only released owner APIs:
 
-- Templates PR [#841](https://github.com/ankhorage/templates/pull/841) adds a root-exported
-  `materializeTemplateRevision`, but it is still open and therefore is not a released dependency.
-  The currently published `@ankhorage/templates@12.5.26` exports authoring composition and template
-  artifacts, but no project-revision-to-target materializer.
-- `@ankhorage/navigator@3.5.22` exposes independent Navigator planning/generation APIs, but no
-  composition API that receives a stored `AppManifest` revision and coordinates the full target.
-- `@ankhorage/expo-runtime@7.0.3` exposes runtime output planning only; it has no published
-  materializer and its declared Contracts range is still `^25.0.0`, not the W2
-  `@ankhorage/contracts@26.10.0` boundary.
+- Templates materializes the selected template's manifest metadata and packaged assets into an
+  isolated staging directory.
+- Expo Runtime resolves the generated package, native config, and runtime shell sources.
+- Navigator resolves and emits the deterministic Expo Router layout and routes.
 
-Consequently this package intentionally exports only the injected `ProjectMaterializer` port and
-the explicit revision lookup/delegation action. Wiring must wait for Templates PR #841 to be
-released, plus a released compatible Navigator/Expo Runtime composition API. No sibling-source
-import, local generator, database adapter, or Flow was added here.
+Projects validates the target before writing, rejects owner diagnostics and output collisions, and
+uses exclusive file creation for every final file. It does not import Studio source or recreate an
+owner emitter. Hosts still provide the selected published template and the narrow Navigator module
+bindings that represent their screen/guard implementations.
