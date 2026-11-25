@@ -1,5 +1,11 @@
 # Changelog
 
+## 0.4.0
+
+### Minor Changes
+
+- 732e90d: Add a public Expo project materializer composed from published Templates, Navigator, and Expo Runtime APIs.
+
 ## 0.3.0
 
 ### Minor Changes

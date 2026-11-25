@@ -14,7 +14,7 @@
     {
       "id": "npm",
       "label": "npm",
-      "value": "v0.3.0",
+      "value": "v0.4.0",
       "color": "cb3837"
     },
     {
@@ -106,6 +106,19 @@
       ]
     },
     {
+      "path": "src/features/projects/composition/createExpoProjectMaterializer.ts",
+      "isEntrypoint": false,
+      "dependencies": [
+        "src/types/projects.ts"
+      ],
+      "exports": [
+        "createExpoProjectMaterializer",
+        "CreateExpoProjectMaterializerInput",
+        "ExpoProjectMaterializationResult",
+        "ExpoProjectMaterializer"
+      ]
+    },
+    {
       "path": "src/features/projects/composition/createProjectsApiHandlerResolver.ts",
       "isEntrypoint": false,
       "dependencies": [
@@ -173,9 +186,13 @@
       "isEntrypoint": true,
       "dependencies": [],
       "exports": [
+        "createExpoProjectMaterializer",
+        "CreateExpoProjectMaterializerInput",
         "CreateProjectInput",
         "createProjectRepositoryFileSystemAsync",
         "createProjectsApiHandlerResolver",
+        "ExpoProjectMaterializationResult",
+        "ExpoProjectMaterializer",
         "MaterializeProjectRevisionInput",
         "Project",
         "ProjectManifest",
@@ -206,6 +223,14 @@
       ]
     },
     {
+      "path": "test/expoProjectMaterializer.test.ts",
+      "isEntrypoint": false,
+      "dependencies": [
+        "src/index.ts"
+      ],
+      "exports": []
+    },
+    {
       "path": "test/projects.test.ts",
       "isEntrypoint": false,
       "dependencies": [
@@ -216,6 +241,89 @@
     }
   ],
   "exports": [
+    {
+      "name": "createExpoProjectMaterializer",
+      "title": null,
+      "description": "Create the public, caller-targeted Expo materializer for stored immutable project revisions.",
+      "isReadme": false,
+      "see": [],
+      "security": [],
+      "kind": "function",
+      "modulePath": "src/features/projects/composition/createExpoProjectMaterializer.ts",
+      "sourceLocation": {
+        "filePath": "src/features/projects/composition/createExpoProjectMaterializer.ts",
+        "line": 55,
+        "column": 1
+      },
+      "exportPaths": [
+        "src/index.ts"
+      ],
+      "relatedSymbols": [
+        "CreateExpoProjectMaterializerInput",
+        "ExpoProjectMaterializer"
+      ],
+      "signatures": [
+        {
+          "label": "(input: CreateExpoProjectMaterializerInput) => ExpoProjectMaterializer",
+          "parameters": [
+            {
+              "name": "input",
+              "type": "CreateExpoProjectMaterializerInput",
+              "required": true,
+              "description": null
+            }
+          ],
+          "returnType": "ExpoProjectMaterializer",
+          "returnDescription": null
+        }
+      ],
+      "members": [],
+      "structuredRows": []
+    },
+    {
+      "name": "CreateExpoProjectMaterializerInput",
+      "title": null,
+      "description": "Inputs fixed by the host before materializing one immutable Projects revision.",
+      "isReadme": false,
+      "see": [],
+      "security": [],
+      "kind": "type",
+      "modulePath": "src/features/projects/composition/createExpoProjectMaterializer.ts",
+      "sourceLocation": {
+        "filePath": "src/features/projects/composition/createExpoProjectMaterializer.ts",
+        "line": 26,
+        "column": 1
+      },
+      "exportPaths": [
+        "src/index.ts"
+      ],
+      "relatedSymbols": [],
+      "signatures": [],
+      "members": [
+        {
+          "name": "navigator",
+          "kind": "property",
+          "type": "Readonly<{ readonly bindings: NavigatorGenerationBindings; readonly platform: NavigatorRuntimePlatform; readonly expoRouterVersion: string; }>",
+          "required": true,
+          "description": null
+        },
+        {
+          "name": "targetDirectory",
+          "kind": "property",
+          "type": "string",
+          "required": true,
+          "description": null
+        },
+        {
+          "name": "template",
+          "kind": "property",
+          "type": "Readonly<{ category: AppCategory; slug: string; }>",
+          "required": true,
+          "description": null
+        }
+      ],
+      "structuredRows": []
+    },
     {
       "name": "CreateProjectInput",
       "title": null,
@@ -313,6 +421,91 @@
         }
       ],
       "members": [],
+      "structuredRows": []
+    },
+    {
+      "name": "ExpoProjectMaterializationResult",
+      "title": null,
+      "description": "The public result of materializing one runnable, self-contained Expo project directory.",
+      "isReadme": false,
+      "see": [],
+      "security": [],
+      "kind": "type",
+      "modulePath": "src/features/projects/composition/createExpoProjectMaterializer.ts",
+      "sourceLocation": {
+        "filePath": "src/features/projects/composition/createExpoProjectMaterializer.ts",
+        "line": 37,
+        "column": 1
+      },
+      "exportPaths": [
+        "src/index.ts"
+      ],
+      "relatedSymbols": [],
+      "signatures": [],
+      "members": [
+        {
+          "name": "files",
+          "kind": "property",
+          "type": "readonly string[]",
+          "required": true,
+          "description": null
+        },
+        {
+          "name": "projectId",
+          "kind": "property",
+          "type": "string",
+          "required": true,
+          "description": null
+        },
+        {
+          "name": "revisionId",
+          "kind": "property",
+          "type": "string",
+          "required": true,
+          "description": null
+        },
+        {
+          "name": "targetDirectory",
+          "kind": "property",
+          "type": "string",
+          "required": true,
+          "description": null
+        }
+      ],
+      "structuredRows": []
+    },
+    {
+      "name": "ExpoProjectMaterializer",
+      "title": null,
+      "description": "A concrete Projects materializer composed solely from released owner APIs.",
+      "isReadme": false,
+      "see": [],
+      "security": [],
+      "kind": "type",
+      "modulePath": "src/features/projects/composition/createExpoProjectMaterializer.ts",
+      "sourceLocation": {
+        "filePath": "src/features/projects/composition/createExpoProjectMaterializer.ts",
+        "line": 45,
+        "column": 1
+      },
+      "exportPaths": [
+        "src/index.ts"
+      ],
+      "relatedSymbols": [
+        "ExpoProjectMaterializationResult",
+        "Project",
+        "ProjectManifestRevision"
+      ],
+      "signatures": [],
+      "members": [
+        {
+          "name": "materializeAsync",
+          "kind": "method",
+          "type": "(input: Readonly<{ project: Project; revision: ProjectManifestRevision; }>) => Promise<ExpoProjectMaterializationResult>",
+          "required": true,
+          "description": null
+        }
+      ],
       "structuredRows": []
     },
     {
@@ -451,7 +644,7 @@
         {
           "name": "materializeAsync",
           "kind": "method",
-          "type": "(input: Readonly<{ project: Project; revision: ProjectManifestRevision; }>) => Promise<void>",
+          "type": "(input: Readonly<{ project: Project; revision: ProjectManifestRevision; }>) => Promise<unknown>",
           "required": true,
           "description": null
         }
@@ -764,6 +957,138 @@
       }
     },
     {
+      "name": "createExpoProjectMaterializer",
+      "description": "Create the public, caller-targeted Expo materializer for stored immutable project revisions.",
+      "see": [],
+      "security": [],
+      "sourceLocation": {
+        "filePath": "src/features/projects/composition/createExpoProjectMaterializer.ts",
+        "line": 55,
+        "column": 1
+      }
+    },
+    {
+      "name": "materializeExpoProjectAsync",
+      "description": "Coordinate owner plans and Template output into one prevalidated caller-owned Expo target.",
+      "see": [],
+      "security": [],
+      "sourceLocation": {
+        "filePath": "src/features/projects/composition/createExpoProjectMaterializer.ts",
+        "line": 65,
+        "column": 1
+      }
+    },
+    {
+      "name": "createGeneratedFiles",
+      "description": "Produce every Runtime- and Navigator-owned file before Template or target filesystem writes.",
+      "see": [],
+      "security": [],
+      "sourceLocation": {
+        "filePath": "src/features/projects/composition/createExpoProjectMaterializer.ts",
+        "line": 100,
+        "column": 1
+      }
+    },
+    {
+      "name": "createMaterializationResult",
+      "description": "Return the stable public materialization identity and complete sorted generated-file inventory.",
+      "see": [],
+      "security": [],
+      "sourceLocation": {
+        "filePath": "src/features/projects/composition/createExpoProjectMaterializer.ts",
+        "line": 128,
+        "column": 1
+      }
+    },
+    {
+      "name": "assertReleasedOwnerApis",
+      "description": "Reject unavailable owner emitters rather than reproducing their source in Projects.",
+      "see": [],
+      "security": [],
+      "sourceLocation": {
+        "filePath": "src/features/projects/composition/createExpoProjectMaterializer.ts",
+        "line": 171,
+        "column": 1
+      }
+    },
+    {
+      "name": "assertEmptyTargetDirectoryAsync",
+      "description": "Resolve one existing, empty, non-symlink target directory before writing any output.",
+      "see": [],
+      "security": [],
+      "sourceLocation": {
+        "filePath": "src/features/projects/composition/createExpoProjectMaterializer.ts",
+        "line": 184,
+        "column": 1
+      }
+    },
+    {
+      "name": "assertNoErrors",
+      "description": "Reject owner diagnostics that make a generated application invalid before filesystem side effects.",
+      "see": [],
+      "security": [],
+      "sourceLocation": {
+        "filePath": "src/features/projects/composition/createExpoProjectMaterializer.ts",
+        "line": 197,
+        "column": 1
+      }
+    },
+    {
+      "name": "readTemplateFilesAsync",
+      "description": "Read exactly the files reported by Templates while keeping every path inside its staging project.",
+      "see": [],
+      "security": [],
+      "sourceLocation": {
+        "filePath": "src/features/projects/composition/createExpoProjectMaterializer.ts",
+        "line": 210,
+        "column": 1
+      }
+    },
+    {
+      "name": "writeFilesAsync",
+      "description": "Write all materialized files with exclusive creation so no existing caller file is overwritten.",
+      "see": [],
+      "security": [],
+      "sourceLocation": {
+        "filePath": "src/features/projects/composition/createExpoProjectMaterializer.ts",
+        "line": 223,
+        "column": 1
+      }
+    },
+    {
+      "name": "assertSafeRelativePath",
+      "description": "Ensure an owner-reported project-relative path never crosses its designated directory.",
+      "see": [],
+      "security": [],
+      "sourceLocation": {
+        "filePath": "src/features/projects/composition/createExpoProjectMaterializer.ts",
+        "line": 236,
+        "column": 1
+      }
+    },
+    {
+      "name": "assertUniqueRelativePaths",
+      "description": "Reject duplicate paths emitted by one owner before any write can begin.",
+      "see": [],
+      "security": [],
+      "sourceLocation": {
+        "filePath": "src/features/projects/composition/createExpoProjectMaterializer.ts",
+        "line": 252,
+        "column": 1
+      }
+    },
+    {
+      "name": "assertNoPathCollisions",
+      "description": "Reject a collision across owner outputs instead of silently selecting one producer.",
+      "see": [],
+      "security": [],
+      "sourceLocation": {
+        "filePath": "src/features/projects/composition/createExpoProjectMaterializer.ts",
+        "line": 259,
+        "column": 1
+      }
+    },
+    {
       "name": "createProjectsApiHandlerResolver",
       "description": "Create the Projects-owned resolver for host-approved server API operations.",
       "see": [],
@@ -1042,6 +1367,14 @@
   "sequenceScenarios": [
     {
       "kind": "export",
+      "name": "createExpoProjectMaterializer",
+      "sourcePath": "src/features/projects/composition/createExpoProjectMaterializer.ts",
+      "symbolName": "createExpoProjectMaterializer",
+      "description": "Create the public, caller-targeted Expo materializer for stored immutable project revisions.",
+      "isReadme": false
+    },
+    {
+      "kind": "export",
       "name": "createProjectRepositoryFileSystemAsync",
       "sourcePath": "src/features/projects/adapters/createProjectRepositoryFileSystemAsync.ts",
       "symbolName": "createProjectRepositoryFileSystemAsync",
@@ -1071,6 +1404,11 @@
       },
       {
         "fromPath": "src/index.ts",
+        "toPath": "src/features/projects/composition/createExpoProjectMaterializer.ts",
+        "sourcePath": "src/index.ts"
+      },
+      {
+        "fromPath": "src/index.ts",
         "toPath": "src/features/projects/composition/createProjectsApiHandlerResolver.ts",
         "sourcePath": "src/index.ts"
       },
@@ -1083,6 +1421,11 @@
         "fromPath": "src/index.ts",
         "toPath": "src/types/projects.ts",
         "sourcePath": "src/index.ts"
+      },
+      {
+        "fromPath": "test/expoProjectMaterializer.test.ts",
+        "toPath": "src/index.ts",
+        "sourcePath": "test/expoProjectMaterializer.test.ts"
       },
       {
         "fromPath": "test/projects.test.ts",
@@ -1128,6 +1471,11 @@
         "fromPath": "src/features/projects/application/projects.ts",
         "toPath": "src/features/projects/ports/ProjectRepository.ts",
         "sourcePath": "src/features/projects/application/projects.ts"
+      },
+      {
+        "fromPath": "src/features/projects/composition/createExpoProjectMaterializer.ts",
+        "toPath": "src/types/projects.ts",
+        "sourcePath": "src/features/projects/composition/createExpoProjectMaterializer.ts"
       },
       {
         "fromPath": "src/features/projects/composition/createProjectsApiHandlerResolver.ts",
@@ -1176,6 +1524,114 @@
       }
     ],
     "calls": [
+      {
+        "fromSymbol": "test/expoProjectMaterializer.test.ts",
+        "toSymbol": "afterEach",
+        "callExpression": "afterEach",
+        "sourcePath": "test/expoProjectMaterializer.test.ts"
+      },
+      {
+        "fromSymbol": "test/expoProjectMaterializer.test.ts",
+        "toSymbol": "rm",
+        "callExpression": "rm",
+        "sourcePath": "test/expoProjectMaterializer.test.ts"
+      },
+      {
+        "fromSymbol": "test/expoProjectMaterializer.test.ts",
+        "toSymbol": "describe",
+        "callExpression": "describe",
+        "sourcePath": "test/expoProjectMaterializer.test.ts"
+      },
+      {
+        "fromSymbol": "test/expoProjectMaterializer.test.ts",
+        "toSymbol": "test",
+        "callExpression": "test",
+        "sourcePath": "test/expoProjectMaterializer.test.ts"
+      },
+      {
+        "fromSymbol": "test/expoProjectMaterializer.test.ts",
+        "toSymbol": "createDirectoryAsync",
+        "callExpression": "createDirectoryAsync",
+        "sourcePath": "test/expoProjectMaterializer.test.ts"
+      },
+      {
+        "fromSymbol": "test/expoProjectMaterializer.test.ts",
+        "toSymbol": "join",
+        "callExpression": "join",
+        "sourcePath": "test/expoProjectMaterializer.test.ts"
+      },
+      {
+        "fromSymbol": "test/expoProjectMaterializer.test.ts",
+        "toSymbol": "mkdir",
+        "callExpression": "mkdir",
+        "sourcePath": "test/expoProjectMaterializer.test.ts"
+      },
+      {
+        "fromSymbol": "test/expoProjectMaterializer.test.ts",
+        "toSymbol": "createExpoProjectMaterializer",
+        "callExpression": "createExpoProjectMaterializer",
+        "sourcePath": "test/expoProjectMaterializer.test.ts"
+      },
+      {
+        "fromSymbol": "test/expoProjectMaterializer.test.ts",
+        "toSymbol": "materializeAsync",
+        "callExpression": "materializer.materializeAsync",
+        "sourcePath": "test/expoProjectMaterializer.test.ts"
+      },
+      {
+        "fromSymbol": "test/expoProjectMaterializer.test.ts",
+        "toSymbol": "createProject",
+        "callExpression": "createProject",
+        "sourcePath": "test/expoProjectMaterializer.test.ts"
+      },
+      {
+        "fromSymbol": "test/expoProjectMaterializer.test.ts",
+        "toSymbol": "createRevision",
+        "callExpression": "createRevision",
+        "sourcePath": "test/expoProjectMaterializer.test.ts"
+      },
+      {
+        "fromSymbol": "test/expoProjectMaterializer.test.ts",
+        "toSymbol": "expect",
+        "callExpression": "expect",
+        "sourcePath": "test/expoProjectMaterializer.test.ts"
+      },
+      {
+        "fromSymbol": "test/expoProjectMaterializer.test.ts",
+        "toSymbol": "readFile",
+        "callExpression": "readFile",
+        "sourcePath": "test/expoProjectMaterializer.test.ts"
+      },
+      {
+        "fromSymbol": "test/expoProjectMaterializer.test.ts",
+        "toSymbol": "writeFile",
+        "callExpression": "writeFile",
+        "sourcePath": "test/expoProjectMaterializer.test.ts"
+      },
+      {
+        "fromSymbol": "createRevision",
+        "toSymbol": "createManifest",
+        "callExpression": "createManifest",
+        "sourcePath": "test/expoProjectMaterializer.test.ts"
+      },
+      {
+        "fromSymbol": "createDirectoryAsync",
+        "toSymbol": "mkdtemp",
+        "callExpression": "mkdtemp",
+        "sourcePath": "test/expoProjectMaterializer.test.ts"
+      },
+      {
+        "fromSymbol": "createDirectoryAsync",
+        "toSymbol": "join",
+        "callExpression": "join",
+        "sourcePath": "test/expoProjectMaterializer.test.ts"
+      },
+      {
+        "fromSymbol": "createDirectoryAsync",
+        "toSymbol": "tmpdir",
+        "callExpression": "tmpdir",
+        "sourcePath": "test/expoProjectMaterializer.test.ts"
+      },
       {
         "fromSymbol": "test/projects.test.ts",
         "toSymbol": "afterEach",
@@ -1741,6 +2197,204 @@
         "sourcePath": "src/features/projects/application/projects.ts"
       },
       {
+        "fromSymbol": "materializeAsync",
+        "toSymbol": "materializeExpoProjectAsync",
+        "callExpression": "materializeExpoProjectAsync",
+        "sourcePath": "src/features/projects/composition/createExpoProjectMaterializer.ts"
+      },
+      {
+        "fromSymbol": "materializeExpoProjectAsync",
+        "toSymbol": "assertReleasedOwnerApis",
+        "callExpression": "assertReleasedOwnerApis",
+        "sourcePath": "src/features/projects/composition/createExpoProjectMaterializer.ts"
+      },
+      {
+        "fromSymbol": "materializeExpoProjectAsync",
+        "toSymbol": "assertEmptyTargetDirectoryAsync",
+        "callExpression": "assertEmptyTargetDirectoryAsync",
+        "sourcePath": "src/features/projects/composition/createExpoProjectMaterializer.ts"
+      },
+      {
+        "fromSymbol": "materializeExpoProjectAsync",
+        "toSymbol": "createGeneratedFiles",
+        "callExpression": "createGeneratedFiles",
+        "sourcePath": "src/features/projects/composition/createExpoProjectMaterializer.ts"
+      },
+      {
+        "fromSymbol": "materializeExpoProjectAsync",
+        "toSymbol": "mkdtemp",
+        "callExpression": "mkdtemp",
+        "sourcePath": "src/features/projects/composition/createExpoProjectMaterializer.ts"
+      },
+      {
+        "fromSymbol": "materializeExpoProjectAsync",
+        "toSymbol": "dirname",
+        "callExpression": "dirname",
+        "sourcePath": "src/features/projects/composition/createExpoProjectMaterializer.ts"
+      },
+      {
+        "fromSymbol": "materializeExpoProjectAsync",
+        "toSymbol": "materializeTemplateRevision",
+        "callExpression": "ownerApis.materializeTemplateRevision",
+        "sourcePath": "src/features/projects/composition/createExpoProjectMaterializer.ts"
+      },
+      {
+        "fromSymbol": "materializeExpoProjectAsync",
+        "toSymbol": "readTemplateFilesAsync",
+        "callExpression": "readTemplateFilesAsync",
+        "sourcePath": "src/features/projects/composition/createExpoProjectMaterializer.ts"
+      },
+      {
+        "fromSymbol": "materializeExpoProjectAsync",
+        "toSymbol": "assertNoPathCollisions",
+        "callExpression": "assertNoPathCollisions",
+        "sourcePath": "src/features/projects/composition/createExpoProjectMaterializer.ts"
+      },
+      {
+        "fromSymbol": "materializeExpoProjectAsync",
+        "toSymbol": "writeFilesAsync",
+        "callExpression": "writeFilesAsync",
+        "sourcePath": "src/features/projects/composition/createExpoProjectMaterializer.ts"
+      },
+      {
+        "fromSymbol": "materializeExpoProjectAsync",
+        "toSymbol": "createMaterializationResult",
+        "callExpression": "createMaterializationResult",
+        "sourcePath": "src/features/projects/composition/createExpoProjectMaterializer.ts"
+      },
+      {
+        "fromSymbol": "materializeExpoProjectAsync",
+        "toSymbol": "rm",
+        "callExpression": "rm",
+        "sourcePath": "src/features/projects/composition/createExpoProjectMaterializer.ts"
+      },
+      {
+        "fromSymbol": "createGeneratedFiles",
+        "toSymbol": "resolveExpoRuntimePlan",
+        "callExpression": "ownerApis.resolveExpoRuntimePlan",
+        "sourcePath": "src/features/projects/composition/createExpoProjectMaterializer.ts"
+      },
+      {
+        "fromSymbol": "createGeneratedFiles",
+        "toSymbol": "assertNoErrors",
+        "callExpression": "assertNoErrors",
+        "sourcePath": "src/features/projects/composition/createExpoProjectMaterializer.ts"
+      },
+      {
+        "fromSymbol": "createGeneratedFiles",
+        "toSymbol": "createNavigatorPlan",
+        "callExpression": "ownerApis.createNavigatorPlan",
+        "sourcePath": "src/features/projects/composition/createExpoProjectMaterializer.ts"
+      },
+      {
+        "fromSymbol": "createGeneratedFiles",
+        "toSymbol": "generateNavigator",
+        "callExpression": "ownerApis.generateNavigator",
+        "sourcePath": "src/features/projects/composition/createExpoProjectMaterializer.ts"
+      },
+      {
+        "fromSymbol": "createGeneratedFiles",
+        "toSymbol": "resolveExpoRuntimeGeneratedAppScaffold",
+        "callExpression": "ownerApis.resolveExpoRuntimeGeneratedAppScaffold",
+        "sourcePath": "src/features/projects/composition/createExpoProjectMaterializer.ts"
+      },
+      {
+        "fromSymbol": "createGeneratedFiles",
+        "toSymbol": "assertUniqueRelativePaths",
+        "callExpression": "assertUniqueRelativePaths",
+        "sourcePath": "src/features/projects/composition/createExpoProjectMaterializer.ts"
+      },
+      {
+        "fromSymbol": "assertEmptyTargetDirectoryAsync",
+        "toSymbol": "resolve",
+        "callExpression": "resolve",
+        "sourcePath": "src/features/projects/composition/createExpoProjectMaterializer.ts"
+      },
+      {
+        "fromSymbol": "assertEmptyTargetDirectoryAsync",
+        "toSymbol": "lstat",
+        "callExpression": "lstat",
+        "sourcePath": "src/features/projects/composition/createExpoProjectMaterializer.ts"
+      },
+      {
+        "fromSymbol": "assertEmptyTargetDirectoryAsync",
+        "toSymbol": "readdir",
+        "callExpression": "readdir",
+        "sourcePath": "src/features/projects/composition/createExpoProjectMaterializer.ts"
+      },
+      {
+        "fromSymbol": "assertEmptyTargetDirectoryAsync",
+        "toSymbol": "realpath",
+        "callExpression": "realpath",
+        "sourcePath": "src/features/projects/composition/createExpoProjectMaterializer.ts"
+      },
+      {
+        "fromSymbol": "src/features/projects/composition/createExpoProjectMaterializer.ts",
+        "toSymbol": "assertSafeRelativePath",
+        "callExpression": "assertSafeRelativePath",
+        "sourcePath": "src/features/projects/composition/createExpoProjectMaterializer.ts"
+      },
+      {
+        "fromSymbol": "src/features/projects/composition/createExpoProjectMaterializer.ts",
+        "toSymbol": "readFile",
+        "callExpression": "readFile",
+        "sourcePath": "src/features/projects/composition/createExpoProjectMaterializer.ts"
+      },
+      {
+        "fromSymbol": "src/features/projects/composition/createExpoProjectMaterializer.ts",
+        "toSymbol": "resolve",
+        "callExpression": "resolve",
+        "sourcePath": "src/features/projects/composition/createExpoProjectMaterializer.ts"
+      },
+      {
+        "fromSymbol": "writeFilesAsync",
+        "toSymbol": "assertSafeRelativePath",
+        "callExpression": "assertSafeRelativePath",
+        "sourcePath": "src/features/projects/composition/createExpoProjectMaterializer.ts"
+      },
+      {
+        "fromSymbol": "writeFilesAsync",
+        "toSymbol": "resolve",
+        "callExpression": "resolve",
+        "sourcePath": "src/features/projects/composition/createExpoProjectMaterializer.ts"
+      },
+      {
+        "fromSymbol": "writeFilesAsync",
+        "toSymbol": "mkdir",
+        "callExpression": "mkdir",
+        "sourcePath": "src/features/projects/composition/createExpoProjectMaterializer.ts"
+      },
+      {
+        "fromSymbol": "writeFilesAsync",
+        "toSymbol": "dirname",
+        "callExpression": "dirname",
+        "sourcePath": "src/features/projects/composition/createExpoProjectMaterializer.ts"
+      },
+      {
+        "fromSymbol": "writeFilesAsync",
+        "toSymbol": "writeFile",
+        "callExpression": "writeFile",
+        "sourcePath": "src/features/projects/composition/createExpoProjectMaterializer.ts"
+      },
+      {
+        "fromSymbol": "assertSafeRelativePath",
+        "toSymbol": "resolve",
+        "callExpression": "resolve",
+        "sourcePath": "src/features/projects/composition/createExpoProjectMaterializer.ts"
+      },
+      {
+        "fromSymbol": "assertSafeRelativePath",
+        "toSymbol": "relative",
+        "callExpression": "relative",
+        "sourcePath": "src/features/projects/composition/createExpoProjectMaterializer.ts"
+      },
+      {
+        "fromSymbol": "assertSafeRelativePath",
+        "toSymbol": "basename",
+        "callExpression": "basename",
+        "sourcePath": "src/features/projects/composition/createExpoProjectMaterializer.ts"
+      },
+      {
         "fromSymbol": "src/features/projects/composition/createProjectsApiHandlerResolver.ts",
         "toSymbol": "resolveProjectsApiHandler",
         "callExpression": "resolveProjectsApiHandler",
@@ -1991,6 +2645,56 @@
         "fromSymbol": "createProjectRepositoryFileSystemAsync",
         "toType": "Readonly",
         "sourcePath": "src/features/projects/adapters/createProjectRepositoryFileSystemAsync.ts"
+      },
+      {
+        "fromSymbol": "createExpoProjectMaterializer",
+        "toType": "CreateExpoProjectMaterializerInput",
+        "sourcePath": "src/features/projects/composition/createExpoProjectMaterializer.ts"
+      },
+      {
+        "fromSymbol": "createExpoProjectMaterializer",
+        "toType": "ExpoProjectMaterializer",
+        "sourcePath": "src/features/projects/composition/createExpoProjectMaterializer.ts"
+      },
+      {
+        "fromSymbol": "CreateExpoProjectMaterializerInput",
+        "toType": "AppCategory",
+        "sourcePath": "src/features/projects/composition/createExpoProjectMaterializer.ts"
+      },
+      {
+        "fromSymbol": "CreateExpoProjectMaterializerInput",
+        "toType": "NavigatorGenerationBindings",
+        "sourcePath": "src/features/projects/composition/createExpoProjectMaterializer.ts"
+      },
+      {
+        "fromSymbol": "CreateExpoProjectMaterializerInput",
+        "toType": "NavigatorRuntimePlatform",
+        "sourcePath": "src/features/projects/composition/createExpoProjectMaterializer.ts"
+      },
+      {
+        "fromSymbol": "CreateExpoProjectMaterializerInput",
+        "toType": "Readonly",
+        "sourcePath": "src/features/projects/composition/createExpoProjectMaterializer.ts"
+      },
+      {
+        "fromSymbol": "ExpoProjectMaterializer",
+        "toType": "ExpoProjectMaterializationResult",
+        "sourcePath": "src/features/projects/composition/createExpoProjectMaterializer.ts"
+      },
+      {
+        "fromSymbol": "ExpoProjectMaterializer",
+        "toType": "Project",
+        "sourcePath": "src/features/projects/composition/createExpoProjectMaterializer.ts"
+      },
+      {
+        "fromSymbol": "ExpoProjectMaterializer",
+        "toType": "ProjectManifestRevision",
+        "sourcePath": "src/features/projects/composition/createExpoProjectMaterializer.ts"
+      },
+      {
+        "fromSymbol": "ExpoProjectMaterializer",
+        "toType": "Readonly",
+        "sourcePath": "src/features/projects/composition/createExpoProjectMaterializer.ts"
       },
       {
         "fromSymbol": "createProjectsApiHandlerResolver",

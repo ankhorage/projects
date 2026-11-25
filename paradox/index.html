@@ -132,6 +132,11 @@
       <small>14 functions</small>
     </button>
   </li><li>
+    <button class="nav-button" type="button" data-target="src/features/projects/composition/createExpoProjectMaterializer.ts">
+      src/features/projects/composition/createExpoProjectMaterializer.ts
+      <small>12 functions</small>
+    </button>
+  </li><li>
     <button class="nav-button" type="button" data-target="src/features/projects/composition/createProjectsApiHandlerResolver.ts">
       src/features/projects/composition/createProjectsApiHandlerResolver.ts
       <small>19 functions</small>
@@ -166,9 +171,9 @@
     <section class="panel">
       <h2>Package overview</h2>
       <div class="summary">
-        <div><strong>14</strong><span class="muted">public exports</span></div>
+        <div><strong>18</strong><span class="muted">public exports</span></div>
         <div><strong>0</strong><span class="muted">components</span></div>
-        <div><strong>12</strong><span class="muted">modules</span></div>
+        <div><strong>14</strong><span class="muted">modules</span></div>
         <div><strong>1</strong><span class="muted">entrypoints</span></div>
       </div>
       <h3>Entrypoints</h3>
@@ -195,6 +200,11 @@
     <p class="muted">Referenced module</p>
     <p><strong>Dependencies:</strong> <code>src/features/projects/domain/createProject.ts</code>, <code>src/features/projects/domain/saveProjectManifest.ts</code>, <code>src/features/projects/domain/updateProject.ts</code>, <code>src/features/projects/ports/ProjectRepository.ts</code>, <code>src/types/projects.ts</code></p>
     <p><strong>Exports:</strong> <code>projects</code></p>
+  </article><article class="item" data-search="src/features/projects/composition/createExpoProjectMaterializer.ts src/types/projects.ts createExpoProjectMaterializer CreateExpoProjectMaterializerInput ExpoProjectMaterializationResult ExpoProjectMaterializer">
+    <h3>src/features/projects/composition/createExpoProjectMaterializer.ts</h3>
+    <p class="muted">Referenced module</p>
+    <p><strong>Dependencies:</strong> <code>src/types/projects.ts</code></p>
+    <p><strong>Exports:</strong> <code>createExpoProjectMaterializer</code>, <code>CreateExpoProjectMaterializerInput</code>, <code>ExpoProjectMaterializationResult</code>, <code>ExpoProjectMaterializer</code></p>
   </article><article class="item" data-search="src/features/projects/composition/createProjectsApiHandlerResolver.ts src/capabilities/index.ts src/features/projects/application/projects.ts src/features/projects/domain/deriveProjectIdentity.ts src/features/projects/ports/ProjectRepository.ts createProjectsApiHandlerResolver">
     <h3>src/features/projects/composition/createProjectsApiHandlerResolver.ts</h3>
     <p class="muted">Referenced module</p>
@@ -225,16 +235,21 @@
     <p class="muted">Referenced module</p>
     <p><strong>Dependencies:</strong> <code>src/types/projects.ts</code></p>
     <p><strong>Exports:</strong> <code>ProjectMaterializer</code>, <code>ProjectRepository</code></p>
-  </article><article class="item" data-search="src/index.ts CreateProjectInput createProjectRepositoryFileSystemAsync createProjectsApiHandlerResolver MaterializeProjectRevisionInput Project ProjectManifest ProjectManifestDraft ProjectManifestRevision ProjectMaterializer ProjectRepository projects ReloadProjectManifestInput SaveProjectManifestInput UpdateProjectInput">
+  </article><article class="item" data-search="src/index.ts createExpoProjectMaterializer CreateExpoProjectMaterializerInput CreateProjectInput createProjectRepositoryFileSystemAsync createProjectsApiHandlerResolver ExpoProjectMaterializationResult ExpoProjectMaterializer MaterializeProjectRevisionInput Project ProjectManifest ProjectManifestDraft ProjectManifestRevision ProjectMaterializer ProjectRepository projects ReloadProjectManifestInput SaveProjectManifestInput UpdateProjectInput">
     <h3>src/index.ts</h3>
     <p class="muted">Configured entrypoint</p>
     <p><strong>Dependencies:</strong> <span class="empty">None</span></p>
-    <p><strong>Exports:</strong> <code>CreateProjectInput</code>, <code>createProjectRepositoryFileSystemAsync</code>, <code>createProjectsApiHandlerResolver</code>, <code>MaterializeProjectRevisionInput</code>, <code>Project</code>, <code>ProjectManifest</code>, <code>ProjectManifestDraft</code>, <code>ProjectManifestRevision</code>, <code>ProjectMaterializer</code>, <code>ProjectRepository</code>, <code>projects</code>, <code>ReloadProjectManifestInput</code>, <code>SaveProjectManifestInput</code>, <code>UpdateProjectInput</code></p>
+    <p><strong>Exports:</strong> <code>createExpoProjectMaterializer</code>, <code>CreateExpoProjectMaterializerInput</code>, <code>CreateProjectInput</code>, <code>createProjectRepositoryFileSystemAsync</code>, <code>createProjectsApiHandlerResolver</code>, <code>ExpoProjectMaterializationResult</code>, <code>ExpoProjectMaterializer</code>, <code>MaterializeProjectRevisionInput</code>, <code>Project</code>, <code>ProjectManifest</code>, <code>ProjectManifestDraft</code>, <code>ProjectManifestRevision</code>, <code>ProjectMaterializer</code>, <code>ProjectRepository</code>, <code>projects</code>, <code>ReloadProjectManifestInput</code>, <code>SaveProjectManifestInput</code>, <code>UpdateProjectInput</code></p>
   </article><article class="item" data-search="src/types/projects.ts CreateProjectInput MaterializeProjectRevisionInput Project ProjectManifest ProjectManifestDraft ProjectManifestRevision ReloadProjectManifestInput SaveProjectManifestInput UpdateProjectInput">
     <h3>src/types/projects.ts</h3>
     <p class="muted">Referenced module</p>
     <p><strong>Dependencies:</strong> <span class="empty">None</span></p>
     <p><strong>Exports:</strong> <code>CreateProjectInput</code>, <code>MaterializeProjectRevisionInput</code>, <code>Project</code>, <code>ProjectManifest</code>, <code>ProjectManifestDraft</code>, <code>ProjectManifestRevision</code>, <code>ReloadProjectManifestInput</code>, <code>SaveProjectManifestInput</code>, <code>UpdateProjectInput</code></p>
+  </article><article class="item" data-search="test/expoProjectMaterializer.test.ts src/index.ts">
+    <h3>test/expoProjectMaterializer.test.ts</h3>
+    <p class="muted">Referenced module</p>
+    <p><strong>Dependencies:</strong> <code>src/index.ts</code></p>
+    <p><strong>Exports:</strong> <span class="empty">None</span></p>
   </article><article class="item" data-search="test/projects.test.ts src/capabilities/index.ts src/index.ts">
     <h3>test/projects.test.ts</h3>
     <p class="muted">Referenced module</p>
@@ -293,6 +308,128 @@ requires external locking and is unsupported by this adapter.</p>
   </article>
             </section>
             <section>
+              <h3>src/features/projects/composition/createExpoProjectMaterializer.ts</h3>
+              <article class="item" id="symbol-createexpoprojectmaterializer" data-search="createExpoProjectMaterializer  function src/features/projects/composition/createExpoProjectMaterializer.ts Create the public, caller-targeted Expo materializer for stored immutable project revisions. CreateExpoProjectMaterializerInput ExpoProjectMaterializer (input: CreateExpoProjectMaterializerInput) =&gt; ExpoProjectMaterializer">
+    <h4>createExpoProjectMaterializer</h4>
+    
+    <p class="muted">function • <code>src/features/projects/composition/createExpoProjectMaterializer.ts:55:1</code></p>
+    <p>Create the public, caller-targeted Expo materializer for stored immutable project revisions.</p>
+    
+    <p><strong>Export paths:</strong> <code>src/index.ts</code></p>
+    <div><strong>Related symbols:</strong> <ul class="chips"><li class="chip">CreateExpoProjectMaterializerInput</li><li class="chip">ExpoProjectMaterializer</li></ul></div>
+    <div>
+        <h5>Signature</h5>
+        <pre>(input: CreateExpoProjectMaterializerInput) =&gt; ExpoProjectMaterializer</pre>
+        <table>
+                <thead><tr><th>Parameter</th><th>Type</th><th>Required</th><th>Description</th></tr></thead>
+                <tbody>
+                  <tr>
+                        <td><code>input</code></td>
+                        <td><code>CreateExpoProjectMaterializerInput</code></td>
+                        <td>yes</td>
+                        <td></td>
+                      </tr>
+                </tbody>
+              </table>
+        <p><strong>Returns:</strong> <code>ExpoProjectMaterializer</code></p>
+      </div>
+    
+  </article><article class="item" id="symbol-createexpoprojectmaterializerinput" data-search="CreateExpoProjectMaterializerInput  type src/features/projects/composition/createExpoProjectMaterializer.ts Inputs fixed by the host before materializing one immutable Projects revision.">
+    <h4>CreateExpoProjectMaterializerInput</h4>
+    
+    <p class="muted">type • <code>src/features/projects/composition/createExpoProjectMaterializer.ts:26:1</code></p>
+    <p>Inputs fixed by the host before materializing one immutable Projects revision.</p>
+    
+    <p><strong>Export paths:</strong> <code>src/index.ts</code></p>
+    <div><strong>Related symbols:</strong> <span class="empty">None</span></div>
+    
+    <table>
+    <thead><tr><th>Member</th><th>Kind</th><th>Type</th><th>Required</th><th>Description</th></tr></thead>
+    <tbody>
+      <tr>
+            <td><code>navigator</code></td>
+            <td>property</td>
+            <td><code>Readonly&lt;{ readonly bindings: NavigatorGenerationBindings; readonly platform: NavigatorRuntimePlatform; readonly expoRouterVersion: string; }&gt;</code></td>
+            <td>yes</td>
+            <td></td>
+          </tr><tr>
+            <td><code>targetDirectory</code></td>
+            <td>property</td>
+            <td><code>string</code></td>
+            <td>yes</td>
+            <td></td>
+          </tr><tr>
+            <td><code>template</code></td>
+            <td>property</td>
+            <td><code>Readonly&lt;{ category: AppCategory; slug: string; }&gt;</code></td>
+            <td>yes</td>
+            <td></td>
+          </tr>
+    </tbody>
+  </table>
+  </article><article class="item" id="symbol-expoprojectmaterializationresult" data-search="ExpoProjectMaterializationResult  type src/features/projects/composition/createExpoProjectMaterializer.ts The public result of materializing one runnable, self-contained Expo project directory.">
+    <h4>ExpoProjectMaterializationResult</h4>
+    
+    <p class="muted">type • <code>src/features/projects/composition/createExpoProjectMaterializer.ts:37:1</code></p>
+    <p>The public result of materializing one runnable, self-contained Expo project directory.</p>
+    
+    <p><strong>Export paths:</strong> <code>src/index.ts</code></p>
+    <div><strong>Related symbols:</strong> <span class="empty">None</span></div>
+    
+    <table>
+    <thead><tr><th>Member</th><th>Kind</th><th>Type</th><th>Required</th><th>Description</th></tr></thead>
+    <tbody>
+      <tr>
+            <td><code>files</code></td>
+            <td>property</td>
+            <td><code>readonly string[]</code></td>
+            <td>yes</td>
+            <td></td>
+          </tr><tr>
+            <td><code>projectId</code></td>
+            <td>property</td>
+            <td><code>string</code></td>
+            <td>yes</td>
+            <td></td>
+          </tr><tr>
+            <td><code>revisionId</code></td>
+            <td>property</td>
+            <td><code>string</code></td>
+            <td>yes</td>
+            <td></td>
+          </tr><tr>
+            <td><code>targetDirectory</code></td>
+            <td>property</td>
+            <td><code>string</code></td>
+            <td>yes</td>
+            <td></td>
+          </tr>
+    </tbody>
+  </table>
+  </article><article class="item" id="symbol-expoprojectmaterializer" data-search="ExpoProjectMaterializer  type src/features/projects/composition/createExpoProjectMaterializer.ts A concrete Projects materializer composed solely from released owner APIs. ExpoProjectMaterializationResult Project ProjectManifestRevision">
+    <h4>ExpoProjectMaterializer</h4>
+    
+    <p class="muted">type • <code>src/features/projects/composition/createExpoProjectMaterializer.ts:45:1</code></p>
+    <p>A concrete Projects materializer composed solely from released owner APIs.</p>
+    
+    <p><strong>Export paths:</strong> <code>src/index.ts</code></p>
+    <div><strong>Related symbols:</strong> <ul class="chips"><li class="chip">ExpoProjectMaterializationResult</li><li class="chip">Project</li><li class="chip">ProjectManifestRevision</li></ul></div>
+    
+    <table>
+    <thead><tr><th>Member</th><th>Kind</th><th>Type</th><th>Required</th><th>Description</th></tr></thead>
+    <tbody>
+      <tr>
+            <td><code>materializeAsync</code></td>
+            <td>method</td>
+            <td><code>(input: Readonly&lt;{ project: Project; revision: ProjectManifestRevision; }&gt;) =&gt; Promise&lt;ExpoProjectMaterializationResult&gt;</code></td>
+            <td>yes</td>
+            <td></td>
+          </tr>
+    </tbody>
+  </table>
+  </article>
+            </section>
+            <section>
               <h3>src/features/projects/composition/createProjectsApiHandlerResolver.ts</h3>
               <article class="item" id="symbol-createprojectsapihandlerresolver" data-search="createProjectsApiHandlerResolver  function src/features/projects/composition/createProjectsApiHandlerResolver.ts Create the Projects-owned resolver for host-approved server API operations. ProjectMaterializer ProjectRepository (input: Readonly&lt;{ repository: ProjectRepository; materializer?: ProjectMaterializer; allowDelete?: boolean; }&gt;) =&gt; ApiHandlerResolver">
     <h4>createProjectsApiHandlerResolver</h4>
@@ -338,7 +475,7 @@ requires external locking and is unsupported by this adapter.</p>
       <tr>
             <td><code>materializeAsync</code></td>
             <td>method</td>
-            <td><code>(input: Readonly&lt;{ project: Project; revision: ProjectManifestRevision; }&gt;) =&gt; Promise&lt;void&gt;</code></td>
+            <td><code>(input: Readonly&lt;{ project: Project; revision: ProjectManifestRevision; }&gt;) =&gt; Promise&lt;unknown&gt;</code></td>
             <td>yes</td>
             <td></td>
           </tr>
@@ -512,6 +649,9 @@ requires external locking and is unsupported by this adapter.</p>
   module_src_features_projects_application_projects_ts --&gt; module_src_features_projects_domain_updateProject_ts
   module_src_features_projects_application_projects_ts --&gt; module_src_features_projects_ports_ProjectRepository_ts
   module_src_features_projects_application_projects_ts --&gt; module_src_types_projects_ts
+  module_src_features_projects_composition_createExpoProjectMaterializer_ts[&quot;src/features/projects/composition/createExpoProjectMaterializer.ts&quot;]
+  package__ankhorage_projects -.-&gt; module_src_features_projects_composition_createExpoProjectMaterializer_ts
+  module_src_features_projects_composition_createExpoProjectMaterializer_ts --&gt; module_src_types_projects_ts
   module_src_features_projects_composition_createProjectsApiHandlerResolver_ts[&quot;src/features/projects/composition/createProjectsApiHandlerResolver.ts&quot;]
   package__ankhorage_projects -.-&gt; module_src_features_projects_composition_createProjectsApiHandlerResolver_ts
   module_src_features_projects_composition_createProjectsApiHandlerResolver_ts --&gt; module_src_capabilities_index_ts
@@ -536,6 +676,9 @@ requires external locking and is unsupported by this adapter.</p>
   module_src_index_ts[&quot;src/index.ts&quot;]
   module_src_types_projects_ts[&quot;src/types/projects.ts&quot;]
   package__ankhorage_projects -.-&gt; module_src_types_projects_ts
+  module_test_expoProjectMaterializer_test_ts[&quot;test/expoProjectMaterializer.test.ts&quot;]
+  package__ankhorage_projects -.-&gt; module_test_expoProjectMaterializer_test_ts
+  module_test_expoProjectMaterializer_test_ts --&gt; module_src_index_ts
   module_test_projects_test_ts[&quot;test/projects.test.ts&quot;]
   package__ankhorage_projects -.-&gt; module_test_projects_test_ts
   module_test_projects_test_ts --&gt; module_src_capabilities_index_ts
@@ -560,6 +703,9 @@ requires external locking and is unsupported by this adapter.</p>
   module_src_features_projects_application_projects_ts --&gt; module_src_features_projects_domain_updateProject_ts
   module_src_features_projects_application_projects_ts --&gt; module_src_features_projects_ports_ProjectRepository_ts
   module_src_features_projects_application_projects_ts --&gt; module_src_types_projects_ts
+  module_src_features_projects_composition_createExpoProjectMaterializer_ts[&quot;src/features/projects/composition/createExpoProjectMaterializer.ts&quot;]
+  package__ankhorage_projects -.-&gt; module_src_features_projects_composition_createExpoProjectMaterializer_ts
+  module_src_features_projects_composition_createExpoProjectMaterializer_ts --&gt; module_src_types_projects_ts
   module_src_features_projects_composition_createProjectsApiHandlerResolver_ts[&quot;src/features/projects/composition/createProjectsApiHandlerResolver.ts&quot;]
   package__ankhorage_projects -.-&gt; module_src_features_projects_composition_createProjectsApiHandlerResolver_ts
   module_src_features_projects_composition_createProjectsApiHandlerResolver_ts --&gt; module_src_capabilities_index_ts
@@ -584,6 +730,9 @@ requires external locking and is unsupported by this adapter.</p>
   module_src_index_ts[&quot;src/index.ts&quot;]
   module_src_types_projects_ts[&quot;src/types/projects.ts&quot;]
   package__ankhorage_projects -.-&gt; module_src_types_projects_ts
+  module_test_expoProjectMaterializer_test_ts[&quot;test/expoProjectMaterializer.test.ts&quot;]
+  package__ankhorage_projects -.-&gt; module_test_expoProjectMaterializer_test_ts
+  module_test_expoProjectMaterializer_test_ts --&gt; module_src_index_ts
   module_test_projects_test_ts[&quot;test/projects.test.ts&quot;]
   package__ankhorage_projects -.-&gt; module_test_projects_test_ts
   module_test_projects_test_ts --&gt; module_src_capabilities_index_ts
@@ -597,6 +746,7 @@ requires external locking and is unsupported by this adapter.</p>
   module_src_capabilities_index_ts[&quot;src/capabilities/index.ts&quot;]
   module_src_features_projects_adapters_createProjectRepositoryFileSystemAsync_ts[&quot;src/features/projects/adapters/createProjectRepositoryFileSystemAsync.ts&quot;]
   module_src_features_projects_application_projects_ts[&quot;src/features/projects/application/projects.ts&quot;]
+  module_src_features_projects_composition_createExpoProjectMaterializer_ts[&quot;src/features/projects/composition/createExpoProjectMaterializer.ts&quot;]
   module_src_features_projects_composition_createProjectsApiHandlerResolver_ts[&quot;src/features/projects/composition/createProjectsApiHandlerResolver.ts&quot;]
   module_src_features_projects_domain_createProject_ts[&quot;src/features/projects/domain/createProject.ts&quot;]
   module_src_features_projects_domain_deriveProjectIdentity_ts[&quot;src/features/projects/domain/deriveProjectIdentity.ts&quot;]
@@ -605,6 +755,7 @@ requires external locking and is unsupported by this adapter.</p>
   module_src_features_projects_ports_ProjectRepository_ts[&quot;src/features/projects/ports/ProjectRepository.ts&quot;]
   module_src_index_ts[&quot;src/index.ts&quot;]
   module_src_types_projects_ts[&quot;src/types/projects.ts&quot;]
+  module_test_expoProjectMaterializer_test_ts[&quot;test/expoProjectMaterializer.test.ts&quot;]
   module_test_projects_test_ts[&quot;test/projects.test.ts&quot;]
   module_src_features_projects_adapters_createProjectRepositoryFileSystemAsync_ts --&gt; module_src_features_projects_ports_ProjectRepository_ts
   module_src_features_projects_adapters_createProjectRepositoryFileSystemAsync_ts --&gt; module_src_types_projects_ts
@@ -613,6 +764,7 @@ requires external locking and is unsupported by this adapter.</p>
   module_src_features_projects_application_projects_ts --&gt; module_src_features_projects_domain_updateProject_ts
   module_src_features_projects_application_projects_ts --&gt; module_src_features_projects_ports_ProjectRepository_ts
   module_src_features_projects_application_projects_ts --&gt; module_src_types_projects_ts
+  module_src_features_projects_composition_createExpoProjectMaterializer_ts --&gt; module_src_types_projects_ts
   module_src_features_projects_composition_createProjectsApiHandlerResolver_ts --&gt; module_src_capabilities_index_ts
   module_src_features_projects_composition_createProjectsApiHandlerResolver_ts --&gt; module_src_features_projects_application_projects_ts
   module_src_features_projects_composition_createProjectsApiHandlerResolver_ts --&gt; module_src_features_projects_domain_deriveProjectIdentity_ts
@@ -622,6 +774,7 @@ requires external locking and is unsupported by this adapter.</p>
   module_src_features_projects_domain_saveProjectManifest_ts --&gt; module_src_types_projects_ts
   module_src_features_projects_domain_updateProject_ts --&gt; module_src_types_projects_ts
   module_src_features_projects_ports_ProjectRepository_ts --&gt; module_src_types_projects_ts
+  module_test_expoProjectMaterializer_test_ts --&gt; module_src_index_ts
   module_test_projects_test_ts --&gt; module_src_capabilities_index_ts
   module_test_projects_test_ts --&gt; module_src_index_ts
 </div>
@@ -631,6 +784,7 @@ requires external locking and is unsupported by this adapter.</p>
   module_src_capabilities_index_ts[&quot;src/capabilities/index.ts&quot;]
   module_src_features_projects_adapters_createProjectRepositoryFileSystemAsync_ts[&quot;src/features/projects/adapters/createProjectRepositoryFileSystemAsync.ts&quot;]
   module_src_features_projects_application_projects_ts[&quot;src/features/projects/application/projects.ts&quot;]
+  module_src_features_projects_composition_createExpoProjectMaterializer_ts[&quot;src/features/projects/composition/createExpoProjectMaterializer.ts&quot;]
   module_src_features_projects_composition_createProjectsApiHandlerResolver_ts[&quot;src/features/projects/composition/createProjectsApiHandlerResolver.ts&quot;]
   module_src_features_projects_domain_createProject_ts[&quot;src/features/projects/domain/createProject.ts&quot;]
   module_src_features_projects_domain_deriveProjectIdentity_ts[&quot;src/features/projects/domain/deriveProjectIdentity.ts&quot;]
@@ -639,6 +793,7 @@ requires external locking and is unsupported by this adapter.</p>
   module_src_features_projects_ports_ProjectRepository_ts[&quot;src/features/projects/ports/ProjectRepository.ts&quot;]
   module_src_index_ts[&quot;src/index.ts&quot;]
   module_src_types_projects_ts[&quot;src/types/projects.ts&quot;]
+  module_test_expoProjectMaterializer_test_ts[&quot;test/expoProjectMaterializer.test.ts&quot;]
   module_test_projects_test_ts[&quot;test/projects.test.ts&quot;]
   module_src_features_projects_adapters_createProjectRepositoryFileSystemAsync_ts --&gt; module_src_features_projects_ports_ProjectRepository_ts
   module_src_features_projects_adapters_createProjectRepositoryFileSystemAsync_ts --&gt; module_src_types_projects_ts
@@ -647,6 +802,7 @@ requires external locking and is unsupported by this adapter.</p>
   module_src_features_projects_application_projects_ts --&gt; module_src_features_projects_domain_updateProject_ts
   module_src_features_projects_application_projects_ts --&gt; module_src_features_projects_ports_ProjectRepository_ts
   module_src_features_projects_application_projects_ts --&gt; module_src_types_projects_ts
+  module_src_features_projects_composition_createExpoProjectMaterializer_ts --&gt; module_src_types_projects_ts
   module_src_features_projects_composition_createProjectsApiHandlerResolver_ts --&gt; module_src_capabilities_index_ts
   module_src_features_projects_composition_createProjectsApiHandlerResolver_ts --&gt; module_src_features_projects_application_projects_ts
   module_src_features_projects_composition_createProjectsApiHandlerResolver_ts --&gt; module_src_features_projects_domain_deriveProjectIdentity_ts
@@ -656,6 +812,7 @@ requires external locking and is unsupported by this adapter.</p>
   module_src_features_projects_domain_saveProjectManifest_ts --&gt; module_src_types_projects_ts
   module_src_features_projects_domain_updateProject_ts --&gt; module_src_types_projects_ts
   module_src_features_projects_ports_ProjectRepository_ts --&gt; module_src_types_projects_ts
+  module_test_expoProjectMaterializer_test_ts --&gt; module_src_index_ts
   module_test_projects_test_ts --&gt; module_src_capabilities_index_ts
   module_test_projects_test_ts --&gt; module_src_index_ts
 </pre>
@@ -667,6 +824,7 @@ requires external locking and is unsupported by this adapter.</p>
   module_src_capabilities_index_ts[&quot;src/capabilities/index.ts&quot;]
   module_src_features_projects_adapters_createProjectRepositoryFileSystemAsync_ts[&quot;src/features/projects/adapters/createProjectRepositoryFileSystemAsync.ts&quot;]
   module_src_features_projects_application_projects_ts[&quot;src/features/projects/application/projects.ts&quot;]
+  module_src_features_projects_composition_createExpoProjectMaterializer_ts[&quot;src/features/projects/composition/createExpoProjectMaterializer.ts&quot;]
   module_src_features_projects_composition_createProjectsApiHandlerResolver_ts[&quot;src/features/projects/composition/createProjectsApiHandlerResolver.ts&quot;]
   module_src_features_projects_domain_createProject_ts[&quot;src/features/projects/domain/createProject.ts&quot;]
   module_src_features_projects_domain_deriveProjectIdentity_ts[&quot;src/features/projects/domain/deriveProjectIdentity.ts&quot;]
@@ -675,7 +833,14 @@ requires external locking and is unsupported by this adapter.</p>
   module_src_features_projects_ports_ProjectRepository_ts[&quot;src/features/projects/ports/ProjectRepository.ts&quot;]
   module_src_index_ts[&quot;src/index.ts&quot;]
   module_src_types_projects_ts[&quot;src/types/projects.ts&quot;]
+  module_test_expoProjectMaterializer_test_ts[&quot;test/expoProjectMaterializer.test.ts&quot;]
   module_test_projects_test_ts[&quot;test/projects.test.ts&quot;]
+  export_createExpoProjectMaterializer[&quot;createExpoProjectMaterializer&quot;]
+  module_src_features_projects_composition_createExpoProjectMaterializer_ts --&gt; export_createExpoProjectMaterializer
+  export_createExpoProjectMaterializer -.-&gt; export_CreateExpoProjectMaterializerInput
+  export_createExpoProjectMaterializer -.-&gt; export_ExpoProjectMaterializer
+  export_CreateExpoProjectMaterializerInput[&quot;CreateExpoProjectMaterializerInput&quot;]
+  module_src_features_projects_composition_createExpoProjectMaterializer_ts --&gt; export_CreateExpoProjectMaterializerInput
   export_CreateProjectInput[&quot;CreateProjectInput&quot;]
   module_src_types_projects_ts --&gt; export_CreateProjectInput
   export_createProjectRepositoryFileSystemAsync[&quot;createProjectRepositoryFileSystemAsync&quot;]
@@ -685,6 +850,13 @@ requires external locking and is unsupported by this adapter.</p>
   module_src_features_projects_composition_createProjectsApiHandlerResolver_ts --&gt; export_createProjectsApiHandlerResolver
   export_createProjectsApiHandlerResolver -.-&gt; export_ProjectMaterializer
   export_createProjectsApiHandlerResolver -.-&gt; export_ProjectRepository
+  export_ExpoProjectMaterializationResult[&quot;ExpoProjectMaterializationResult&quot;]
+  module_src_features_projects_composition_createExpoProjectMaterializer_ts --&gt; export_ExpoProjectMaterializationResult
+  export_ExpoProjectMaterializer[&quot;ExpoProjectMaterializer&quot;]
+  module_src_features_projects_composition_createExpoProjectMaterializer_ts --&gt; export_ExpoProjectMaterializer
+  export_ExpoProjectMaterializer -.-&gt; export_ExpoProjectMaterializationResult
+  export_ExpoProjectMaterializer -.-&gt; export_Project
+  export_ExpoProjectMaterializer -.-&gt; export_ProjectManifestRevision
   export_MaterializeProjectRevisionInput[&quot;MaterializeProjectRevisionInput&quot;]
   module_src_types_projects_ts --&gt; export_MaterializeProjectRevisionInput
   export_Project[&quot;Project&quot;]
@@ -717,6 +889,7 @@ requires external locking and is unsupported by this adapter.</p>
   module_src_capabilities_index_ts[&quot;src/capabilities/index.ts&quot;]
   module_src_features_projects_adapters_createProjectRepositoryFileSystemAsync_ts[&quot;src/features/projects/adapters/createProjectRepositoryFileSystemAsync.ts&quot;]
   module_src_features_projects_application_projects_ts[&quot;src/features/projects/application/projects.ts&quot;]
+  module_src_features_projects_composition_createExpoProjectMaterializer_ts[&quot;src/features/projects/composition/createExpoProjectMaterializer.ts&quot;]
   module_src_features_projects_composition_createProjectsApiHandlerResolver_ts[&quot;src/features/projects/composition/createProjectsApiHandlerResolver.ts&quot;]
   module_src_features_projects_domain_createProject_ts[&quot;src/features/projects/domain/createProject.ts&quot;]
   module_src_features_projects_domain_deriveProjectIdentity_ts[&quot;src/features/projects/domain/deriveProjectIdentity.ts&quot;]
@@ -725,7 +898,14 @@ requires external locking and is unsupported by this adapter.</p>
   module_src_features_projects_ports_ProjectRepository_ts[&quot;src/features/projects/ports/ProjectRepository.ts&quot;]
   module_src_index_ts[&quot;src/index.ts&quot;]
   module_src_types_projects_ts[&quot;src/types/projects.ts&quot;]
+  module_test_expoProjectMaterializer_test_ts[&quot;test/expoProjectMaterializer.test.ts&quot;]
   module_test_projects_test_ts[&quot;test/projects.test.ts&quot;]
+  export_createExpoProjectMaterializer[&quot;createExpoProjectMaterializer&quot;]
+  module_src_features_projects_composition_createExpoProjectMaterializer_ts --&gt; export_createExpoProjectMaterializer
+  export_createExpoProjectMaterializer -.-&gt; export_CreateExpoProjectMaterializerInput
+  export_createExpoProjectMaterializer -.-&gt; export_ExpoProjectMaterializer
+  export_CreateExpoProjectMaterializerInput[&quot;CreateExpoProjectMaterializerInput&quot;]
+  module_src_features_projects_composition_createExpoProjectMaterializer_ts --&gt; export_CreateExpoProjectMaterializerInput
   export_CreateProjectInput[&quot;CreateProjectInput&quot;]
   module_src_types_projects_ts --&gt; export_CreateProjectInput
   export_createProjectRepositoryFileSystemAsync[&quot;createProjectRepositoryFileSystemAsync&quot;]
@@ -735,6 +915,13 @@ requires external locking and is unsupported by this adapter.</p>
   module_src_features_projects_composition_createProjectsApiHandlerResolver_ts --&gt; export_createProjectsApiHandlerResolver
   export_createProjectsApiHandlerResolver -.-&gt; export_ProjectMaterializer
   export_createProjectsApiHandlerResolver -.-&gt; export_ProjectRepository
+  export_ExpoProjectMaterializationResult[&quot;ExpoProjectMaterializationResult&quot;]
+  module_src_features_projects_composition_createExpoProjectMaterializer_ts --&gt; export_ExpoProjectMaterializationResult
+  export_ExpoProjectMaterializer[&quot;ExpoProjectMaterializer&quot;]
+  module_src_features_projects_composition_createExpoProjectMaterializer_ts --&gt; export_ExpoProjectMaterializer
+  export_ExpoProjectMaterializer -.-&gt; export_ExpoProjectMaterializationResult
+  export_ExpoProjectMaterializer -.-&gt; export_Project
+  export_ExpoProjectMaterializer -.-&gt; export_ProjectManifestRevision
   export_MaterializeProjectRevisionInput[&quot;MaterializeProjectRevisionInput&quot;]
   module_src_types_projects_ts --&gt; export_MaterializeProjectRevisionInput
   export_Project[&quot;Project&quot;]
@@ -883,6 +1070,71 @@ requires external locking and is unsupported by this adapter.</p>
     <h3>isSymlinkError</h3>
     <p class="muted"><code>src/features/projects/adapters/createProjectRepositoryFileSystemAsync.ts:281:1</code></p>
     <p>Identify no-follow failures caused by a symbolic link at the opened path.</p>
+    
+  </article>
+    </section>
+  </section><section id="view-src-features-projects-composition-createexpoprojectmaterializer-ts" class="view" data-view="src/features/projects/composition/createExpoProjectMaterializer.ts" hidden>
+    <section class="panel">
+      <h2>src/features/projects/composition/createExpoProjectMaterializer.ts</h2>
+      <article class="item" data-search="createExpoProjectMaterializer src/features/projects/composition/createExpoProjectMaterializer.ts Create the public, caller-targeted Expo materializer for stored immutable project revisions.">
+    <h3>createExpoProjectMaterializer</h3>
+    <p class="muted"><code>src/features/projects/composition/createExpoProjectMaterializer.ts:55:1</code></p>
+    <p>Create the public, caller-targeted Expo materializer for stored immutable project revisions.</p>
+    
+  </article><article class="item" data-search="materializeExpoProjectAsync src/features/projects/composition/createExpoProjectMaterializer.ts Coordinate owner plans and Template output into one prevalidated caller-owned Expo target.">
+    <h3>materializeExpoProjectAsync</h3>
+    <p class="muted"><code>src/features/projects/composition/createExpoProjectMaterializer.ts:65:1</code></p>
+    <p>Coordinate owner plans and Template output into one prevalidated caller-owned Expo target.</p>
+    
+  </article><article class="item" data-search="createGeneratedFiles src/features/projects/composition/createExpoProjectMaterializer.ts Produce every Runtime- and Navigator-owned file before Template or target filesystem writes.">
+    <h3>createGeneratedFiles</h3>
+    <p class="muted"><code>src/features/projects/composition/createExpoProjectMaterializer.ts:100:1</code></p>
+    <p>Produce every Runtime- and Navigator-owned file before Template or target filesystem writes.</p>
+    
+  </article><article class="item" data-search="createMaterializationResult src/features/projects/composition/createExpoProjectMaterializer.ts Return the stable public materialization identity and complete sorted generated-file inventory.">
+    <h3>createMaterializationResult</h3>
+    <p class="muted"><code>src/features/projects/composition/createExpoProjectMaterializer.ts:128:1</code></p>
+    <p>Return the stable public materialization identity and complete sorted generated-file inventory.</p>
+    
+  </article><article class="item" data-search="assertReleasedOwnerApis src/features/projects/composition/createExpoProjectMaterializer.ts Reject unavailable owner emitters rather than reproducing their source in Projects.">
+    <h3>assertReleasedOwnerApis</h3>
+    <p class="muted"><code>src/features/projects/composition/createExpoProjectMaterializer.ts:171:1</code></p>
+    <p>Reject unavailable owner emitters rather than reproducing their source in Projects.</p>
+    
+  </article><article class="item" data-search="assertEmptyTargetDirectoryAsync src/features/projects/composition/createExpoProjectMaterializer.ts Resolve one existing, empty, non-symlink target directory before writing any output.">
+    <h3>assertEmptyTargetDirectoryAsync</h3>
+    <p class="muted"><code>src/features/projects/composition/createExpoProjectMaterializer.ts:184:1</code></p>
+    <p>Resolve one existing, empty, non-symlink target directory before writing any output.</p>
+    
+  </article><article class="item" data-search="assertNoErrors src/features/projects/composition/createExpoProjectMaterializer.ts Reject owner diagnostics that make a generated application invalid before filesystem side effects.">
+    <h3>assertNoErrors</h3>
+    <p class="muted"><code>src/features/projects/composition/createExpoProjectMaterializer.ts:197:1</code></p>
+    <p>Reject owner diagnostics that make a generated application invalid before filesystem side effects.</p>
+    
+  </article><article class="item" data-search="readTemplateFilesAsync src/features/projects/composition/createExpoProjectMaterializer.ts Read exactly the files reported by Templates while keeping every path inside its staging project.">
+    <h3>readTemplateFilesAsync</h3>
+    <p class="muted"><code>src/features/projects/composition/createExpoProjectMaterializer.ts:210:1</code></p>
+    <p>Read exactly the files reported by Templates while keeping every path inside its staging project.</p>
+    
+  </article><article class="item" data-search="writeFilesAsync src/features/projects/composition/createExpoProjectMaterializer.ts Write all materialized files with exclusive creation so no existing caller file is overwritten.">
+    <h3>writeFilesAsync</h3>
+    <p class="muted"><code>src/features/projects/composition/createExpoProjectMaterializer.ts:223:1</code></p>
+    <p>Write all materialized files with exclusive creation so no existing caller file is overwritten.</p>
+    
+  </article><article class="item" data-search="assertSafeRelativePath src/features/projects/composition/createExpoProjectMaterializer.ts Ensure an owner-reported project-relative path never crosses its designated directory.">
+    <h3>assertSafeRelativePath</h3>
+    <p class="muted"><code>src/features/projects/composition/createExpoProjectMaterializer.ts:236:1</code></p>
+    <p>Ensure an owner-reported project-relative path never crosses its designated directory.</p>
+    
+  </article><article class="item" data-search="assertUniqueRelativePaths src/features/projects/composition/createExpoProjectMaterializer.ts Reject duplicate paths emitted by one owner before any write can begin.">
+    <h3>assertUniqueRelativePaths</h3>
+    <p class="muted"><code>src/features/projects/composition/createExpoProjectMaterializer.ts:252:1</code></p>
+    <p>Reject duplicate paths emitted by one owner before any write can begin.</p>
+    
+  </article><article class="item" data-search="assertNoPathCollisions src/features/projects/composition/createExpoProjectMaterializer.ts Reject a collision across owner outputs instead of silently selecting one producer.">
+    <h3>assertNoPathCollisions</h3>
+    <p class="muted"><code>src/features/projects/composition/createExpoProjectMaterializer.ts:259:1</code></p>
+    <p>Reject a collision across owner outputs instead of silently selecting one producer.</p>
     
   </article>
     </section>

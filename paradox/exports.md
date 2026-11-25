@@ -1,5 +1,35 @@
 # Public API
 
+## createExpoProjectMaterializer
+
+Kind: `function`
+Module: `src/features/projects/composition/createExpoProjectMaterializer.ts`
+Source: `src/features/projects/composition/createExpoProjectMaterializer.ts:55:1`
+
+Create the public, caller-targeted Expo materializer for stored immutable project revisions.
+
+### Signatures
+
+- `(input: CreateExpoProjectMaterializerInput) => ExpoProjectMaterializer`
+  - input: `CreateExpoProjectMaterializerInput`
+  - returns: `ExpoProjectMaterializer`
+
+## CreateExpoProjectMaterializerInput
+
+Kind: `type`
+Module: `src/features/projects/composition/createExpoProjectMaterializer.ts`
+Source: `src/features/projects/composition/createExpoProjectMaterializer.ts:26:1`
+
+Inputs fixed by the host before materializing one immutable Projects revision.
+
+### Members
+
+| Name | Kind | Type | Required | Description |
+| --- | --- | --- | --- | --- |
+| navigator | property | `Readonly<{ readonly bindings: NavigatorGenerationBindings; readonly platform: NavigatorRuntimePlatform; readonly expoRouterVersion: string; }>` | yes |  |
+| targetDirectory | property | `string` | yes |  |
+| template | property | `Readonly<{ category: AppCategory; slug: string; }>` | yes |  |
+
 ## CreateProjectInput
 
 Kind: `unknown`
@@ -37,6 +67,37 @@ Create the Projects-owned resolver for host-approved server API operations.
 - `(input: Readonly<{ repository: ProjectRepository; materializer?: ProjectMaterializer; allowDelete?: boolean; }>) => ApiHandlerResolver`
   - input: `Readonly<{ repository: ProjectRepository; materializer?: ProjectMaterializer; allowDelete?: boolean; }>`
   - returns: `ApiHandlerResolver`
+
+## ExpoProjectMaterializationResult
+
+Kind: `type`
+Module: `src/features/projects/composition/createExpoProjectMaterializer.ts`
+Source: `src/features/projects/composition/createExpoProjectMaterializer.ts:37:1`
+
+The public result of materializing one runnable, self-contained Expo project directory.
+
+### Members
+
+| Name | Kind | Type | Required | Description |
+| --- | --- | --- | --- | --- |
+| files | property | `readonly string[]` | yes |  |
+| projectId | property | `string` | yes |  |
+| revisionId | property | `string` | yes |  |
+| targetDirectory | property | `string` | yes |  |
+
+## ExpoProjectMaterializer
+
+Kind: `type`
+Module: `src/features/projects/composition/createExpoProjectMaterializer.ts`
+Source: `src/features/projects/composition/createExpoProjectMaterializer.ts:45:1`
+
+A concrete Projects materializer composed solely from released owner APIs.
+
+### Members
+
+| Name | Kind | Type | Required | Description |
+| --- | --- | --- | --- | --- |
+| materializeAsync | method | `(input: Readonly<{ project: Project; revision: ProjectManifestRevision; }>) => Promise<ExpoProjectMaterializationResult>` | yes |  |
 
 ## MaterializeProjectRevisionInput
 
@@ -84,7 +145,7 @@ Source: `src/features/projects/ports/ProjectRepository.ts:3:1`
 
 | Name | Kind | Type | Required | Description |
 | --- | --- | --- | --- | --- |
-| materializeAsync | method | `(input: Readonly<{ project: Project; revision: ProjectManifestRevision; }>) => Promise<void>` | yes |  |
+| materializeAsync | method | `(input: Readonly<{ project: Project; revision: ProjectManifestRevision; }>) => Promise<unknown>` | yes |  |
 
 ## ProjectRepository
 

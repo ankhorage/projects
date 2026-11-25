@@ -1,5 +1,88 @@
 [
   {
+    "name": "createExpoProjectMaterializer",
+    "title": null,
+    "description": "Create the public, caller-targeted Expo materializer for stored immutable project revisions.",
+    "isReadme": false,
+    "see": [],
+    "security": [],
+    "kind": "function",
+    "modulePath": "src/features/projects/composition/createExpoProjectMaterializer.ts",
+    "sourceLocation": {
+      "filePath": "src/features/projects/composition/createExpoProjectMaterializer.ts",
+      "line": 55,
+      "column": 1
+    },
+    "exportPaths": [
+      "src/index.ts"
+    ],
+    "relatedSymbols": [
+      "CreateExpoProjectMaterializerInput",
+      "ExpoProjectMaterializer"
+    ],
+    "signatures": [
+      {
+        "label": "(input: CreateExpoProjectMaterializerInput) => ExpoProjectMaterializer",
+        "parameters": [
+          {
+            "name": "input",
+            "type": "CreateExpoProjectMaterializerInput",
+            "required": true,
+            "description": null
+          }
+        ],
+        "returnType": "ExpoProjectMaterializer",
+        "returnDescription": null
+      }
+    ],
+    "members": [],
+    "structuredRows": []
+  },
+  {
+    "name": "CreateExpoProjectMaterializerInput",
+    "title": null,
+    "description": "Inputs fixed by the host before materializing one immutable Projects revision.",
+    "isReadme": false,
+    "see": [],
+    "security": [],
+    "kind": "type",
+    "modulePath": "src/features/projects/composition/createExpoProjectMaterializer.ts",
+    "sourceLocation": {
+      "filePath": "src/features/projects/composition/createExpoProjectMaterializer.ts",
+      "line": 26,
+      "column": 1
+    },
+    "exportPaths": [
+      "src/index.ts"
+    ],
+    "relatedSymbols": [],
+    "signatures": [],
+    "members": [
+      {
+        "name": "navigator",
+        "kind": "property",
+        "type": "Readonly<{ readonly bindings: NavigatorGenerationBindings; readonly platform: NavigatorRuntimePlatform; readonly expoRouterVersion: string; }>",
+        "required": true,
+        "description": null
+      },
+      {
+        "name": "targetDirectory",
+        "kind": "property",
+        "type": "string",
+        "required": true,
+        "description": null
+      },
+      {
+        "name": "template",
+        "kind": "property",
+        "type": "Readonly<{ category: AppCategory; slug: string; }>",
+        "required": true,
+        "description": null
+      }
+    ],
+    "structuredRows": []
+  },
+  {
     "name": "CreateProjectInput",
     "title": null,
     "description": null,
@@ -96,6 +179,91 @@
       }
     ],
     "members": [],
+    "structuredRows": []
+  },
+  {
+    "name": "ExpoProjectMaterializationResult",
+    "title": null,
+    "description": "The public result of materializing one runnable, self-contained Expo project directory.",
+    "isReadme": false,
+    "see": [],
+    "security": [],
+    "kind": "type",
+    "modulePath": "src/features/projects/composition/createExpoProjectMaterializer.ts",
+    "sourceLocation": {
+      "filePath": "src/features/projects/composition/createExpoProjectMaterializer.ts",
+      "line": 37,
+      "column": 1
+    },
+    "exportPaths": [
+      "src/index.ts"
+    ],
+    "relatedSymbols": [],
+    "signatures": [],
+    "members": [
+      {
+        "name": "files",
+        "kind": "property",
+        "type": "readonly string[]",
+        "required": true,
+        "description": null
+      },
+      {
+        "name": "projectId",
+        "kind": "property",
+        "type": "string",
+        "required": true,
+        "description": null
+      },
+      {
+        "name": "revisionId",
+        "kind": "property",
+        "type": "string",
+        "required": true,
+        "description": null
+      },
+      {
+        "name": "targetDirectory",
+        "kind": "property",
+        "type": "string",
+        "required": true,
+        "description": null
+      }
+    ],
+    "structuredRows": []
+  },
+  {
+    "name": "ExpoProjectMaterializer",
+    "title": null,
+    "description": "A concrete Projects materializer composed solely from released owner APIs.",
+    "isReadme": false,
+    "see": [],
+    "security": [],
+    "kind": "type",
+    "modulePath": "src/features/projects/composition/createExpoProjectMaterializer.ts",
+    "sourceLocation": {
+      "filePath": "src/features/projects/composition/createExpoProjectMaterializer.ts",
+      "line": 45,
+      "column": 1
+    },
+    "exportPaths": [
+      "src/index.ts"
+    ],
+    "relatedSymbols": [
+      "ExpoProjectMaterializationResult",
+      "Project",
+      "ProjectManifestRevision"
+    ],
+    "signatures": [],
+    "members": [
+      {
+        "name": "materializeAsync",
+        "kind": "method",
+        "type": "(input: Readonly<{ project: Project; revision: ProjectManifestRevision; }>) => Promise<ExpoProjectMaterializationResult>",
+        "required": true,
+        "description": null
+      }
+    ],
     "structuredRows": []
   },
   {
@@ -234,7 +402,7 @@
       {
         "name": "materializeAsync",
         "kind": "method",
-        "type": "(input: Readonly<{ project: Project; revision: ProjectManifestRevision; }>) => Promise<void>",
+        "type": "(input: Readonly<{ project: Project; revision: ProjectManifestRevision; }>) => Promise<unknown>",
         "required": true,
         "description": null
       }
