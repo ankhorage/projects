@@ -23,6 +23,7 @@ describe('createExpoProjectMaterializer', () => {
       targetDirectory,
       template: { category: 'books_reading', slug: 'reader' },
       navigator: {
+        bindings: { screens: {}, guards: {} },
         platform: 'web',
         expoRouterVersion: '57.0.32',
       },
@@ -58,8 +59,6 @@ describe('createExpoProjectMaterializer', () => {
         dependencies: {
           expo: '57.0.34',
           'expo-router': '~57.0.32',
-          '@ankhorage/runtime': expect.stringMatching(/^\^5\./),
-          '@ankhorage/zora': expect.stringMatching(/^\^27\./),
         },
       },
     );
@@ -75,6 +74,7 @@ describe('createExpoProjectMaterializer', () => {
       targetDirectory,
       template: { category: 'books_reading', slug: 'reader' },
       navigator: {
+        bindings: { screens: {}, guards: {} },
         platform: 'web',
         expoRouterVersion: '57.0.32',
       },

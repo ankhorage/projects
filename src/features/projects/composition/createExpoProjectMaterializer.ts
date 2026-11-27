@@ -24,12 +24,14 @@ import { createNavigatorPlan, generateNavigator } from '@ankhorage/navigator';
 import { materializeTemplateRevision } from '@ankhorage/templates';
 
 import type { Project, ProjectManifestRevision } from '../../../types/projects.js';
+import { composeGeneratedRuntimeMaterialization } from './composeGeneratedRuntimeMaterialization.js';
 
 /*** Inputs fixed by the host before materializing one immutable Projects revision. */
 export interface CreateExpoProjectMaterializerInput {
   readonly targetDirectory: string;
   readonly template: Readonly<{ category: AppCategory; slug: string }>;
   readonly navigator: Readonly<{
+    readonly bindings: NavigatorGenerationBindings;
     readonly platform: NavigatorRuntimePlatform;
     readonly expoRouterVersion: string;
   }>;
@@ -111,19 +113,23 @@ function createGeneratedFiles(
   });
   assertNoErrors(runtime.diagnostics, 'Expo Runtime');
   const scaffold = ownerApis.resolveExpoRuntimeGeneratedAppScaffold(manifest, runtimePlan);
+  const packageSource = composeGeneratedRuntimeMaterialization({
+    callerBindings: navigatorInput.bindings,
+    packageSource:
+      scaffold.files.find(({ relativePath }) => relativePath === 'package.json')?.source ?? '',
+    runtimeBindings: runtime.navigatorBindings,
+    runtimeDependencies: runtime.dependencies,
+  });
   const navigatorPlan = ownerApis.createNavigatorPlan(manifest.navigator, {
     platform: navigatorInput.platform,
     expoRouterVersion: navigatorInput.expoRouterVersion,
   });
-  const navigator = ownerApis.generateNavigator(navigatorPlan, runtime.navigatorBindings);
+  const navigator = ownerApis.generateNavigator(navigatorPlan, packageSource.navigatorBindings);
   assertNoErrors(navigator.diagnostics, 'Navigator');
   const files = [
     ...scaffold.files.map((file): MaterializedFile => ({
       relativePath: file.relativePath,
-      source:
-        file.relativePath === 'package.json'
-          ? addRuntimeScreenDependencies(file.source)
-          : file.source,
+      source: file.relativePath === 'package.json' ? packageSource.packageSource : file.source,
     })),
     ...runtime.files.map((file): MaterializedFile => ({
       relativePath: file.relativePath,
@@ -293,26 +299,8 @@ function assertNoPathCollisions(
 
 type MaterializedFile = Readonly<{ relativePath: string; source: string | Uint8Array }>;
 
-/*** Add the declared runtime-screen graph to the generated app package without touching template output. */
-function addRuntimeScreenDependencies(source: string): string {
-  const packageJson = JSON.parse(source) as Readonly<{
-    dependencies: Readonly<Record<string, string>>;
-  }>;
-  return `${JSON.stringify(
-    {
-      ...packageJson,
-      dependencies: {
-        ...packageJson.dependencies,
-        '@ankhorage/runtime': '^5.6.4',
-        '@ankhorage/zora': '^27.2.0',
-      },
-    },
-    null,
-    2,
-  )}\n`;
-}
-
 type RuntimeGeneratedSources = Readonly<{
+  dependencies: Readonly<Record<string, string>>;
   diagnostics: readonly Readonly<{ severity: 'error' | 'warning'; message: string }>[];
   files: readonly Readonly<{ relativePath: string; source: string }>[];
   navigatorBindings: NavigatorGenerationBindings;
