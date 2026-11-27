@@ -151,20 +151,26 @@ async function executeZefixOperationAsync(
     capability: `api.zefix.${operation}`,
     ...(values === undefined ? {} : { input: values }),
   });
-  return result.ok
-    ? { body: curateZefixResult(result.data) }
-    : { status: 502, body: { error: { code: 'zefix_unavailable' } } };
+  if (!result.ok) return zefixUnavailableResponse();
+  const companies = curateZefixResult(result.data);
+  return companies === undefined ? zefixUnavailableResponse() : { body: companies };
 }
 
 /*** Strip provider wire payloads before any Zefix result crosses the trusted host boundary. */
 function curateZefixResult(value: unknown) {
-  return Array.isArray(value)
-    ? value.flatMap((candidate) => {
-        const company = asZefixCompany(candidate);
-        const result = company ? mapZefixCompanyResult(company) : undefined;
-        return result ? [result.company] : [];
-      })
-    : [];
+  if (!Array.isArray(value)) return undefined;
+  const mapped = value.map((candidate) => {
+    const company = asZefixCompany(candidate);
+    return company ? mapZefixCompanyResult(company) : undefined;
+  });
+  return mapped.every((result) => result !== undefined)
+    ? mapped.map((result) => result.company)
+    : undefined;
+}
+
+/*** Return the one credential-safe failure representation for Vault or provider failures. */
+function zefixUnavailableResponse() {
+  return { status: 502, body: { error: { code: 'zefix_unavailable' } } };
 }
 
 /*** Narrow unknown endpoint data to the optional-field Zefix short-company DTO. */

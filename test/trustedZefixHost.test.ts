@@ -112,6 +112,32 @@ describe('createTrustedZefixHost', () => {
     expect(JSON.stringify(response)).not.toContain('password');
   });
 
+  test('redacts a malformed successful provider payload without returning a result slot', async () => {
+    const calls = { secret: 0, fetch: 0 };
+    const host = createTrustedZefixHost({
+      ...createHostInput(calls),
+      fetch: async () => {
+        calls.fetch += 1;
+        return {
+          status: 200,
+          headers: { 'content-type': 'application/json' },
+          text: async () => '[{"uid":42,"wire":"must-not-cross-host"}]',
+        };
+      },
+    });
+    const response = await composeAuthorizedApiRuntime(host.composition).dispatchAsync(
+      searchRequest(),
+    );
+
+    expect(response).toEqual({
+      status: 502,
+      headers: {},
+      body: { error: { code: 'zefix_unavailable' } },
+    });
+    expect(JSON.stringify(response)).not.toContain('wire');
+    expect(calls.fetch).toBe(1);
+  });
+
   test('rejects a mismatched declaration before registering a host handler', () => {
     const calls = { secret: 0, fetch: 0 };
     const definition = createDefinition();
