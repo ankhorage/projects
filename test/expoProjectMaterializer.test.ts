@@ -23,7 +23,6 @@ describe('createExpoProjectMaterializer', () => {
       targetDirectory,
       template: { category: 'books_reading', slug: 'reader' },
       navigator: {
-        bindings: { screens: {}, guards: {} },
         platform: 'web',
         expoRouterVersion: '57.0.32',
       },
@@ -48,13 +47,20 @@ describe('createExpoProjectMaterializer', () => {
         'assets/images/the-jungle-book.png',
         'package.json',
         'src/app/_layout.tsx',
+        'src/ankh.manifest.ts',
+        'src/generated/runtimeManifestScreens.tsx',
         'src/generated/runtimeShell.tsx',
       ]),
     );
     expect(JSON.parse(await readFile(join(targetDirectory, 'package.json'), 'utf8'))).toMatchObject(
       {
         main: 'expo-router/entry',
-        dependencies: { expo: '57.0.34', 'expo-router': '~57.0.32' },
+        dependencies: {
+          expo: '57.0.34',
+          'expo-router': '~57.0.32',
+          '@ankhorage/runtime': expect.stringMatching(/^\^5\./),
+          '@ankhorage/zora': expect.stringMatching(/^\^27\./),
+        },
       },
     );
     expect(await readFile(join(targetDirectory, 'src/app/_layout.tsx'), 'utf8')).toContain('Stack');
@@ -69,7 +75,6 @@ describe('createExpoProjectMaterializer', () => {
       targetDirectory,
       template: { category: 'books_reading', slug: 'reader' },
       navigator: {
-        bindings: { screens: {}, guards: {} },
         platform: 'web',
         expoRouterVersion: '57.0.32',
       },

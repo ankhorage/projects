@@ -15,7 +15,10 @@ import type {
   NavigatorGenerationBindings,
   NavigatorRuntimePlatform,
 } from '@ankhorage/contracts/navigator';
-import { resolveExpoRuntimeGeneratedAppScaffold } from '@ankhorage/expo-runtime/generated-app';
+import {
+  resolveExpoRuntimeGeneratedAppScaffold,
+  resolveExpoRuntimeGeneratedAppSources,
+} from '@ankhorage/expo-runtime/generated-app';
 import { resolveExpoRuntimePlan } from '@ankhorage/expo-runtime/planning';
 import { createNavigatorPlan, generateNavigator } from '@ankhorage/navigator';
 import { materializeTemplateRevision } from '@ankhorage/templates';
@@ -27,7 +30,6 @@ export interface CreateExpoProjectMaterializerInput {
   readonly targetDirectory: string;
   readonly template: Readonly<{ category: AppCategory; slug: string }>;
   readonly navigator: Readonly<{
-    readonly bindings: NavigatorGenerationBindings;
     readonly platform: NavigatorRuntimePlatform;
     readonly expoRouterVersion: string;
   }>;
@@ -103,18 +105,34 @@ function createGeneratedFiles(
 ): readonly MaterializedFile[] {
   const runtimePlan = ownerApis.resolveExpoRuntimePlan(manifest);
   assertNoErrors(runtimePlan.diagnostics, 'Expo Runtime');
+  const runtime = ownerApis.resolveExpoRuntimeGeneratedAppSources(manifest, runtimePlan, {
+    manifestModuleSpecifier: '../ankh.manifest',
+    screenModuleSpecifier: '../generated/runtimeManifestScreens',
+  });
+  assertNoErrors(runtime.diagnostics, 'Expo Runtime');
+  const scaffold = ownerApis.resolveExpoRuntimeGeneratedAppScaffold(manifest, runtimePlan);
   const navigatorPlan = ownerApis.createNavigatorPlan(manifest.navigator, {
     platform: navigatorInput.platform,
     expoRouterVersion: navigatorInput.expoRouterVersion,
   });
-  const navigator = ownerApis.generateNavigator(navigatorPlan, navigatorInput.bindings);
+  const navigator = ownerApis.generateNavigator(navigatorPlan, runtime.navigatorBindings);
   assertNoErrors(navigator.diagnostics, 'Navigator');
-  const runtime = ownerApis.resolveExpoRuntimeGeneratedAppScaffold(manifest, runtimePlan);
   const files = [
+    ...scaffold.files.map((file): MaterializedFile => ({
+      relativePath: file.relativePath,
+      source:
+        file.relativePath === 'package.json'
+          ? addRuntimeScreenDependencies(file.source)
+          : file.source,
+    })),
     ...runtime.files.map((file): MaterializedFile => ({
       relativePath: file.relativePath,
       source: file.source,
     })),
+    {
+      relativePath: 'src/ankh.manifest.ts',
+      source: `export default ${JSON.stringify(manifest, null, 2)} as const;\n`,
+    },
     ...navigator.files.map((file): MaterializedFile => ({
       relativePath: file.path,
       source: file.contents,
@@ -157,6 +175,11 @@ const ownerApis = {
   resolveExpoRuntimePlan: resolveExpoRuntimePlan as unknown as (
     manifest: Pick<AppManifest, 'screens'>,
   ) => RuntimePlan,
+  resolveExpoRuntimeGeneratedAppSources: resolveExpoRuntimeGeneratedAppSources as unknown as (
+    manifest: AppManifest,
+    plan: RuntimePlan,
+    options: Readonly<{ manifestModuleSpecifier: string; screenModuleSpecifier: string }>,
+  ) => RuntimeGeneratedSources,
   resolveExpoRuntimeGeneratedAppScaffold: resolveExpoRuntimeGeneratedAppScaffold as unknown as (
     manifest: Pick<AppManifest, 'metadata'>,
     plan: RuntimePlan,
@@ -174,6 +197,7 @@ function assertReleasedOwnerApis(): void {
     typeof ownerApis.createNavigatorPlan !== 'function' ||
     typeof ownerApis.generateNavigator !== 'function' ||
     typeof ownerApis.resolveExpoRuntimePlan !== 'function' ||
+    typeof ownerApis.resolveExpoRuntimeGeneratedAppSources !== 'function' ||
     typeof ownerApis.resolveExpoRuntimeGeneratedAppScaffold !== 'function'
   ) {
     throw new Error('Required released owner materialization API is unavailable.');
@@ -268,3 +292,28 @@ function assertNoPathCollisions(
 }
 
 type MaterializedFile = Readonly<{ relativePath: string; source: string | Uint8Array }>;
+
+/*** Add the declared runtime-screen graph to the generated app package without touching template output. */
+function addRuntimeScreenDependencies(source: string): string {
+  const packageJson = JSON.parse(source) as Readonly<{
+    dependencies: Readonly<Record<string, string>>;
+  }>;
+  return `${JSON.stringify(
+    {
+      ...packageJson,
+      dependencies: {
+        ...packageJson.dependencies,
+        '@ankhorage/runtime': '^5.6.4',
+        '@ankhorage/zora': '^27.2.0',
+      },
+    },
+    null,
+    2,
+  )}\n`;
+}
+
+type RuntimeGeneratedSources = Readonly<{
+  diagnostics: readonly Readonly<{ severity: 'error' | 'warning'; message: string }>[];
+  files: readonly Readonly<{ relativePath: string; source: string }>[];
+  navigatorBindings: NavigatorGenerationBindings;
+}>;
