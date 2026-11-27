@@ -1,4 +1,5 @@
 import { composeAuthorizedApiRuntime } from '@ankhorage/api';
+import { createFastifyApiServer } from '@ankhorage/api-fastify';
 import type { InternalRestApiDefinition } from '@ankhorage/contracts/data';
 import type { SecretStoreAdapter } from '@ankhorage/secrets/port';
 import { describe, expect, test } from 'bun:test';
@@ -88,6 +89,57 @@ describe('createTrustedZefixHost', () => {
 
     expect(response.status).toBe(200);
     expect(response.body).toEqual([{ uid: 'CHE-123.456.789', name: 'Acme' }]);
+  });
+
+  test('redacts malformed and transport responses without exposing provider details', async () => {
+    const calls = { secret: 0, fetch: 0 };
+    const host = createTrustedZefixHost({
+      ...createHostInput(calls),
+      fetch: async () => {
+        calls.fetch += 1;
+        throw new Error('Basic user:password must never escape');
+      },
+    });
+    const response = await composeAuthorizedApiRuntime(host.composition).dispatchAsync(
+      searchRequest(),
+    );
+
+    expect(response).toEqual({
+      status: 502,
+      headers: {},
+      body: { error: { code: 'zefix_unavailable' } },
+    });
+    expect(JSON.stringify(response)).not.toContain('password');
+  });
+
+  test('rejects a mismatched declaration before registering a host handler', () => {
+    const calls = { secret: 0, fetch: 0 };
+    const definition = createDefinition();
+    const host = createTrustedZefixHost({
+      ...createHostInput(calls),
+      definition: {
+        ...definition,
+        handlers: {
+          'zefix.search': { operationId: 'zefix.search', capability: 'projects.zefix.get-by-uid' },
+        },
+      },
+    });
+
+    expect(() => composeAuthorizedApiRuntime(host.composition)).toThrow(
+      'No approved handler is registered for API operation zefix.search.',
+    );
+    expect(calls).toEqual({ secret: 0, fetch: 0 });
+  });
+
+  test('registers the approved host operation with Fastify without transport side effects', async () => {
+    const calls = { secret: 0, fetch: 0 };
+    const server = createFastifyApiServer();
+    const host = createTrustedZefixHost(createHostInput(calls));
+    const routes = await host.registerFastifyAsync(server);
+
+    expect(routes).toHaveLength(1);
+    expect(calls).toEqual({ secret: 0, fetch: 0 });
+    await server.close();
   });
 });
 
