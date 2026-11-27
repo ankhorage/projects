@@ -62,10 +62,14 @@
   },
   "dependencies": {
     "@ankhorage/api": "^0.5.1",
+    "@ankhorage/api-fastify": "^0.4.0",
     "@ankhorage/contracts": "^26.11.1",
+    "@ankhorage/data-sources": "^2.4.0",
     "@ankhorage/expo-runtime": "^7.4.3",
     "@ankhorage/navigator": "^3.5.22",
     "@ankhorage/permissions": "^0.2.64",
+    "@ankhorage/runtime": "^5.6.4",
+    "@ankhorage/secrets": "^0.3.2",
     "@ankhorage/templates": "^12.6.30",
     "@ankhorage/utility": "^1.10.0"
   },

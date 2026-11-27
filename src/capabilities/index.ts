@@ -75,4 +75,20 @@ export const CAPABILITIES = [
     label: 'Delete project',
     description: 'Delete one persisted project by identity.',
   },
+  {
+    id: 'projects.zefix.search',
+    owner: '@ankhorage/projects',
+    access: ['read'],
+    binding: { kind: 'action', bindableAs: ['target'] },
+    label: 'Search Zefix companies',
+    description: 'Search curated Zefix company data through a trusted project host.',
+  },
+  {
+    id: 'projects.zefix.get-by-uid',
+    owner: '@ankhorage/projects',
+    access: ['read'],
+    binding: { kind: 'action', bindableAs: ['target'] },
+    label: 'Read a Zefix company by UID',
+    description: 'Read curated Zefix company data through a trusted project host.',
+  },
 ] as const satisfies readonly Capability[];
