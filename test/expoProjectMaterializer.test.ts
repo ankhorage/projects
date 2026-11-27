@@ -62,6 +62,14 @@ describe('createExpoProjectMaterializer', () => {
           expo: '57.0.34',
           'expo-router': '~57.0.32',
         },
+        devDependencies: {
+          '@ankhorage/ankh': expect.stringMatching(/^\^0\./),
+          '@ankhorage/devtools': expect.stringMatching(/^\^2\./),
+          typescript: '~6.0.3',
+        },
+        scripts: {
+          'devtools:sync': 'ankh devtools sync .',
+        },
       },
     );
     expect(await readFile(join(targetDirectory, 'src/app/_layout.tsx'), 'utf8')).toContain('Stack');
