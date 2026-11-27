@@ -80,6 +80,35 @@ describe('createExpoProjectMaterializer', () => {
     ).rejects.toThrow('Materialization target must be empty');
     expect(await readFile(join(targetDirectory, 'keep.txt'), 'utf8')).toBe('keep');
   });
+
+  test('refreshes only prior Projects-owned files in an existing generated target', async () => {
+    const parentDirectory = await createDirectoryAsync();
+    const targetDirectory = join(parentDirectory, 'generated');
+    await mkdir(targetDirectory);
+    const materializer = createExpoProjectMaterializer({
+      targetDirectory,
+      template: { category: 'books_reading', slug: 'reader' },
+      navigator: {
+        bindings: { screens: {}, guards: {} },
+        platform: 'web',
+        expoRouterVersion: '57.0.32',
+      },
+    });
+    const initial = await materializer.materializeAsync({
+      project: createProject(),
+      revision: createRevision(),
+    });
+    await writeFile(join(targetDirectory, 'host-owned.txt'), 'preserve');
+
+    const refreshed = await materializer.refreshAsync({
+      project: createProject(),
+      revision: createRevision(),
+      managedFiles: initial.managedFiles,
+    });
+
+    expect(refreshed.managedFiles).toEqual(initial.managedFiles);
+    expect(await readFile(join(targetDirectory, 'host-owned.txt'), 'utf8')).toBe('preserve');
+  });
 });
 
 /*** Create the smallest persisted Project that owns the immutable revision used in this composition test. */
