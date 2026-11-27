@@ -1,4 +1,6 @@
+export { createExistingAppManifestRepositoryFileSystemAsync } from './features/projects/adapters/createExistingAppManifestRepositoryFileSystemAsync.js';
 export { createProjectRepositoryFileSystemAsync } from './features/projects/adapters/createProjectRepositoryFileSystemAsync.js';
+export { existingAppManifests } from './features/projects/application/existingAppManifests.js';
 export { projects } from './features/projects/application/projects.js';
 export {
   createExpoProjectMaterializer,
@@ -7,6 +9,7 @@ export {
   type ExpoProjectMaterializer,
 } from './features/projects/composition/createExpoProjectMaterializer.js';
 export { createProjectsApiHandlerResolver } from './features/projects/composition/createProjectsApiHandlerResolver.js';
+export type { ExistingAppManifestRepository } from './features/projects/ports/ExistingAppManifestRepository.js';
 export type {
   ProjectMaterializer,
   ProjectRepository,
@@ -16,6 +19,12 @@ export {
   type CreateTrustedZefixHostInput,
   type TrustedZefixHost,
 } from './features/trusted-zefix-host/composition/createTrustedZefixHost.js';
+export type {
+  ExistingAppManifestProject,
+  ExistingAppManifestReadResult,
+  ExistingAppManifestSaveResult,
+  SaveExistingAppManifestInput,
+} from './types/existingAppManifests.js';
 export type {
   CreateProjectInput,
   MaterializeProjectRevisionInput,
