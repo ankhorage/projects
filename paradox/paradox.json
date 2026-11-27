@@ -14,7 +14,7 @@
     {
       "id": "npm",
       "label": "npm",
-      "value": "v0.7.0",
+      "value": "v0.7.1",
       "color": "cb3837"
     },
     {
@@ -1124,13 +1124,24 @@
       }
     },
     {
+      "name": "createRootNavigatorGenerationOptions",
+      "description": "Opt into the generated Runtime provider shell and preserve each manifest's configured public start route.",
+      "see": [],
+      "security": [],
+      "sourceLocation": {
+        "filePath": "src/features/projects/composition/createExpoProjectMaterializer.ts",
+        "line": 156,
+        "column": 1
+      }
+    },
+    {
       "name": "createMaterializationResult",
       "description": "Return the stable public materialization identity and complete sorted generated-file inventory.",
       "see": [],
       "security": [],
       "sourceLocation": {
         "filePath": "src/features/projects/composition/createExpoProjectMaterializer.ts",
-        "line": 152,
+        "line": 167,
         "column": 1
       }
     },
@@ -1141,7 +1152,7 @@
       "security": [],
       "sourceLocation": {
         "filePath": "src/features/projects/composition/createExpoProjectMaterializer.ts",
-        "line": 200,
+        "line": 215,
         "column": 1
       }
     },
@@ -1152,7 +1163,7 @@
       "security": [],
       "sourceLocation": {
         "filePath": "src/features/projects/composition/createExpoProjectMaterializer.ts",
-        "line": 214,
+        "line": 229,
         "column": 1
       }
     },
@@ -1163,7 +1174,7 @@
       "security": [],
       "sourceLocation": {
         "filePath": "src/features/projects/composition/createExpoProjectMaterializer.ts",
-        "line": 227,
+        "line": 242,
         "column": 1
       }
     },
@@ -1174,7 +1185,7 @@
       "security": [],
       "sourceLocation": {
         "filePath": "src/features/projects/composition/createExpoProjectMaterializer.ts",
-        "line": 240,
+        "line": 255,
         "column": 1
       }
     },
@@ -1185,7 +1196,7 @@
       "security": [],
       "sourceLocation": {
         "filePath": "src/features/projects/composition/createExpoProjectMaterializer.ts",
-        "line": 253,
+        "line": 268,
         "column": 1
       }
     },
@@ -1196,7 +1207,7 @@
       "security": [],
       "sourceLocation": {
         "filePath": "src/features/projects/composition/createExpoProjectMaterializer.ts",
-        "line": 266,
+        "line": 281,
         "column": 1
       }
     },
@@ -1207,7 +1218,7 @@
       "security": [],
       "sourceLocation": {
         "filePath": "src/features/projects/composition/createExpoProjectMaterializer.ts",
-        "line": 282,
+        "line": 297,
         "column": 1
       }
     },
@@ -1218,7 +1229,7 @@
       "security": [],
       "sourceLocation": {
         "filePath": "src/features/projects/composition/createExpoProjectMaterializer.ts",
-        "line": 289,
+        "line": 304,
         "column": 1
       }
     },
@@ -2769,6 +2780,12 @@
         "fromSymbol": "createGeneratedFiles",
         "toSymbol": "generateNavigator",
         "callExpression": "ownerApis.generateNavigator",
+        "sourcePath": "src/features/projects/composition/createExpoProjectMaterializer.ts"
+      },
+      {
+        "fromSymbol": "createGeneratedFiles",
+        "toSymbol": "createRootNavigatorGenerationOptions",
+        "callExpression": "createRootNavigatorGenerationOptions",
         "sourcePath": "src/features/projects/composition/createExpoProjectMaterializer.ts"
       },
       {

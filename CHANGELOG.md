@@ -1,5 +1,11 @@
 # Changelog
 
+## 0.7.1
+
+### Patch Changes
+
+- 2a3a145: Generate the opt-in public root redirect and Runtime provider wrapper for Expo project materializations.
+
 ## 0.7.0
 
 ### Minor Changes
