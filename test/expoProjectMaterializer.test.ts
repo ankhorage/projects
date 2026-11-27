@@ -73,6 +73,9 @@ describe('createExpoProjectMaterializer', () => {
       },
     );
     expect(await readFile(join(targetDirectory, 'src/app/_layout.tsx'), 'utf8')).toContain('Stack');
+    expect(await readFile(join(targetDirectory, 'src/app/_layout.tsx'), 'utf8')).toContain(
+      'GeneratedRuntimeShell',
+    );
   });
 
   test('refuses a nonempty target before an owner materializer can write into it', async () => {
@@ -153,6 +156,9 @@ describe('createExpoProjectMaterializer', () => {
     expect(
       await readFile(join(targetDirectory, 'src/generated/runtimeManifestScreens.tsx'), 'utf8'),
     ).toContain('createManifestScreen("home")');
+    expect(await readFile(join(targetDirectory, 'src/app/index.tsx'), 'utf8')).toContain(
+      "<Redirect href='/home' />",
+    );
   });
 
   test('rejects a caller binding that replaces a Runtime-owned manifest screen', async () => {
@@ -242,7 +248,11 @@ function createManifest(): AppManifest {
 function createRuntimeScreenManifest(): AppManifest {
   return {
     ...createManifest(),
-    navigator: { type: 'stack', routes: [{ name: 'home', screenId: 'home' }] },
+    navigator: {
+      type: 'stack',
+      initialRouteName: 'home',
+      routes: [{ name: 'home', path: '/home', screenId: 'home' }],
+    },
     screens: {
       home: { id: 'home', name: 'Home', root: { id: 'home-root', type: 'Screen' } },
     },

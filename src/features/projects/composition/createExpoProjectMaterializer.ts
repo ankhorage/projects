@@ -124,7 +124,11 @@ function createGeneratedFiles(
     platform: navigatorInput.platform,
     expoRouterVersion: navigatorInput.expoRouterVersion,
   });
-  const navigator = ownerApis.generateNavigator(navigatorPlan, packageSource.navigatorBindings);
+  const navigator = ownerApis.generateNavigator(
+    navigatorPlan,
+    packageSource.navigatorBindings,
+    createRootNavigatorGenerationOptions(manifest),
+  );
   assertNoErrors(navigator.diagnostics, 'Navigator');
   const files = [
     ...scaffold.files.map((file): MaterializedFile => ({
@@ -146,6 +150,17 @@ function createGeneratedFiles(
   ];
   assertUniqueRelativePaths(files.map(({ relativePath }) => relativePath));
   return files;
+}
+
+/*** Opt into the generated Runtime provider shell and preserve each manifest's configured public start route. */
+function createRootNavigatorGenerationOptions(manifest: AppManifest) {
+  return {
+    ...(manifest.navigator.initialRouteName === undefined ? {} : { rootRedirect: true as const }),
+    rootLayoutWrapper: {
+      module: '@/generated/runtimeShell',
+      exportName: 'GeneratedRuntimeShell',
+    },
+  };
 }
 
 /*** Return the stable public materialization identity and complete sorted generated-file inventory. */
