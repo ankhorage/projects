@@ -15,12 +15,16 @@ import type {
   NavigatorGenerationBindings,
   NavigatorRuntimePlatform,
 } from '@ankhorage/contracts/navigator';
-import { resolveExpoRuntimeGeneratedAppScaffold } from '@ankhorage/expo-runtime/generated-app';
+import {
+  resolveExpoRuntimeGeneratedAppScaffold,
+  resolveExpoRuntimeGeneratedAppSources,
+} from '@ankhorage/expo-runtime/generated-app';
 import { resolveExpoRuntimePlan } from '@ankhorage/expo-runtime/planning';
 import { createNavigatorPlan, generateNavigator } from '@ankhorage/navigator';
 import { materializeTemplateRevision } from '@ankhorage/templates';
 
 import type { Project, ProjectManifestRevision } from '../../../types/projects.js';
+import { composeGeneratedRuntimeMaterialization } from './composeGeneratedRuntimeMaterialization.js';
 
 /*** Inputs fixed by the host before materializing one immutable Projects revision. */
 export interface CreateExpoProjectMaterializerInput {
@@ -103,18 +107,38 @@ function createGeneratedFiles(
 ): readonly MaterializedFile[] {
   const runtimePlan = ownerApis.resolveExpoRuntimePlan(manifest);
   assertNoErrors(runtimePlan.diagnostics, 'Expo Runtime');
+  const runtime = ownerApis.resolveExpoRuntimeGeneratedAppSources(manifest, runtimePlan, {
+    manifestModuleSpecifier: '../ankh.manifest',
+    screenModuleSpecifier: '../generated/runtimeManifestScreens',
+  });
+  assertNoErrors(runtime.diagnostics, 'Expo Runtime');
+  const scaffold = ownerApis.resolveExpoRuntimeGeneratedAppScaffold(manifest, runtimePlan);
+  const packageSource = composeGeneratedRuntimeMaterialization({
+    callerBindings: navigatorInput.bindings,
+    packageSource:
+      scaffold.files.find(({ relativePath }) => relativePath === 'package.json')?.source ?? '',
+    runtimeBindings: runtime.navigatorBindings,
+    runtimeDependencies: runtime.dependencies,
+  });
   const navigatorPlan = ownerApis.createNavigatorPlan(manifest.navigator, {
     platform: navigatorInput.platform,
     expoRouterVersion: navigatorInput.expoRouterVersion,
   });
-  const navigator = ownerApis.generateNavigator(navigatorPlan, navigatorInput.bindings);
+  const navigator = ownerApis.generateNavigator(navigatorPlan, packageSource.navigatorBindings);
   assertNoErrors(navigator.diagnostics, 'Navigator');
-  const runtime = ownerApis.resolveExpoRuntimeGeneratedAppScaffold(manifest, runtimePlan);
   const files = [
+    ...scaffold.files.map((file): MaterializedFile => ({
+      relativePath: file.relativePath,
+      source: file.relativePath === 'package.json' ? packageSource.packageSource : file.source,
+    })),
     ...runtime.files.map((file): MaterializedFile => ({
       relativePath: file.relativePath,
       source: file.source,
     })),
+    {
+      relativePath: 'src/ankh.manifest.ts',
+      source: `export default ${JSON.stringify(manifest, null, 2)} as const;\n`,
+    },
     ...navigator.files.map((file): MaterializedFile => ({
       relativePath: file.path,
       source: file.contents,
@@ -157,6 +181,11 @@ const ownerApis = {
   resolveExpoRuntimePlan: resolveExpoRuntimePlan as unknown as (
     manifest: Pick<AppManifest, 'screens'>,
   ) => RuntimePlan,
+  resolveExpoRuntimeGeneratedAppSources: resolveExpoRuntimeGeneratedAppSources as unknown as (
+    manifest: AppManifest,
+    plan: RuntimePlan,
+    options: Readonly<{ manifestModuleSpecifier: string; screenModuleSpecifier: string }>,
+  ) => RuntimeGeneratedSources,
   resolveExpoRuntimeGeneratedAppScaffold: resolveExpoRuntimeGeneratedAppScaffold as unknown as (
     manifest: Pick<AppManifest, 'metadata'>,
     plan: RuntimePlan,
@@ -174,6 +203,7 @@ function assertReleasedOwnerApis(): void {
     typeof ownerApis.createNavigatorPlan !== 'function' ||
     typeof ownerApis.generateNavigator !== 'function' ||
     typeof ownerApis.resolveExpoRuntimePlan !== 'function' ||
+    typeof ownerApis.resolveExpoRuntimeGeneratedAppSources !== 'function' ||
     typeof ownerApis.resolveExpoRuntimeGeneratedAppScaffold !== 'function'
   ) {
     throw new Error('Required released owner materialization API is unavailable.');
@@ -268,3 +298,10 @@ function assertNoPathCollisions(
 }
 
 type MaterializedFile = Readonly<{ relativePath: string; source: string | Uint8Array }>;
+
+type RuntimeGeneratedSources = Readonly<{
+  dependencies: Readonly<Record<string, string>>;
+  diagnostics: readonly Readonly<{ severity: 'error' | 'warning'; message: string }>[];
+  files: readonly Readonly<{ relativePath: string; source: string }>[];
+  navigatorBindings: NavigatorGenerationBindings;
+}>;
