@@ -10,7 +10,7 @@
     "modulePath": "src/features/projects/composition/createExpoProjectMaterializer.ts",
     "sourceLocation": {
       "filePath": "src/features/projects/composition/createExpoProjectMaterializer.ts",
-      "line": 55,
+      "line": 59,
       "column": 1
     },
     "exportPaths": [
@@ -49,7 +49,7 @@
     "modulePath": "src/features/projects/composition/createExpoProjectMaterializer.ts",
     "sourceLocation": {
       "filePath": "src/features/projects/composition/createExpoProjectMaterializer.ts",
-      "line": 26,
+      "line": 30,
       "column": 1
     },
     "exportPaths": [
@@ -250,7 +250,7 @@
     "modulePath": "src/features/projects/composition/createExpoProjectMaterializer.ts",
     "sourceLocation": {
       "filePath": "src/features/projects/composition/createExpoProjectMaterializer.ts",
-      "line": 37,
+      "line": 41,
       "column": 1
     },
     "exportPaths": [
@@ -301,7 +301,7 @@
     "modulePath": "src/features/projects/composition/createExpoProjectMaterializer.ts",
     "sourceLocation": {
       "filePath": "src/features/projects/composition/createExpoProjectMaterializer.ts",
-      "line": 45,
+      "line": 49,
       "column": 1
     },
     "exportPaths": [

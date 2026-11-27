@@ -4,7 +4,7 @@
 
 Kind: `function`
 Module: `src/features/projects/composition/createExpoProjectMaterializer.ts`
-Source: `src/features/projects/composition/createExpoProjectMaterializer.ts:55:1`
+Source: `src/features/projects/composition/createExpoProjectMaterializer.ts:59:1`
 
 Create the public, caller-targeted Expo materializer for stored immutable project revisions.
 
@@ -18,7 +18,7 @@ Create the public, caller-targeted Expo materializer for stored immutable projec
 
 Kind: `type`
 Module: `src/features/projects/composition/createExpoProjectMaterializer.ts`
-Source: `src/features/projects/composition/createExpoProjectMaterializer.ts:26:1`
+Source: `src/features/projects/composition/createExpoProjectMaterializer.ts:30:1`
 
 Inputs fixed by the host before materializing one immutable Projects revision.
 
@@ -92,7 +92,7 @@ Source: `src/features/trusted-zefix-host/composition/createTrustedZefixHost.ts:2
 
 Kind: `type`
 Module: `src/features/projects/composition/createExpoProjectMaterializer.ts`
-Source: `src/features/projects/composition/createExpoProjectMaterializer.ts:37:1`
+Source: `src/features/projects/composition/createExpoProjectMaterializer.ts:41:1`
 
 The public result of materializing one runnable, self-contained Expo project directory.
 
@@ -109,7 +109,7 @@ The public result of materializing one runnable, self-contained Expo project dir
 
 Kind: `type`
 Module: `src/features/projects/composition/createExpoProjectMaterializer.ts`
-Source: `src/features/projects/composition/createExpoProjectMaterializer.ts:45:1`
+Source: `src/features/projects/composition/createExpoProjectMaterializer.ts:49:1`
 
 A concrete Projects materializer composed solely from released owner APIs.
 

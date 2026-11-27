@@ -1,6 +1,6 @@
 {
   "name": "@ankhorage/projects",
-  "version": "0.5.0",
+  "version": "0.6.0",
   "description": "Standalone project identity and repository actions.",
   "keywords": [
     "ankhorage",

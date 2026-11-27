@@ -1,5 +1,11 @@
 # Changelog
 
+## 0.6.0
+
+### Minor Changes
+
+- 3acac07: Materialize Expo Runtime manifest screen bindings and their declared runtime dependencies into standalone Expo projects.
+
 ## 0.5.0
 
 ### Minor Changes
