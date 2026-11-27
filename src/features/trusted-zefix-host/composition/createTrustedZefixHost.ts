@@ -63,11 +63,13 @@ export function createTrustedZefixHost(input: CreateTrustedZefixHostInput): Trus
     resolveHandler: ({ binding, declaration, context }) => {
       const operation = input.operations[binding.operationId];
       const capability = resolveCapability(operation);
+      const { method } = binding.operation;
       if (
         !operation ||
         declaration.capability !== capability?.id ||
         binding.operation.intent !== 'read' ||
-        (binding.operation.method !== 'GET' && binding.operation.method !== 'POST')
+        method === undefined ||
+        !isCanonicalOperationMethod(operation, method)
       )
         return undefined;
       return {
@@ -75,7 +77,7 @@ export function createTrustedZefixHost(input: CreateTrustedZefixHostInput): Trus
         approval: {
           operationId: binding.operationId,
           intent: binding.operation.intent,
-          method: binding.operation.method,
+          method,
           capabilityId: capability.id,
           owner: capability.owner,
           scope: context,
@@ -89,6 +91,14 @@ export function createTrustedZefixHost(input: CreateTrustedZefixHostInput): Trus
     registerFastifyAsync: (server, options) =>
       registerAuthorizedFastifyApiAsync(server, composition, options),
   };
+}
+
+/*** Bind each exposed host declaration to the one canonical Zefix HTTP method. */
+function isCanonicalOperationMethod(operation: TrustedZefixOperation, method: string): boolean {
+  return (
+    (operation === 'company.search' && method === 'POST') ||
+    (operation === 'company.get-by-uid' && method === 'GET')
+  );
 }
 
 /*** Deny before the operation handler can resolve a Vault secret or contact Zefix. */

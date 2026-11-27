@@ -131,6 +131,49 @@ describe('createTrustedZefixHost', () => {
     expect(calls).toEqual({ secret: 0, fetch: 0 });
   });
 
+  test('rejects swapped canonical HTTP methods before Vault or transport access', () => {
+    const calls = { secret: 0, fetch: 0 };
+    const search = createTrustedZefixHost({
+      ...createHostInput(calls),
+      definition: createDefinitionWithMethod('GET'),
+    });
+    const uid = createTrustedZefixHost({
+      ...createHostInput(calls),
+      definition: createUidDefinitionWithMethod('POST'),
+      operations: { 'zefix.uid': 'company.get-by-uid' },
+    });
+
+    expect(() => composeAuthorizedApiRuntime(search.composition)).toThrow(
+      'No approved handler is registered for API operation zefix.search.',
+    );
+    expect(() => composeAuthorizedApiRuntime(uid.composition)).toThrow(
+      'No approved handler is registered for API operation zefix.uid.',
+    );
+    expect(calls).toEqual({ secret: 0, fetch: 0 });
+  });
+
+  test('redacts malformed Vault credential payloads before transport execution', async () => {
+    const calls = { secret: 0, fetch: 0 };
+    const host = createTrustedZefixHost({
+      ...createHostInput(calls),
+      secretStore: {
+        ...createSecretStore(calls),
+        resolve: async () => ({ ok: true as const, data: { username: 'user' } }),
+      },
+    });
+    const response = await composeAuthorizedApiRuntime(host.composition).dispatchAsync(
+      searchRequest(),
+    );
+
+    expect(response).toEqual({
+      status: 502,
+      headers: {},
+      body: { error: { code: 'zefix_unavailable' } },
+    });
+    expect(calls.fetch).toBe(0);
+    expect(JSON.stringify(response)).not.toContain('username');
+  });
+
   test('registers the approved host operation with Fastify without transport side effects', async () => {
     const calls = { secret: 0, fetch: 0 };
     const server = createFastifyApiServer();
@@ -204,6 +247,38 @@ function createUidDefinition(): InternalRestApiDefinition {
     },
     handlers: {
       'zefix.uid': { operationId: 'zefix.uid', capability: 'projects.zefix.get-by-uid' },
+    },
+  };
+}
+
+/*** Change only the search declaration method for negative host-composition coverage. */
+function createDefinitionWithMethod(method: 'GET' | 'POST'): InternalRestApiDefinition {
+  return {
+    ...createDefinition(),
+    endpoints: {
+      zefix: {
+        id: 'zefix',
+        kind: 'http',
+        operations: {
+          'zefix.search': { id: 'zefix.search', protocol: 'http', intent: 'read', method },
+        },
+      },
+    },
+  };
+}
+
+/*** Change only the UID declaration method for negative host-composition coverage. */
+function createUidDefinitionWithMethod(method: 'GET' | 'POST'): InternalRestApiDefinition {
+  return {
+    ...createUidDefinition(),
+    endpoints: {
+      zefix: {
+        id: 'zefix',
+        kind: 'http',
+        operations: {
+          'zefix.uid': { id: 'zefix.uid', protocol: 'http', intent: 'read', method },
+        },
+      },
     },
   };
 }
