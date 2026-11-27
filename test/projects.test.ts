@@ -38,6 +38,8 @@ describe('projects', () => {
       'projects.revision',
       'projects.materialize',
       'projects.delete',
+      'projects.zefix.search',
+      'projects.zefix.get-by-uid',
     ]);
     expect(
       CAPABILITIES.every((capability) => capability.owner === '@ankhorage/projects'),
@@ -420,9 +422,10 @@ describe('Projects API handler resolver', () => {
     expect(() =>
       composeAuthorizedApiRuntime({
         definition: createProjectsApiDefinition(
-          CAPABILITIES.filter((capability) => capability.id !== 'projects.delete').map(
-            (capability) => capability.id,
-          ),
+          CAPABILITIES.filter(
+            (capability) =>
+              capability.id !== 'projects.delete' && !capability.id.startsWith('projects.zefix.'),
+          ).map((capability) => capability.id),
         ),
         context: { appId: 'app', projectId: 'first-project' },
         resolveHandler: resolver,
