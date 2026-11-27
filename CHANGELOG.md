@@ -1,5 +1,11 @@
 # Changelog
 
+## 0.5.0
+
+### Minor Changes
+
+- b4e4636: Add a trusted, project-scoped Zefix host composition for authenticated Fastify deployments.
+
 ## 0.4.0
 
 ### Minor Changes

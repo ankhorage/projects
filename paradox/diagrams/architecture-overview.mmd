@@ -39,6 +39,9 @@ graph TD
   module_src_features_projects_ports_ProjectRepository_ts["src/features/projects/ports/ProjectRepository.ts"]
   package__ankhorage_projects -.-> module_src_features_projects_ports_ProjectRepository_ts
   module_src_features_projects_ports_ProjectRepository_ts --> module_src_types_projects_ts
+  module_src_features_trusted_zefix_host_composition_createTrustedZefixHost_ts["src/features/trusted-zefix-host/composition/createTrustedZefixHost.ts"]
+  package__ankhorage_projects -.-> module_src_features_trusted_zefix_host_composition_createTrustedZefixHost_ts
+  module_src_features_trusted_zefix_host_composition_createTrustedZefixHost_ts --> module_src_capabilities_index_ts
   module_src_index_ts["src/index.ts"]
   module_src_types_projects_ts["src/types/projects.ts"]
   package__ankhorage_projects -.-> module_src_types_projects_ts
@@ -49,3 +52,6 @@ graph TD
   package__ankhorage_projects -.-> module_test_projects_test_ts
   module_test_projects_test_ts --> module_src_capabilities_index_ts
   module_test_projects_test_ts --> module_src_index_ts
+  module_test_trustedZefixHost_test_ts["test/trustedZefixHost.test.ts"]
+  package__ankhorage_projects -.-> module_test_trustedZefixHost_test_ts
+  module_test_trustedZefixHost_test_ts --> module_src_index_ts

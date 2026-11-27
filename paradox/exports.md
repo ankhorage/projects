@@ -68,6 +68,26 @@ Create the Projects-owned resolver for host-approved server API operations.
   - input: `Readonly<{ repository: ProjectRepository; materializer?: ProjectMaterializer; allowDelete?: boolean; }>`
   - returns: `ApiHandlerResolver`
 
+## createTrustedZefixHost
+
+Kind: `function`
+Module: `src/features/trusted-zefix-host/composition/createTrustedZefixHost.ts`
+Source: `src/features/trusted-zefix-host/composition/createTrustedZefixHost.ts:51:1`
+
+Compose declared Zefix operations into an authenticated, project-scoped trusted host.
+
+### Signatures
+
+- `(input: Readonly<{ appId: string; projectId: string; environment: string; definition: InternalRestApiDefinition; operations: Readonly<Record<string, TrustedZefixOperation>>; authenticateCallerAsync: (request: ApiRequest) => Promise<unknown>; authorizeCallerAsync: (input: Readonly<{ caller: unknown; appId: string; projectId: string; environment: string; operationId: string; }>) => Promise<boolean>; secretStore: SecretStoreAdapter; fetch?: EndpointTestFetch; }>) => Readonly<{ composition: ComposeAuthorizedApiRuntimeOptions; registerFastifyAsync: (server: FastifyInstance, options?: RegisterFastifyApiOptions) => Promise<unknown>; }>`
+  - input: `Readonly<{ appId: string; projectId: string; environment: string; definition: InternalRestApiDefinition; operations: Readonly<Record<string, TrustedZefixOperation>>; authenticateCallerAsync: (request: ApiRequest) => Promise<unknown>; authorizeCallerAsync: (input: Readonly<{ caller: unknown; appId: string; projectId: string; environment: string; operationId: string; }>) => Promise<boolean>; secretStore: SecretStoreAdapter; fetch?: EndpointTestFetch; }>`
+  - returns: `Readonly<{ composition: ComposeAuthorizedApiRuntimeOptions; registerFastifyAsync: (server: FastifyInstance, options?: RegisterFastifyApiOptions) => Promise<unknown>; }>`
+
+## CreateTrustedZefixHostInput
+
+Kind: `unknown`
+Module: `src/features/trusted-zefix-host/composition/createTrustedZefixHost.ts`
+Source: `src/features/trusted-zefix-host/composition/createTrustedZefixHost.ts:22:1`
+
 ## ExpoProjectMaterializationResult
 
 Kind: `type`
@@ -182,6 +202,12 @@ Source: `src/types/projects.ts:41:1`
 Kind: `unknown`
 Module: `src/types/projects.ts`
 Source: `src/types/projects.ts:35:1`
+
+## TrustedZefixHost
+
+Kind: `unknown`
+Module: `src/features/trusted-zefix-host/composition/createTrustedZefixHost.ts`
+Source: `src/features/trusted-zefix-host/composition/createTrustedZefixHost.ts:42:1`
 
 ## UpdateProjectInput
 

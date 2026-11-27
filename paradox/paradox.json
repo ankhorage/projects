@@ -14,7 +14,7 @@
     {
       "id": "npm",
       "label": "npm",
-      "value": "v0.4.0",
+      "value": "v0.5.0",
       "color": "cb3837"
     },
     {
@@ -182,6 +182,18 @@
       ]
     },
     {
+      "path": "src/features/trusted-zefix-host/composition/createTrustedZefixHost.ts",
+      "isEntrypoint": false,
+      "dependencies": [
+        "src/capabilities/index.ts"
+      ],
+      "exports": [
+        "createTrustedZefixHost",
+        "CreateTrustedZefixHostInput",
+        "TrustedZefixHost"
+      ]
+    },
+    {
       "path": "src/index.ts",
       "isEntrypoint": true,
       "dependencies": [],
@@ -191,6 +203,8 @@
         "CreateProjectInput",
         "createProjectRepositoryFileSystemAsync",
         "createProjectsApiHandlerResolver",
+        "createTrustedZefixHost",
+        "CreateTrustedZefixHostInput",
         "ExpoProjectMaterializationResult",
         "ExpoProjectMaterializer",
         "MaterializeProjectRevisionInput",
@@ -203,6 +217,7 @@
         "projects",
         "ReloadProjectManifestInput",
         "SaveProjectManifestInput",
+        "TrustedZefixHost",
         "UpdateProjectInput"
       ]
     },
@@ -235,6 +250,14 @@
       "isEntrypoint": false,
       "dependencies": [
         "src/capabilities/index.ts",
+        "src/index.ts"
+      ],
+      "exports": []
+    },
+    {
+      "path": "test/trustedZefixHost.test.ts",
+      "isEntrypoint": false,
+      "dependencies": [
         "src/index.ts"
       ],
       "exports": []
@@ -420,6 +443,64 @@
           "returnDescription": null
         }
       ],
+      "members": [],
+      "structuredRows": []
+    },
+    {
+      "name": "createTrustedZefixHost",
+      "title": null,
+      "description": "Compose declared Zefix operations into an authenticated, project-scoped trusted host.",
+      "isReadme": false,
+      "see": [],
+      "security": [],
+      "kind": "function",
+      "modulePath": "src/features/trusted-zefix-host/composition/createTrustedZefixHost.ts",
+      "sourceLocation": {
+        "filePath": "src/features/trusted-zefix-host/composition/createTrustedZefixHost.ts",
+        "line": 51,
+        "column": 1
+      },
+      "exportPaths": [
+        "src/index.ts"
+      ],
+      "relatedSymbols": [],
+      "signatures": [
+        {
+          "label": "(input: Readonly<{ appId: string; projectId: string; environment: string; definition: InternalRestApiDefinition; operations: Readonly<Record<string, TrustedZefixOperation>>; authenticateCallerAsync: (request: ApiRequest) => Promise<unknown>; authorizeCallerAsync: (input: Readonly<{ caller: unknown; appId: string; projectId: string; environment: string; operationId: string; }>) => Promise<boolean>; secretStore: SecretStoreAdapter; fetch?: EndpointTestFetch; }>) => Readonly<{ composition: ComposeAuthorizedApiRuntimeOptions; registerFastifyAsync: (server: FastifyInstance, options?: RegisterFastifyApiOptions) => Promise<unknown>; }>",
+          "parameters": [
+            {
+              "name": "input",
+              "type": "Readonly<{ appId: string; projectId: string; environment: string; definition: InternalRestApiDefinition; operations: Readonly<Record<string, TrustedZefixOperation>>; authenticateCallerAsync: (request: ApiRequest) => Promise<unknown>; authorizeCallerAsync: (input: Readonly<{ caller: unknown; appId: string; projectId: string; environment: string; operationId: string; }>) => Promise<boolean>; secretStore: SecretStoreAdapter; fetch?: EndpointTestFetch; }>",
+              "required": true,
+              "description": null
+            }
+          ],
+          "returnType": "Readonly<{ composition: ComposeAuthorizedApiRuntimeOptions; registerFastifyAsync: (server: FastifyInstance, options?: RegisterFastifyApiOptions) => Promise<unknown>; }>",
+          "returnDescription": null
+        }
+      ],
+      "members": [],
+      "structuredRows": []
+    },
+    {
+      "name": "CreateTrustedZefixHostInput",
+      "title": null,
+      "description": null,
+      "isReadme": false,
+      "see": [],
+      "security": [],
+      "kind": "unknown",
+      "modulePath": "src/features/trusted-zefix-host/composition/createTrustedZefixHost.ts",
+      "sourceLocation": {
+        "filePath": "src/features/trusted-zefix-host/composition/createTrustedZefixHost.ts",
+        "line": 22,
+        "column": 1
+      },
+      "exportPaths": [
+        "src/index.ts"
+      ],
+      "relatedSymbols": [],
+      "signatures": [],
       "members": [],
       "structuredRows": []
     },
@@ -767,6 +848,28 @@
       "sourceLocation": {
         "filePath": "src/types/projects.ts",
         "line": 35,
+        "column": 1
+      },
+      "exportPaths": [
+        "src/index.ts"
+      ],
+      "relatedSymbols": [],
+      "signatures": [],
+      "members": [],
+      "structuredRows": []
+    },
+    {
+      "name": "TrustedZefixHost",
+      "title": null,
+      "description": null,
+      "isReadme": false,
+      "see": [],
+      "security": [],
+      "kind": "unknown",
+      "modulePath": "src/features/trusted-zefix-host/composition/createTrustedZefixHost.ts",
+      "sourceLocation": {
+        "filePath": "src/features/trusted-zefix-host/composition/createTrustedZefixHost.ts",
+        "line": 42,
         "column": 1
       },
       "exportPaths": [
@@ -1362,6 +1465,149 @@
         "line": 11,
         "column": 1
       }
+    },
+    {
+      "name": "createTrustedZefixHost",
+      "description": "Compose declared Zefix operations into an authenticated, project-scoped trusted host.",
+      "see": [],
+      "security": [],
+      "sourceLocation": {
+        "filePath": "src/features/trusted-zefix-host/composition/createTrustedZefixHost.ts",
+        "line": 51,
+        "column": 1
+      }
+    },
+    {
+      "name": "isCanonicalOperationMethod",
+      "description": "Bind each exposed host declaration to the one canonical Zefix HTTP method.",
+      "see": [],
+      "security": [],
+      "sourceLocation": {
+        "filePath": "src/features/trusted-zefix-host/composition/createTrustedZefixHost.ts",
+        "line": 97,
+        "column": 1
+      }
+    },
+    {
+      "name": "authorizeRequestAsync",
+      "description": "Deny before the operation handler can resolve a Vault secret or contact Zefix.",
+      "see": [],
+      "security": [],
+      "sourceLocation": {
+        "filePath": "src/features/trusted-zefix-host/composition/createTrustedZefixHost.ts",
+        "line": 105,
+        "column": 1
+      }
+    },
+    {
+      "name": "createZefixCredentialResolver",
+      "description": "Resolve Basic credentials only for the canonical Zefix reference and immutable server scope.",
+      "see": [],
+      "security": [],
+      "sourceLocation": {
+        "filePath": "src/features/trusted-zefix-host/composition/createTrustedZefixHost.ts",
+        "line": 127,
+        "column": 1
+      }
+    },
+    {
+      "name": "executeZefixOperationAsync",
+      "description": "Execute only an approved Zefix operation and return the curated company projection.",
+      "see": [],
+      "security": [],
+      "sourceLocation": {
+        "filePath": "src/features/trusted-zefix-host/composition/createTrustedZefixHost.ts",
+        "line": 143,
+        "column": 1
+      }
+    },
+    {
+      "name": "curateZefixResult",
+      "description": "Strip provider wire payloads before any Zefix result crosses the trusted host boundary.",
+      "see": [],
+      "security": [],
+      "sourceLocation": {
+        "filePath": "src/features/trusted-zefix-host/composition/createTrustedZefixHost.ts",
+        "line": 160,
+        "column": 1
+      }
+    },
+    {
+      "name": "zefixUnavailableResponse",
+      "description": "Return the one credential-safe failure representation for Vault or provider failures.",
+      "see": [],
+      "security": [],
+      "sourceLocation": {
+        "filePath": "src/features/trusted-zefix-host/composition/createTrustedZefixHost.ts",
+        "line": 172,
+        "column": 1
+      }
+    },
+    {
+      "name": "asZefixCompany",
+      "description": "Narrow unknown endpoint data to the optional-field Zefix short-company DTO.",
+      "see": [],
+      "security": [],
+      "sourceLocation": {
+        "filePath": "src/features/trusted-zefix-host/composition/createTrustedZefixHost.ts",
+        "line": 177,
+        "column": 1
+      }
+    },
+    {
+      "name": "optionalString",
+      "description": "Accept missing or string wire fields while rejecting non-serializable provider data.",
+      "see": [],
+      "security": [],
+      "sourceLocation": {
+        "filePath": "src/features/trusted-zefix-host/composition/createTrustedZefixHost.ts",
+        "line": 188,
+        "column": 1
+      }
+    },
+    {
+      "name": "isHostBindingRecord",
+      "description": "Admit only serializable operation input before passing it to Runtime's binding executor.",
+      "see": [],
+      "security": [],
+      "sourceLocation": {
+        "filePath": "src/features/trusted-zefix-host/composition/createTrustedZefixHost.ts",
+        "line": 200,
+        "column": 1
+      }
+    },
+    {
+      "name": "isHostBindingValue",
+      "description": "Recursively reject host objects and functions from untrusted request input.",
+      "see": [],
+      "security": [],
+      "sourceLocation": {
+        "filePath": "src/features/trusted-zefix-host/composition/createTrustedZefixHost.ts",
+        "line": 205,
+        "column": 1
+      }
+    },
+    {
+      "name": "resolveCapability",
+      "description": "Resolve the one Projects-owned capability permitted for each declared Zefix operation.",
+      "see": [],
+      "security": [],
+      "sourceLocation": {
+        "filePath": "src/features/trusted-zefix-host/composition/createTrustedZefixHost.ts",
+        "line": 217,
+        "column": 1
+      }
+    },
+    {
+      "name": "assertHostIdentity",
+      "description": "Reject incomplete immutable host configuration before Fastify routes are registered.",
+      "see": [],
+      "security": [],
+      "sourceLocation": {
+        "filePath": "src/features/trusted-zefix-host/composition/createTrustedZefixHost.ts",
+        "line": 228,
+        "column": 1
+      }
     }
   ],
   "sequenceScenarios": [
@@ -1387,6 +1633,14 @@
       "sourcePath": "src/features/projects/composition/createProjectsApiHandlerResolver.ts",
       "symbolName": "createProjectsApiHandlerResolver",
       "description": "Create the Projects-owned resolver for host-approved server API operations.",
+      "isReadme": false
+    },
+    {
+      "kind": "export",
+      "name": "createTrustedZefixHost",
+      "sourcePath": "src/features/trusted-zefix-host/composition/createTrustedZefixHost.ts",
+      "symbolName": "createTrustedZefixHost",
+      "description": "Compose declared Zefix operations into an authenticated, project-scoped trusted host.",
       "isReadme": false
     }
   ],
@@ -1419,6 +1673,11 @@
       },
       {
         "fromPath": "src/index.ts",
+        "toPath": "src/features/trusted-zefix-host/composition/createTrustedZefixHost.ts",
+        "sourcePath": "src/index.ts"
+      },
+      {
+        "fromPath": "src/index.ts",
         "toPath": "src/types/projects.ts",
         "sourcePath": "src/index.ts"
       },
@@ -1436,6 +1695,11 @@
         "fromPath": "test/projects.test.ts",
         "toPath": "src/index.ts",
         "sourcePath": "test/projects.test.ts"
+      },
+      {
+        "fromPath": "test/trustedZefixHost.test.ts",
+        "toPath": "src/index.ts",
+        "sourcePath": "test/trustedZefixHost.test.ts"
       },
       {
         "fromPath": "src/features/projects/adapters/createProjectRepositoryFileSystemAsync.ts",
@@ -1521,6 +1785,11 @@
         "fromPath": "src/features/projects/ports/ProjectRepository.ts",
         "toPath": "src/types/projects.ts",
         "sourcePath": "src/features/projects/ports/ProjectRepository.ts"
+      },
+      {
+        "fromPath": "src/features/trusted-zefix-host/composition/createTrustedZefixHost.ts",
+        "toPath": "src/capabilities/index.ts",
+        "sourcePath": "src/features/trusted-zefix-host/composition/createTrustedZefixHost.ts"
       }
     ],
     "calls": [
@@ -1847,6 +2116,132 @@
         "toSymbol": "projectOperationDefinition",
         "callExpression": "projectOperationDefinition",
         "sourcePath": "test/projects.test.ts"
+      },
+      {
+        "fromSymbol": "test/trustedZefixHost.test.ts",
+        "toSymbol": "describe",
+        "callExpression": "describe",
+        "sourcePath": "test/trustedZefixHost.test.ts"
+      },
+      {
+        "fromSymbol": "test/trustedZefixHost.test.ts",
+        "toSymbol": "test",
+        "callExpression": "test",
+        "sourcePath": "test/trustedZefixHost.test.ts"
+      },
+      {
+        "fromSymbol": "test/trustedZefixHost.test.ts",
+        "toSymbol": "createTrustedZefixHost",
+        "callExpression": "createTrustedZefixHost",
+        "sourcePath": "test/trustedZefixHost.test.ts"
+      },
+      {
+        "fromSymbol": "test/trustedZefixHost.test.ts",
+        "toSymbol": "createHostInput",
+        "callExpression": "createHostInput",
+        "sourcePath": "test/trustedZefixHost.test.ts"
+      },
+      {
+        "fromSymbol": "test/trustedZefixHost.test.ts",
+        "toSymbol": "composeAuthorizedApiRuntime",
+        "callExpression": "composeAuthorizedApiRuntime",
+        "sourcePath": "test/trustedZefixHost.test.ts"
+      },
+      {
+        "fromSymbol": "test/trustedZefixHost.test.ts",
+        "toSymbol": "searchRequest",
+        "callExpression": "searchRequest",
+        "sourcePath": "test/trustedZefixHost.test.ts"
+      },
+      {
+        "fromSymbol": "test/trustedZefixHost.test.ts",
+        "toSymbol": "expect",
+        "callExpression": "expect",
+        "sourcePath": "test/trustedZefixHost.test.ts"
+      },
+      {
+        "fromSymbol": "test/trustedZefixHost.test.ts",
+        "toSymbol": "createSecretStore",
+        "callExpression": "createSecretStore",
+        "sourcePath": "test/trustedZefixHost.test.ts"
+      },
+      {
+        "fromSymbol": "test/trustedZefixHost.test.ts",
+        "toSymbol": "createUidDefinition",
+        "callExpression": "createUidDefinition",
+        "sourcePath": "test/trustedZefixHost.test.ts"
+      },
+      {
+        "fromSymbol": "test/trustedZefixHost.test.ts",
+        "toSymbol": "createDefinition",
+        "callExpression": "createDefinition",
+        "sourcePath": "test/trustedZefixHost.test.ts"
+      },
+      {
+        "fromSymbol": "test/trustedZefixHost.test.ts",
+        "toSymbol": "createDefinitionWithMethod",
+        "callExpression": "createDefinitionWithMethod",
+        "sourcePath": "test/trustedZefixHost.test.ts"
+      },
+      {
+        "fromSymbol": "test/trustedZefixHost.test.ts",
+        "toSymbol": "createUidDefinitionWithMethod",
+        "callExpression": "createUidDefinitionWithMethod",
+        "sourcePath": "test/trustedZefixHost.test.ts"
+      },
+      {
+        "fromSymbol": "test/trustedZefixHost.test.ts",
+        "toSymbol": "createFastifyApiServer",
+        "callExpression": "createFastifyApiServer",
+        "sourcePath": "test/trustedZefixHost.test.ts"
+      },
+      {
+        "fromSymbol": "test/trustedZefixHost.test.ts",
+        "toSymbol": "registerFastifyAsync",
+        "callExpression": "host.registerFastifyAsync",
+        "sourcePath": "test/trustedZefixHost.test.ts"
+      },
+      {
+        "fromSymbol": "createHostInput",
+        "toSymbol": "createDefinition",
+        "callExpression": "createDefinition",
+        "sourcePath": "test/trustedZefixHost.test.ts"
+      },
+      {
+        "fromSymbol": "createHostInput",
+        "toSymbol": "createSecretStore",
+        "callExpression": "createSecretStore",
+        "sourcePath": "test/trustedZefixHost.test.ts"
+      },
+      {
+        "fromSymbol": "fetch",
+        "toSymbol": "expect",
+        "callExpression": "expect",
+        "sourcePath": "test/trustedZefixHost.test.ts"
+      },
+      {
+        "fromSymbol": "createUidDefinition",
+        "toSymbol": "createDefinition",
+        "callExpression": "createDefinition",
+        "sourcePath": "test/trustedZefixHost.test.ts"
+      },
+      {
+        "fromSymbol": "createDefinitionWithMethod",
+        "toSymbol": "createDefinition",
+        "callExpression": "createDefinition",
+        "sourcePath": "test/trustedZefixHost.test.ts"
+      },
+      {
+        "fromSymbol": "createUidDefinitionWithMethod",
+        "toSymbol": "createUidDefinition",
+        "callExpression": "createUidDefinition",
+        "sourcePath": "test/trustedZefixHost.test.ts"
+      },
+      {
+        "fromSymbol": "resolve",
+        "toSymbol": "expect",
+        "callExpression": "expect",
+        "sourcePath": "test/trustedZefixHost.test.ts"
       },
       {
         "fromSymbol": "createProjectRepositoryFileSystemAsync",
@@ -2633,6 +3028,132 @@
         "toSymbol": "normalizeProjectName",
         "callExpression": "normalizeProjectName",
         "sourcePath": "src/features/projects/domain/updateProject.ts"
+      },
+      {
+        "fromSymbol": "createTrustedZefixHost",
+        "toSymbol": "assertHostIdentity",
+        "callExpression": "assertHostIdentity",
+        "sourcePath": "src/features/trusted-zefix-host/composition/createTrustedZefixHost.ts"
+      },
+      {
+        "fromSymbol": "createTrustedZefixHost",
+        "toSymbol": "createRuntimeApiCapabilityExecutor",
+        "callExpression": "createRuntimeApiCapabilityExecutor",
+        "sourcePath": "src/features/trusted-zefix-host/composition/createTrustedZefixHost.ts"
+      },
+      {
+        "fromSymbol": "createTrustedZefixHost",
+        "toSymbol": "createZefixPublicRestApi",
+        "callExpression": "createZefixPublicRestApi",
+        "sourcePath": "src/features/trusted-zefix-host/composition/createTrustedZefixHost.ts"
+      },
+      {
+        "fromSymbol": "createTrustedZefixHost",
+        "toSymbol": "createZefixCredentialResolver",
+        "callExpression": "createZefixCredentialResolver",
+        "sourcePath": "src/features/trusted-zefix-host/composition/createTrustedZefixHost.ts"
+      },
+      {
+        "fromSymbol": "authorizeAsync",
+        "toSymbol": "authorizeRequestAsync",
+        "callExpression": "authorizeRequestAsync",
+        "sourcePath": "src/features/trusted-zefix-host/composition/createTrustedZefixHost.ts"
+      },
+      {
+        "fromSymbol": "resolveHandler",
+        "toSymbol": "resolveCapability",
+        "callExpression": "resolveCapability",
+        "sourcePath": "src/features/trusted-zefix-host/composition/createTrustedZefixHost.ts"
+      },
+      {
+        "fromSymbol": "resolveHandler",
+        "toSymbol": "isCanonicalOperationMethod",
+        "callExpression": "isCanonicalOperationMethod",
+        "sourcePath": "src/features/trusted-zefix-host/composition/createTrustedZefixHost.ts"
+      },
+      {
+        "fromSymbol": "handler",
+        "toSymbol": "executeZefixOperationAsync",
+        "callExpression": "executeZefixOperationAsync",
+        "sourcePath": "src/features/trusted-zefix-host/composition/createTrustedZefixHost.ts"
+      },
+      {
+        "fromSymbol": "registerFastifyAsync",
+        "toSymbol": "registerAuthorizedFastifyApiAsync",
+        "callExpression": "registerAuthorizedFastifyApiAsync",
+        "sourcePath": "src/features/trusted-zefix-host/composition/createTrustedZefixHost.ts"
+      },
+      {
+        "fromSymbol": "authorizeRequestAsync",
+        "toSymbol": "authenticateCallerAsync",
+        "callExpression": "input.authenticateCallerAsync",
+        "sourcePath": "src/features/trusted-zefix-host/composition/createTrustedZefixHost.ts"
+      },
+      {
+        "fromSymbol": "authorizeRequestAsync",
+        "toSymbol": "authorizeCallerAsync",
+        "callExpression": "input.authorizeCallerAsync",
+        "sourcePath": "src/features/trusted-zefix-host/composition/createTrustedZefixHost.ts"
+      },
+      {
+        "fromSymbol": "executeZefixOperationAsync",
+        "toSymbol": "isHostBindingRecord",
+        "callExpression": "isHostBindingRecord",
+        "sourcePath": "src/features/trusted-zefix-host/composition/createTrustedZefixHost.ts"
+      },
+      {
+        "fromSymbol": "executeZefixOperationAsync",
+        "toSymbol": "executor",
+        "callExpression": "executor",
+        "sourcePath": "src/features/trusted-zefix-host/composition/createTrustedZefixHost.ts"
+      },
+      {
+        "fromSymbol": "executeZefixOperationAsync",
+        "toSymbol": "zefixUnavailableResponse",
+        "callExpression": "zefixUnavailableResponse",
+        "sourcePath": "src/features/trusted-zefix-host/composition/createTrustedZefixHost.ts"
+      },
+      {
+        "fromSymbol": "executeZefixOperationAsync",
+        "toSymbol": "curateZefixResult",
+        "callExpression": "curateZefixResult",
+        "sourcePath": "src/features/trusted-zefix-host/composition/createTrustedZefixHost.ts"
+      },
+      {
+        "fromSymbol": "src/features/trusted-zefix-host/composition/createTrustedZefixHost.ts",
+        "toSymbol": "asZefixCompany",
+        "callExpression": "asZefixCompany",
+        "sourcePath": "src/features/trusted-zefix-host/composition/createTrustedZefixHost.ts"
+      },
+      {
+        "fromSymbol": "src/features/trusted-zefix-host/composition/createTrustedZefixHost.ts",
+        "toSymbol": "mapZefixCompanyResult",
+        "callExpression": "mapZefixCompanyResult",
+        "sourcePath": "src/features/trusted-zefix-host/composition/createTrustedZefixHost.ts"
+      },
+      {
+        "fromSymbol": "asZefixCompany",
+        "toSymbol": "isRecord",
+        "callExpression": "isRecord",
+        "sourcePath": "src/features/trusted-zefix-host/composition/createTrustedZefixHost.ts"
+      },
+      {
+        "fromSymbol": "asZefixCompany",
+        "toSymbol": "optionalString",
+        "callExpression": "optionalString",
+        "sourcePath": "src/features/trusted-zefix-host/composition/createTrustedZefixHost.ts"
+      },
+      {
+        "fromSymbol": "isHostBindingRecord",
+        "toSymbol": "isRecord",
+        "callExpression": "isRecord",
+        "sourcePath": "src/features/trusted-zefix-host/composition/createTrustedZefixHost.ts"
+      },
+      {
+        "fromSymbol": "isHostBindingValue",
+        "toSymbol": "isRecord",
+        "callExpression": "isRecord",
+        "sourcePath": "src/features/trusted-zefix-host/composition/createTrustedZefixHost.ts"
       }
     ],
     "typeReferences": [
@@ -2735,6 +3256,51 @@
         "fromSymbol": "ProjectRepository",
         "toType": "Project",
         "sourcePath": "src/features/projects/ports/ProjectRepository.ts"
+      },
+      {
+        "fromSymbol": "createTrustedZefixHost",
+        "toType": "ApiRequest",
+        "sourcePath": "src/features/trusted-zefix-host/composition/createTrustedZefixHost.ts"
+      },
+      {
+        "fromSymbol": "createTrustedZefixHost",
+        "toType": "ComposeAuthorizedApiRuntimeOptions",
+        "sourcePath": "src/features/trusted-zefix-host/composition/createTrustedZefixHost.ts"
+      },
+      {
+        "fromSymbol": "createTrustedZefixHost",
+        "toType": "EndpointTestFetch",
+        "sourcePath": "src/features/trusted-zefix-host/composition/createTrustedZefixHost.ts"
+      },
+      {
+        "fromSymbol": "createTrustedZefixHost",
+        "toType": "FastifyInstance",
+        "sourcePath": "src/features/trusted-zefix-host/composition/createTrustedZefixHost.ts"
+      },
+      {
+        "fromSymbol": "createTrustedZefixHost",
+        "toType": "InternalRestApiDefinition",
+        "sourcePath": "src/features/trusted-zefix-host/composition/createTrustedZefixHost.ts"
+      },
+      {
+        "fromSymbol": "createTrustedZefixHost",
+        "toType": "Readonly",
+        "sourcePath": "src/features/trusted-zefix-host/composition/createTrustedZefixHost.ts"
+      },
+      {
+        "fromSymbol": "createTrustedZefixHost",
+        "toType": "RegisterFastifyApiOptions",
+        "sourcePath": "src/features/trusted-zefix-host/composition/createTrustedZefixHost.ts"
+      },
+      {
+        "fromSymbol": "createTrustedZefixHost",
+        "toType": "SecretStoreAdapter",
+        "sourcePath": "src/features/trusted-zefix-host/composition/createTrustedZefixHost.ts"
+      },
+      {
+        "fromSymbol": "createTrustedZefixHost",
+        "toType": "TrustedZefixOperation",
+        "sourcePath": "src/features/trusted-zefix-host/composition/createTrustedZefixHost.ts"
       }
     ],
     "componentComposition": []

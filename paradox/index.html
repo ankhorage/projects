@@ -161,6 +161,11 @@
       src/features/projects/domain/updateProject.ts
       <small>2 functions</small>
     </button>
+  </li><li>
+    <button class="nav-button" type="button" data-target="src/features/trusted-zefix-host/composition/createTrustedZefixHost.ts">
+      src/features/trusted-zefix-host/composition/createTrustedZefixHost.ts
+      <small>13 functions</small>
+    </button>
   </li>
           </ul>
         </nav>
@@ -171,9 +176,9 @@
     <section class="panel">
       <h2>Package overview</h2>
       <div class="summary">
-        <div><strong>18</strong><span class="muted">public exports</span></div>
+        <div><strong>21</strong><span class="muted">public exports</span></div>
         <div><strong>0</strong><span class="muted">components</span></div>
-        <div><strong>14</strong><span class="muted">modules</span></div>
+        <div><strong>16</strong><span class="muted">modules</span></div>
         <div><strong>1</strong><span class="muted">entrypoints</span></div>
       </div>
       <h3>Entrypoints</h3>
@@ -235,11 +240,16 @@
     <p class="muted">Referenced module</p>
     <p><strong>Dependencies:</strong> <code>src/types/projects.ts</code></p>
     <p><strong>Exports:</strong> <code>ProjectMaterializer</code>, <code>ProjectRepository</code></p>
-  </article><article class="item" data-search="src/index.ts createExpoProjectMaterializer CreateExpoProjectMaterializerInput CreateProjectInput createProjectRepositoryFileSystemAsync createProjectsApiHandlerResolver ExpoProjectMaterializationResult ExpoProjectMaterializer MaterializeProjectRevisionInput Project ProjectManifest ProjectManifestDraft ProjectManifestRevision ProjectMaterializer ProjectRepository projects ReloadProjectManifestInput SaveProjectManifestInput UpdateProjectInput">
+  </article><article class="item" data-search="src/features/trusted-zefix-host/composition/createTrustedZefixHost.ts src/capabilities/index.ts createTrustedZefixHost CreateTrustedZefixHostInput TrustedZefixHost">
+    <h3>src/features/trusted-zefix-host/composition/createTrustedZefixHost.ts</h3>
+    <p class="muted">Referenced module</p>
+    <p><strong>Dependencies:</strong> <code>src/capabilities/index.ts</code></p>
+    <p><strong>Exports:</strong> <code>createTrustedZefixHost</code>, <code>CreateTrustedZefixHostInput</code>, <code>TrustedZefixHost</code></p>
+  </article><article class="item" data-search="src/index.ts createExpoProjectMaterializer CreateExpoProjectMaterializerInput CreateProjectInput createProjectRepositoryFileSystemAsync createProjectsApiHandlerResolver createTrustedZefixHost CreateTrustedZefixHostInput ExpoProjectMaterializationResult ExpoProjectMaterializer MaterializeProjectRevisionInput Project ProjectManifest ProjectManifestDraft ProjectManifestRevision ProjectMaterializer ProjectRepository projects ReloadProjectManifestInput SaveProjectManifestInput TrustedZefixHost UpdateProjectInput">
     <h3>src/index.ts</h3>
     <p class="muted">Configured entrypoint</p>
     <p><strong>Dependencies:</strong> <span class="empty">None</span></p>
-    <p><strong>Exports:</strong> <code>createExpoProjectMaterializer</code>, <code>CreateExpoProjectMaterializerInput</code>, <code>CreateProjectInput</code>, <code>createProjectRepositoryFileSystemAsync</code>, <code>createProjectsApiHandlerResolver</code>, <code>ExpoProjectMaterializationResult</code>, <code>ExpoProjectMaterializer</code>, <code>MaterializeProjectRevisionInput</code>, <code>Project</code>, <code>ProjectManifest</code>, <code>ProjectManifestDraft</code>, <code>ProjectManifestRevision</code>, <code>ProjectMaterializer</code>, <code>ProjectRepository</code>, <code>projects</code>, <code>ReloadProjectManifestInput</code>, <code>SaveProjectManifestInput</code>, <code>UpdateProjectInput</code></p>
+    <p><strong>Exports:</strong> <code>createExpoProjectMaterializer</code>, <code>CreateExpoProjectMaterializerInput</code>, <code>CreateProjectInput</code>, <code>createProjectRepositoryFileSystemAsync</code>, <code>createProjectsApiHandlerResolver</code>, <code>createTrustedZefixHost</code>, <code>CreateTrustedZefixHostInput</code>, <code>ExpoProjectMaterializationResult</code>, <code>ExpoProjectMaterializer</code>, <code>MaterializeProjectRevisionInput</code>, <code>Project</code>, <code>ProjectManifest</code>, <code>ProjectManifestDraft</code>, <code>ProjectManifestRevision</code>, <code>ProjectMaterializer</code>, <code>ProjectRepository</code>, <code>projects</code>, <code>ReloadProjectManifestInput</code>, <code>SaveProjectManifestInput</code>, <code>TrustedZefixHost</code>, <code>UpdateProjectInput</code></p>
   </article><article class="item" data-search="src/types/projects.ts CreateProjectInput MaterializeProjectRevisionInput Project ProjectManifest ProjectManifestDraft ProjectManifestRevision ReloadProjectManifestInput SaveProjectManifestInput UpdateProjectInput">
     <h3>src/types/projects.ts</h3>
     <p class="muted">Referenced module</p>
@@ -254,6 +264,11 @@
     <h3>test/projects.test.ts</h3>
     <p class="muted">Referenced module</p>
     <p><strong>Dependencies:</strong> <code>src/capabilities/index.ts</code>, <code>src/index.ts</code></p>
+    <p><strong>Exports:</strong> <span class="empty">None</span></p>
+  </article><article class="item" data-search="test/trustedZefixHost.test.ts src/index.ts">
+    <h3>test/trustedZefixHost.test.ts</h3>
+    <p class="muted">Referenced module</p>
+    <p><strong>Dependencies:</strong> <code>src/index.ts</code></p>
     <p><strong>Exports:</strong> <span class="empty">None</span></p>
   </article>
     </section>
@@ -529,6 +544,55 @@ requires external locking and is unsupported by this adapter.</p>
   </article>
             </section>
             <section>
+              <h3>src/features/trusted-zefix-host/composition/createTrustedZefixHost.ts</h3>
+              <article class="item" id="symbol-createtrustedzefixhost" data-search="createTrustedZefixHost  function src/features/trusted-zefix-host/composition/createTrustedZefixHost.ts Compose declared Zefix operations into an authenticated, project-scoped trusted host. (input: Readonly&lt;{ appId: string; projectId: string; environment: string; definition: InternalRestApiDefinition; operations: Readonly&lt;Record&lt;string, TrustedZefixOperation&gt;&gt;; authenticateCallerAsync: (request: ApiRequest) =&gt; Promise&lt;unknown&gt;; authorizeCallerAsync: (input: Readonly&lt;{ caller: unknown; appId: string; projectId: string; environment: string; operationId: string; }&gt;) =&gt; Promise&lt;boolean&gt;; secretStore: SecretStoreAdapter; fetch?: EndpointTestFetch; }&gt;) =&gt; Readonly&lt;{ composition: ComposeAuthorizedApiRuntimeOptions; registerFastifyAsync: (server: FastifyInstance, options?: RegisterFastifyApiOptions) =&gt; Promise&lt;unknown&gt;; }&gt;">
+    <h4>createTrustedZefixHost</h4>
+    
+    <p class="muted">function • <code>src/features/trusted-zefix-host/composition/createTrustedZefixHost.ts:51:1</code></p>
+    <p>Compose declared Zefix operations into an authenticated, project-scoped trusted host.</p>
+    
+    <p><strong>Export paths:</strong> <code>src/index.ts</code></p>
+    <div><strong>Related symbols:</strong> <span class="empty">None</span></div>
+    <div>
+        <h5>Signature</h5>
+        <pre>(input: Readonly&lt;{ appId: string; projectId: string; environment: string; definition: InternalRestApiDefinition; operations: Readonly&lt;Record&lt;string, TrustedZefixOperation&gt;&gt;; authenticateCallerAsync: (request: ApiRequest) =&gt; Promise&lt;unknown&gt;; authorizeCallerAsync: (input: Readonly&lt;{ caller: unknown; appId: string; projectId: string; environment: string; operationId: string; }&gt;) =&gt; Promise&lt;boolean&gt;; secretStore: SecretStoreAdapter; fetch?: EndpointTestFetch; }&gt;) =&gt; Readonly&lt;{ composition: ComposeAuthorizedApiRuntimeOptions; registerFastifyAsync: (server: FastifyInstance, options?: RegisterFastifyApiOptions) =&gt; Promise&lt;unknown&gt;; }&gt;</pre>
+        <table>
+                <thead><tr><th>Parameter</th><th>Type</th><th>Required</th><th>Description</th></tr></thead>
+                <tbody>
+                  <tr>
+                        <td><code>input</code></td>
+                        <td><code>Readonly&lt;{ appId: string; projectId: string; environment: string; definition: InternalRestApiDefinition; operations: Readonly&lt;Record&lt;string, TrustedZefixOperation&gt;&gt;; authenticateCallerAsync: (request: ApiRequest) =&gt; Promise&lt;unknown&gt;; authorizeCallerAsync: (input: Readonly&lt;{ caller: unknown; appId: string; projectId: string; environment: string; operationId: string; }&gt;) =&gt; Promise&lt;boolean&gt;; secretStore: SecretStoreAdapter; fetch?: EndpointTestFetch; }&gt;</code></td>
+                        <td>yes</td>
+                        <td></td>
+                      </tr>
+                </tbody>
+              </table>
+        <p><strong>Returns:</strong> <code>Readonly&lt;{ composition: ComposeAuthorizedApiRuntimeOptions; registerFastifyAsync: (server: FastifyInstance, options?: RegisterFastifyApiOptions) =&gt; Promise&lt;unknown&gt;; }&gt;</code></p>
+      </div>
+    
+  </article><article class="item" id="symbol-createtrustedzefixhostinput" data-search="CreateTrustedZefixHostInput  unknown src/features/trusted-zefix-host/composition/createTrustedZefixHost.ts ">
+    <h4>CreateTrustedZefixHostInput</h4>
+    
+    <p class="muted">unknown • <code>src/features/trusted-zefix-host/composition/createTrustedZefixHost.ts:22:1</code></p>
+    
+    
+    <p><strong>Export paths:</strong> <code>src/index.ts</code></p>
+    <div><strong>Related symbols:</strong> <span class="empty">None</span></div>
+    
+    
+  </article><article class="item" id="symbol-trustedzefixhost" data-search="TrustedZefixHost  unknown src/features/trusted-zefix-host/composition/createTrustedZefixHost.ts ">
+    <h4>TrustedZefixHost</h4>
+    
+    <p class="muted">unknown • <code>src/features/trusted-zefix-host/composition/createTrustedZefixHost.ts:42:1</code></p>
+    
+    
+    <p><strong>Export paths:</strong> <code>src/index.ts</code></p>
+    <div><strong>Related symbols:</strong> <span class="empty">None</span></div>
+    
+    
+  </article>
+            </section>
+            <section>
               <h3>src/types/projects.ts</h3>
               <article class="item" id="symbol-createprojectinput" data-search="CreateProjectInput  unknown src/types/projects.ts ">
     <h4>CreateProjectInput</h4>
@@ -673,6 +737,9 @@ requires external locking and is unsupported by this adapter.</p>
   module_src_features_projects_ports_ProjectRepository_ts[&quot;src/features/projects/ports/ProjectRepository.ts&quot;]
   package__ankhorage_projects -.-&gt; module_src_features_projects_ports_ProjectRepository_ts
   module_src_features_projects_ports_ProjectRepository_ts --&gt; module_src_types_projects_ts
+  module_src_features_trusted_zefix_host_composition_createTrustedZefixHost_ts[&quot;src/features/trusted-zefix-host/composition/createTrustedZefixHost.ts&quot;]
+  package__ankhorage_projects -.-&gt; module_src_features_trusted_zefix_host_composition_createTrustedZefixHost_ts
+  module_src_features_trusted_zefix_host_composition_createTrustedZefixHost_ts --&gt; module_src_capabilities_index_ts
   module_src_index_ts[&quot;src/index.ts&quot;]
   module_src_types_projects_ts[&quot;src/types/projects.ts&quot;]
   package__ankhorage_projects -.-&gt; module_src_types_projects_ts
@@ -683,6 +750,9 @@ requires external locking and is unsupported by this adapter.</p>
   package__ankhorage_projects -.-&gt; module_test_projects_test_ts
   module_test_projects_test_ts --&gt; module_src_capabilities_index_ts
   module_test_projects_test_ts --&gt; module_src_index_ts
+  module_test_trustedZefixHost_test_ts[&quot;test/trustedZefixHost.test.ts&quot;]
+  package__ankhorage_projects -.-&gt; module_test_trustedZefixHost_test_ts
+  module_test_trustedZefixHost_test_ts --&gt; module_src_index_ts
 </div>
     <details>
       <summary>View Mermaid source</summary>
@@ -727,6 +797,9 @@ requires external locking and is unsupported by this adapter.</p>
   module_src_features_projects_ports_ProjectRepository_ts[&quot;src/features/projects/ports/ProjectRepository.ts&quot;]
   package__ankhorage_projects -.-&gt; module_src_features_projects_ports_ProjectRepository_ts
   module_src_features_projects_ports_ProjectRepository_ts --&gt; module_src_types_projects_ts
+  module_src_features_trusted_zefix_host_composition_createTrustedZefixHost_ts[&quot;src/features/trusted-zefix-host/composition/createTrustedZefixHost.ts&quot;]
+  package__ankhorage_projects -.-&gt; module_src_features_trusted_zefix_host_composition_createTrustedZefixHost_ts
+  module_src_features_trusted_zefix_host_composition_createTrustedZefixHost_ts --&gt; module_src_capabilities_index_ts
   module_src_index_ts[&quot;src/index.ts&quot;]
   module_src_types_projects_ts[&quot;src/types/projects.ts&quot;]
   package__ankhorage_projects -.-&gt; module_src_types_projects_ts
@@ -737,6 +810,9 @@ requires external locking and is unsupported by this adapter.</p>
   package__ankhorage_projects -.-&gt; module_test_projects_test_ts
   module_test_projects_test_ts --&gt; module_src_capabilities_index_ts
   module_test_projects_test_ts --&gt; module_src_index_ts
+  module_test_trustedZefixHost_test_ts[&quot;test/trustedZefixHost.test.ts&quot;]
+  package__ankhorage_projects -.-&gt; module_test_trustedZefixHost_test_ts
+  module_test_trustedZefixHost_test_ts --&gt; module_src_index_ts
 </pre>
     </details>
   </article><article class="item" data-search="Module relationships diagrams/module-relationships.mmd">
@@ -753,10 +829,12 @@ requires external locking and is unsupported by this adapter.</p>
   module_src_features_projects_domain_saveProjectManifest_ts[&quot;src/features/projects/domain/saveProjectManifest.ts&quot;]
   module_src_features_projects_domain_updateProject_ts[&quot;src/features/projects/domain/updateProject.ts&quot;]
   module_src_features_projects_ports_ProjectRepository_ts[&quot;src/features/projects/ports/ProjectRepository.ts&quot;]
+  module_src_features_trusted_zefix_host_composition_createTrustedZefixHost_ts[&quot;src/features/trusted-zefix-host/composition/createTrustedZefixHost.ts&quot;]
   module_src_index_ts[&quot;src/index.ts&quot;]
   module_src_types_projects_ts[&quot;src/types/projects.ts&quot;]
   module_test_expoProjectMaterializer_test_ts[&quot;test/expoProjectMaterializer.test.ts&quot;]
   module_test_projects_test_ts[&quot;test/projects.test.ts&quot;]
+  module_test_trustedZefixHost_test_ts[&quot;test/trustedZefixHost.test.ts&quot;]
   module_src_features_projects_adapters_createProjectRepositoryFileSystemAsync_ts --&gt; module_src_features_projects_ports_ProjectRepository_ts
   module_src_features_projects_adapters_createProjectRepositoryFileSystemAsync_ts --&gt; module_src_types_projects_ts
   module_src_features_projects_application_projects_ts --&gt; module_src_features_projects_domain_createProject_ts
@@ -774,9 +852,11 @@ requires external locking and is unsupported by this adapter.</p>
   module_src_features_projects_domain_saveProjectManifest_ts --&gt; module_src_types_projects_ts
   module_src_features_projects_domain_updateProject_ts --&gt; module_src_types_projects_ts
   module_src_features_projects_ports_ProjectRepository_ts --&gt; module_src_types_projects_ts
+  module_src_features_trusted_zefix_host_composition_createTrustedZefixHost_ts --&gt; module_src_capabilities_index_ts
   module_test_expoProjectMaterializer_test_ts --&gt; module_src_index_ts
   module_test_projects_test_ts --&gt; module_src_capabilities_index_ts
   module_test_projects_test_ts --&gt; module_src_index_ts
+  module_test_trustedZefixHost_test_ts --&gt; module_src_index_ts
 </div>
     <details>
       <summary>View Mermaid source</summary>
@@ -791,10 +871,12 @@ requires external locking and is unsupported by this adapter.</p>
   module_src_features_projects_domain_saveProjectManifest_ts[&quot;src/features/projects/domain/saveProjectManifest.ts&quot;]
   module_src_features_projects_domain_updateProject_ts[&quot;src/features/projects/domain/updateProject.ts&quot;]
   module_src_features_projects_ports_ProjectRepository_ts[&quot;src/features/projects/ports/ProjectRepository.ts&quot;]
+  module_src_features_trusted_zefix_host_composition_createTrustedZefixHost_ts[&quot;src/features/trusted-zefix-host/composition/createTrustedZefixHost.ts&quot;]
   module_src_index_ts[&quot;src/index.ts&quot;]
   module_src_types_projects_ts[&quot;src/types/projects.ts&quot;]
   module_test_expoProjectMaterializer_test_ts[&quot;test/expoProjectMaterializer.test.ts&quot;]
   module_test_projects_test_ts[&quot;test/projects.test.ts&quot;]
+  module_test_trustedZefixHost_test_ts[&quot;test/trustedZefixHost.test.ts&quot;]
   module_src_features_projects_adapters_createProjectRepositoryFileSystemAsync_ts --&gt; module_src_features_projects_ports_ProjectRepository_ts
   module_src_features_projects_adapters_createProjectRepositoryFileSystemAsync_ts --&gt; module_src_types_projects_ts
   module_src_features_projects_application_projects_ts --&gt; module_src_features_projects_domain_createProject_ts
@@ -812,9 +894,11 @@ requires external locking and is unsupported by this adapter.</p>
   module_src_features_projects_domain_saveProjectManifest_ts --&gt; module_src_types_projects_ts
   module_src_features_projects_domain_updateProject_ts --&gt; module_src_types_projects_ts
   module_src_features_projects_ports_ProjectRepository_ts --&gt; module_src_types_projects_ts
+  module_src_features_trusted_zefix_host_composition_createTrustedZefixHost_ts --&gt; module_src_capabilities_index_ts
   module_test_expoProjectMaterializer_test_ts --&gt; module_src_index_ts
   module_test_projects_test_ts --&gt; module_src_capabilities_index_ts
   module_test_projects_test_ts --&gt; module_src_index_ts
+  module_test_trustedZefixHost_test_ts --&gt; module_src_index_ts
 </pre>
     </details>
   </article><article class="item" data-search="Export graph diagrams/export-graph.mmd">
@@ -831,10 +915,12 @@ requires external locking and is unsupported by this adapter.</p>
   module_src_features_projects_domain_saveProjectManifest_ts[&quot;src/features/projects/domain/saveProjectManifest.ts&quot;]
   module_src_features_projects_domain_updateProject_ts[&quot;src/features/projects/domain/updateProject.ts&quot;]
   module_src_features_projects_ports_ProjectRepository_ts[&quot;src/features/projects/ports/ProjectRepository.ts&quot;]
+  module_src_features_trusted_zefix_host_composition_createTrustedZefixHost_ts[&quot;src/features/trusted-zefix-host/composition/createTrustedZefixHost.ts&quot;]
   module_src_index_ts[&quot;src/index.ts&quot;]
   module_src_types_projects_ts[&quot;src/types/projects.ts&quot;]
   module_test_expoProjectMaterializer_test_ts[&quot;test/expoProjectMaterializer.test.ts&quot;]
   module_test_projects_test_ts[&quot;test/projects.test.ts&quot;]
+  module_test_trustedZefixHost_test_ts[&quot;test/trustedZefixHost.test.ts&quot;]
   export_createExpoProjectMaterializer[&quot;createExpoProjectMaterializer&quot;]
   module_src_features_projects_composition_createExpoProjectMaterializer_ts --&gt; export_createExpoProjectMaterializer
   export_createExpoProjectMaterializer -.-&gt; export_CreateExpoProjectMaterializerInput
@@ -850,6 +936,10 @@ requires external locking and is unsupported by this adapter.</p>
   module_src_features_projects_composition_createProjectsApiHandlerResolver_ts --&gt; export_createProjectsApiHandlerResolver
   export_createProjectsApiHandlerResolver -.-&gt; export_ProjectMaterializer
   export_createProjectsApiHandlerResolver -.-&gt; export_ProjectRepository
+  export_createTrustedZefixHost[&quot;createTrustedZefixHost&quot;]
+  module_src_features_trusted_zefix_host_composition_createTrustedZefixHost_ts --&gt; export_createTrustedZefixHost
+  export_CreateTrustedZefixHostInput[&quot;CreateTrustedZefixHostInput&quot;]
+  module_src_features_trusted_zefix_host_composition_createTrustedZefixHost_ts --&gt; export_CreateTrustedZefixHostInput
   export_ExpoProjectMaterializationResult[&quot;ExpoProjectMaterializationResult&quot;]
   module_src_features_projects_composition_createExpoProjectMaterializer_ts --&gt; export_ExpoProjectMaterializationResult
   export_ExpoProjectMaterializer[&quot;ExpoProjectMaterializer&quot;]
@@ -880,6 +970,8 @@ requires external locking and is unsupported by this adapter.</p>
   module_src_types_projects_ts --&gt; export_ReloadProjectManifestInput
   export_SaveProjectManifestInput[&quot;SaveProjectManifestInput&quot;]
   module_src_types_projects_ts --&gt; export_SaveProjectManifestInput
+  export_TrustedZefixHost[&quot;TrustedZefixHost&quot;]
+  module_src_features_trusted_zefix_host_composition_createTrustedZefixHost_ts --&gt; export_TrustedZefixHost
   export_UpdateProjectInput[&quot;UpdateProjectInput&quot;]
   module_src_types_projects_ts --&gt; export_UpdateProjectInput
 </div>
@@ -896,10 +988,12 @@ requires external locking and is unsupported by this adapter.</p>
   module_src_features_projects_domain_saveProjectManifest_ts[&quot;src/features/projects/domain/saveProjectManifest.ts&quot;]
   module_src_features_projects_domain_updateProject_ts[&quot;src/features/projects/domain/updateProject.ts&quot;]
   module_src_features_projects_ports_ProjectRepository_ts[&quot;src/features/projects/ports/ProjectRepository.ts&quot;]
+  module_src_features_trusted_zefix_host_composition_createTrustedZefixHost_ts[&quot;src/features/trusted-zefix-host/composition/createTrustedZefixHost.ts&quot;]
   module_src_index_ts[&quot;src/index.ts&quot;]
   module_src_types_projects_ts[&quot;src/types/projects.ts&quot;]
   module_test_expoProjectMaterializer_test_ts[&quot;test/expoProjectMaterializer.test.ts&quot;]
   module_test_projects_test_ts[&quot;test/projects.test.ts&quot;]
+  module_test_trustedZefixHost_test_ts[&quot;test/trustedZefixHost.test.ts&quot;]
   export_createExpoProjectMaterializer[&quot;createExpoProjectMaterializer&quot;]
   module_src_features_projects_composition_createExpoProjectMaterializer_ts --&gt; export_createExpoProjectMaterializer
   export_createExpoProjectMaterializer -.-&gt; export_CreateExpoProjectMaterializerInput
@@ -915,6 +1009,10 @@ requires external locking and is unsupported by this adapter.</p>
   module_src_features_projects_composition_createProjectsApiHandlerResolver_ts --&gt; export_createProjectsApiHandlerResolver
   export_createProjectsApiHandlerResolver -.-&gt; export_ProjectMaterializer
   export_createProjectsApiHandlerResolver -.-&gt; export_ProjectRepository
+  export_createTrustedZefixHost[&quot;createTrustedZefixHost&quot;]
+  module_src_features_trusted_zefix_host_composition_createTrustedZefixHost_ts --&gt; export_createTrustedZefixHost
+  export_CreateTrustedZefixHostInput[&quot;CreateTrustedZefixHostInput&quot;]
+  module_src_features_trusted_zefix_host_composition_createTrustedZefixHost_ts --&gt; export_CreateTrustedZefixHostInput
   export_ExpoProjectMaterializationResult[&quot;ExpoProjectMaterializationResult&quot;]
   module_src_features_projects_composition_createExpoProjectMaterializer_ts --&gt; export_ExpoProjectMaterializationResult
   export_ExpoProjectMaterializer[&quot;ExpoProjectMaterializer&quot;]
@@ -945,6 +1043,8 @@ requires external locking and is unsupported by this adapter.</p>
   module_src_types_projects_ts --&gt; export_ReloadProjectManifestInput
   export_SaveProjectManifestInput[&quot;SaveProjectManifestInput&quot;]
   module_src_types_projects_ts --&gt; export_SaveProjectManifestInput
+  export_TrustedZefixHost[&quot;TrustedZefixHost&quot;]
+  module_src_features_trusted_zefix_host_composition_createTrustedZefixHost_ts --&gt; export_TrustedZefixHost
   export_UpdateProjectInput[&quot;UpdateProjectInput&quot;]
   module_src_types_projects_ts --&gt; export_UpdateProjectInput
 </pre>
@@ -989,6 +1089,42 @@ requires external locking and is unsupported by this adapter.</p>
   participant_assertStorageDirectoryAsync--&gt;&gt;participant_createProjectRepositoryFileSystemAsync: return
   participant_createProjectRepositoryFileSystemAsync-&gt;&gt;participant_createKeyedAsyncMutex: createKeyedAsyncMutex()
   participant_createKeyedAsyncMutex--&gt;&gt;participant_createProjectRepositoryFileSystemAsync: return
+</pre>
+    </details>
+  </article><article class="item" data-search="createTrustedZefixHost sequence diagrams/sequences/create-trusted-zefix-host.mmd">
+    <h3>createTrustedZefixHost sequence</h3>
+    <p class="muted"><code>diagrams/sequences/create-trusted-zefix-host.mmd</code></p>
+    <div class="mermaid">sequenceDiagram
+  participant participant_assertHostIdentity as assertHostIdentity
+  participant participant_createRuntimeApiCapabilityExecutor as createRuntimeApiCapabilityExecutor
+  participant participant_createTrustedZefixHost as createTrustedZefixHost
+  participant participant_createZefixCredentialResolver as createZefixCredentialResolver
+  participant participant_createZefixPublicRestApi as createZefixPublicRestApi
+  participant_createTrustedZefixHost-&gt;&gt;participant_assertHostIdentity: assertHostIdentity()
+  participant_assertHostIdentity--&gt;&gt;participant_createTrustedZefixHost: return
+  participant_createTrustedZefixHost-&gt;&gt;participant_createRuntimeApiCapabilityExecutor: createRuntimeApiCapabilityExecutor()
+  participant_createRuntimeApiCapabilityExecutor--&gt;&gt;participant_createTrustedZefixHost: return
+  participant_createTrustedZefixHost-&gt;&gt;participant_createZefixPublicRestApi: createZefixPublicRestApi()
+  participant_createZefixPublicRestApi--&gt;&gt;participant_createTrustedZefixHost: return
+  participant_createTrustedZefixHost-&gt;&gt;participant_createZefixCredentialResolver: createZefixCredentialResolver()
+  participant_createZefixCredentialResolver--&gt;&gt;participant_createTrustedZefixHost: return
+</div>
+    <details>
+      <summary>View Mermaid source</summary>
+      <pre>sequenceDiagram
+  participant participant_assertHostIdentity as assertHostIdentity
+  participant participant_createRuntimeApiCapabilityExecutor as createRuntimeApiCapabilityExecutor
+  participant participant_createTrustedZefixHost as createTrustedZefixHost
+  participant participant_createZefixCredentialResolver as createZefixCredentialResolver
+  participant participant_createZefixPublicRestApi as createZefixPublicRestApi
+  participant_createTrustedZefixHost-&gt;&gt;participant_assertHostIdentity: assertHostIdentity()
+  participant_assertHostIdentity--&gt;&gt;participant_createTrustedZefixHost: return
+  participant_createTrustedZefixHost-&gt;&gt;participant_createRuntimeApiCapabilityExecutor: createRuntimeApiCapabilityExecutor()
+  participant_createRuntimeApiCapabilityExecutor--&gt;&gt;participant_createTrustedZefixHost: return
+  participant_createTrustedZefixHost-&gt;&gt;participant_createZefixPublicRestApi: createZefixPublicRestApi()
+  participant_createZefixPublicRestApi--&gt;&gt;participant_createTrustedZefixHost: return
+  participant_createTrustedZefixHost-&gt;&gt;participant_createZefixCredentialResolver: createZefixCredentialResolver()
+  participant_createZefixCredentialResolver--&gt;&gt;participant_createTrustedZefixHost: return
 </pre>
     </details>
   </article>
@@ -1285,6 +1421,76 @@ requires external locking and is unsupported by this adapter.</p>
     <h3>normalizeProjectName</h3>
     <p class="muted"><code>src/features/projects/domain/updateProject.ts:11:1</code></p>
     <p>Normalize a project name at the domain boundary.</p>
+    
+  </article>
+    </section>
+  </section><section id="view-src-features-trusted-zefix-host-composition-createtrustedzefixhost-ts" class="view" data-view="src/features/trusted-zefix-host/composition/createTrustedZefixHost.ts" hidden>
+    <section class="panel">
+      <h2>src/features/trusted-zefix-host/composition/createTrustedZefixHost.ts</h2>
+      <article class="item" data-search="createTrustedZefixHost src/features/trusted-zefix-host/composition/createTrustedZefixHost.ts Compose declared Zefix operations into an authenticated, project-scoped trusted host.">
+    <h3>createTrustedZefixHost</h3>
+    <p class="muted"><code>src/features/trusted-zefix-host/composition/createTrustedZefixHost.ts:51:1</code></p>
+    <p>Compose declared Zefix operations into an authenticated, project-scoped trusted host.</p>
+    
+  </article><article class="item" data-search="isCanonicalOperationMethod src/features/trusted-zefix-host/composition/createTrustedZefixHost.ts Bind each exposed host declaration to the one canonical Zefix HTTP method.">
+    <h3>isCanonicalOperationMethod</h3>
+    <p class="muted"><code>src/features/trusted-zefix-host/composition/createTrustedZefixHost.ts:97:1</code></p>
+    <p>Bind each exposed host declaration to the one canonical Zefix HTTP method.</p>
+    
+  </article><article class="item" data-search="authorizeRequestAsync src/features/trusted-zefix-host/composition/createTrustedZefixHost.ts Deny before the operation handler can resolve a Vault secret or contact Zefix.">
+    <h3>authorizeRequestAsync</h3>
+    <p class="muted"><code>src/features/trusted-zefix-host/composition/createTrustedZefixHost.ts:105:1</code></p>
+    <p>Deny before the operation handler can resolve a Vault secret or contact Zefix.</p>
+    
+  </article><article class="item" data-search="createZefixCredentialResolver src/features/trusted-zefix-host/composition/createTrustedZefixHost.ts Resolve Basic credentials only for the canonical Zefix reference and immutable server scope.">
+    <h3>createZefixCredentialResolver</h3>
+    <p class="muted"><code>src/features/trusted-zefix-host/composition/createTrustedZefixHost.ts:127:1</code></p>
+    <p>Resolve Basic credentials only for the canonical Zefix reference and immutable server scope.</p>
+    
+  </article><article class="item" data-search="executeZefixOperationAsync src/features/trusted-zefix-host/composition/createTrustedZefixHost.ts Execute only an approved Zefix operation and return the curated company projection.">
+    <h3>executeZefixOperationAsync</h3>
+    <p class="muted"><code>src/features/trusted-zefix-host/composition/createTrustedZefixHost.ts:143:1</code></p>
+    <p>Execute only an approved Zefix operation and return the curated company projection.</p>
+    
+  </article><article class="item" data-search="curateZefixResult src/features/trusted-zefix-host/composition/createTrustedZefixHost.ts Strip provider wire payloads before any Zefix result crosses the trusted host boundary.">
+    <h3>curateZefixResult</h3>
+    <p class="muted"><code>src/features/trusted-zefix-host/composition/createTrustedZefixHost.ts:160:1</code></p>
+    <p>Strip provider wire payloads before any Zefix result crosses the trusted host boundary.</p>
+    
+  </article><article class="item" data-search="zefixUnavailableResponse src/features/trusted-zefix-host/composition/createTrustedZefixHost.ts Return the one credential-safe failure representation for Vault or provider failures.">
+    <h3>zefixUnavailableResponse</h3>
+    <p class="muted"><code>src/features/trusted-zefix-host/composition/createTrustedZefixHost.ts:172:1</code></p>
+    <p>Return the one credential-safe failure representation for Vault or provider failures.</p>
+    
+  </article><article class="item" data-search="asZefixCompany src/features/trusted-zefix-host/composition/createTrustedZefixHost.ts Narrow unknown endpoint data to the optional-field Zefix short-company DTO.">
+    <h3>asZefixCompany</h3>
+    <p class="muted"><code>src/features/trusted-zefix-host/composition/createTrustedZefixHost.ts:177:1</code></p>
+    <p>Narrow unknown endpoint data to the optional-field Zefix short-company DTO.</p>
+    
+  </article><article class="item" data-search="optionalString src/features/trusted-zefix-host/composition/createTrustedZefixHost.ts Accept missing or string wire fields while rejecting non-serializable provider data.">
+    <h3>optionalString</h3>
+    <p class="muted"><code>src/features/trusted-zefix-host/composition/createTrustedZefixHost.ts:188:1</code></p>
+    <p>Accept missing or string wire fields while rejecting non-serializable provider data.</p>
+    
+  </article><article class="item" data-search="isHostBindingRecord src/features/trusted-zefix-host/composition/createTrustedZefixHost.ts Admit only serializable operation input before passing it to Runtime&#39;s binding executor.">
+    <h3>isHostBindingRecord</h3>
+    <p class="muted"><code>src/features/trusted-zefix-host/composition/createTrustedZefixHost.ts:200:1</code></p>
+    <p>Admit only serializable operation input before passing it to Runtime&#39;s binding executor.</p>
+    
+  </article><article class="item" data-search="isHostBindingValue src/features/trusted-zefix-host/composition/createTrustedZefixHost.ts Recursively reject host objects and functions from untrusted request input.">
+    <h3>isHostBindingValue</h3>
+    <p class="muted"><code>src/features/trusted-zefix-host/composition/createTrustedZefixHost.ts:205:1</code></p>
+    <p>Recursively reject host objects and functions from untrusted request input.</p>
+    
+  </article><article class="item" data-search="resolveCapability src/features/trusted-zefix-host/composition/createTrustedZefixHost.ts Resolve the one Projects-owned capability permitted for each declared Zefix operation.">
+    <h3>resolveCapability</h3>
+    <p class="muted"><code>src/features/trusted-zefix-host/composition/createTrustedZefixHost.ts:217:1</code></p>
+    <p>Resolve the one Projects-owned capability permitted for each declared Zefix operation.</p>
+    
+  </article><article class="item" data-search="assertHostIdentity src/features/trusted-zefix-host/composition/createTrustedZefixHost.ts Reject incomplete immutable host configuration before Fastify routes are registered.">
+    <h3>assertHostIdentity</h3>
+    <p class="muted"><code>src/features/trusted-zefix-host/composition/createTrustedZefixHost.ts:228:1</code></p>
+    <p>Reject incomplete immutable host configuration before Fastify routes are registered.</p>
     
   </article>
     </section>

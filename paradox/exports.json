@@ -182,6 +182,64 @@
     "structuredRows": []
   },
   {
+    "name": "createTrustedZefixHost",
+    "title": null,
+    "description": "Compose declared Zefix operations into an authenticated, project-scoped trusted host.",
+    "isReadme": false,
+    "see": [],
+    "security": [],
+    "kind": "function",
+    "modulePath": "src/features/trusted-zefix-host/composition/createTrustedZefixHost.ts",
+    "sourceLocation": {
+      "filePath": "src/features/trusted-zefix-host/composition/createTrustedZefixHost.ts",
+      "line": 51,
+      "column": 1
+    },
+    "exportPaths": [
+      "src/index.ts"
+    ],
+    "relatedSymbols": [],
+    "signatures": [
+      {
+        "label": "(input: Readonly<{ appId: string; projectId: string; environment: string; definition: InternalRestApiDefinition; operations: Readonly<Record<string, TrustedZefixOperation>>; authenticateCallerAsync: (request: ApiRequest) => Promise<unknown>; authorizeCallerAsync: (input: Readonly<{ caller: unknown; appId: string; projectId: string; environment: string; operationId: string; }>) => Promise<boolean>; secretStore: SecretStoreAdapter; fetch?: EndpointTestFetch; }>) => Readonly<{ composition: ComposeAuthorizedApiRuntimeOptions; registerFastifyAsync: (server: FastifyInstance, options?: RegisterFastifyApiOptions) => Promise<unknown>; }>",
+        "parameters": [
+          {
+            "name": "input",
+            "type": "Readonly<{ appId: string; projectId: string; environment: string; definition: InternalRestApiDefinition; operations: Readonly<Record<string, TrustedZefixOperation>>; authenticateCallerAsync: (request: ApiRequest) => Promise<unknown>; authorizeCallerAsync: (input: Readonly<{ caller: unknown; appId: string; projectId: string; environment: string; operationId: string; }>) => Promise<boolean>; secretStore: SecretStoreAdapter; fetch?: EndpointTestFetch; }>",
+            "required": true,
+            "description": null
+          }
+        ],
+        "returnType": "Readonly<{ composition: ComposeAuthorizedApiRuntimeOptions; registerFastifyAsync: (server: FastifyInstance, options?: RegisterFastifyApiOptions) => Promise<unknown>; }>",
+        "returnDescription": null
+      }
+    ],
+    "members": [],
+    "structuredRows": []
+  },
+  {
+    "name": "CreateTrustedZefixHostInput",
+    "title": null,
+    "description": null,
+    "isReadme": false,
+    "see": [],
+    "security": [],
+    "kind": "unknown",
+    "modulePath": "src/features/trusted-zefix-host/composition/createTrustedZefixHost.ts",
+    "sourceLocation": {
+      "filePath": "src/features/trusted-zefix-host/composition/createTrustedZefixHost.ts",
+      "line": 22,
+      "column": 1
+    },
+    "exportPaths": [
+      "src/index.ts"
+    ],
+    "relatedSymbols": [],
+    "signatures": [],
+    "members": [],
+    "structuredRows": []
+  },
+  {
     "name": "ExpoProjectMaterializationResult",
     "title": null,
     "description": "The public result of materializing one runnable, self-contained Expo project directory.",
@@ -525,6 +583,28 @@
     "sourceLocation": {
       "filePath": "src/types/projects.ts",
       "line": 35,
+      "column": 1
+    },
+    "exportPaths": [
+      "src/index.ts"
+    ],
+    "relatedSymbols": [],
+    "signatures": [],
+    "members": [],
+    "structuredRows": []
+  },
+  {
+    "name": "TrustedZefixHost",
+    "title": null,
+    "description": null,
+    "isReadme": false,
+    "see": [],
+    "security": [],
+    "kind": "unknown",
+    "modulePath": "src/features/trusted-zefix-host/composition/createTrustedZefixHost.ts",
+    "sourceLocation": {
+      "filePath": "src/features/trusted-zefix-host/composition/createTrustedZefixHost.ts",
+      "line": 42,
       "column": 1
     },
     "exportPaths": [

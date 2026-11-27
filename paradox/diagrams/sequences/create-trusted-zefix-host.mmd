@@ -1,0 +1,14 @@
+sequenceDiagram
+  participant participant_assertHostIdentity as assertHostIdentity
+  participant participant_createRuntimeApiCapabilityExecutor as createRuntimeApiCapabilityExecutor
+  participant participant_createTrustedZefixHost as createTrustedZefixHost
+  participant participant_createZefixCredentialResolver as createZefixCredentialResolver
+  participant participant_createZefixPublicRestApi as createZefixPublicRestApi
+  participant_createTrustedZefixHost->>participant_assertHostIdentity: assertHostIdentity()
+  participant_assertHostIdentity-->>participant_createTrustedZefixHost: return
+  participant_createTrustedZefixHost->>participant_createRuntimeApiCapabilityExecutor: createRuntimeApiCapabilityExecutor()
+  participant_createRuntimeApiCapabilityExecutor-->>participant_createTrustedZefixHost: return
+  participant_createTrustedZefixHost->>participant_createZefixPublicRestApi: createZefixPublicRestApi()
+  participant_createZefixPublicRestApi-->>participant_createTrustedZefixHost: return
+  participant_createTrustedZefixHost->>participant_createZefixCredentialResolver: createZefixCredentialResolver()
+  participant_createZefixCredentialResolver-->>participant_createTrustedZefixHost: return

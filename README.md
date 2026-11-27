@@ -3,7 +3,7 @@
 
 # @ankhorage/projects
 
-![license: MIT](././paradox/badges/license.svg) ![npm: v0.4.0](././paradox/badges/npm.svg) ![runtime: bun](././paradox/badges/runtime.svg) ![typescript: strict](././paradox/badges/typescript.svg) ![eslint: checked](././paradox/badges/eslint.svg) ![prettier: checked](././paradox/badges/prettier.svg) ![build: checked](././paradox/badges/build.svg) ![tests: configured](././paradox/badges/tests.svg) ![paradox: canonical](././paradox/badges/docs.svg)
+![license: MIT](././paradox/badges/license.svg) ![npm: v0.5.0](././paradox/badges/npm.svg) ![runtime: bun](././paradox/badges/runtime.svg) ![typescript: strict](././paradox/badges/typescript.svg) ![eslint: checked](././paradox/badges/eslint.svg) ![prettier: checked](././paradox/badges/prettier.svg) ![build: checked](././paradox/badges/build.svg) ![tests: configured](././paradox/badges/tests.svg) ![paradox: canonical](././paradox/badges/docs.svg)
 
 Standalone project identity and repository actions.
 
@@ -16,3 +16,4 @@ Standalone project identity and repository actions.
 - [Module relationships](././paradox/diagrams/module-relationships.mmd)
 - [Export graph](././paradox/diagrams/export-graph.mmd)
 - [createProjectRepositoryFileSystemAsync sequence](././paradox/diagrams/sequences/create-project-repository-file-system-async.mmd)
+- [createTrustedZefixHost sequence](././paradox/diagrams/sequences/create-trusted-zefix-host.mmd)
