@@ -21,7 +21,6 @@ import { createNavigatorPlan, generateNavigator } from '@ankhorage/navigator';
 import { materializeTemplateRevision } from '@ankhorage/templates';
 
 import type { Project, ProjectManifestRevision } from '../../../types/projects.js';
-
 /*** Inputs fixed by the host before materializing one immutable Projects revision. */
 export interface CreateExpoProjectMaterializerInput {
   readonly targetDirectory: string;
@@ -33,12 +32,12 @@ export interface CreateExpoProjectMaterializerInput {
   }>;
 }
 
-/*** The public result of materializing one runnable, self-contained Expo project directory. */
 export interface ExpoProjectMaterializationResult {
   readonly projectId: string;
   readonly revisionId: string;
   readonly targetDirectory: string;
   readonly files: readonly string[];
+  readonly managedFiles: readonly string[];
 }
 
 /*** A concrete Projects materializer composed solely from released owner APIs. */
@@ -47,6 +46,13 @@ export interface ExpoProjectMaterializer {
     input: Readonly<{
       project: Project;
       revision: ProjectManifestRevision;
+    }>,
+  ): Promise<ExpoProjectMaterializationResult>;
+  refreshAsync(
+    input: Readonly<{
+      project: Project;
+      revision: ProjectManifestRevision;
+      managedFiles: readonly string[];
     }>,
   ): Promise<ExpoProjectMaterializationResult>;
 }
@@ -58,7 +64,45 @@ export function createExpoProjectMaterializer(
   return {
     materializeAsync: async ({ project, revision }) =>
       materializeExpoProjectAsync(input, project, revision),
+    refreshAsync: async ({ project, revision, managedFiles }) =>
+      refreshExpoProjectAsync(input, project, revision, managedFiles),
   };
+}
+
+/*** Refresh only host-declared previously managed outputs in an existing generated-app target. */
+async function refreshExpoProjectAsync(
+  input: CreateExpoProjectMaterializerInput,
+  project: Project,
+  revision: ProjectManifestRevision,
+  managedFiles: readonly string[],
+): Promise<ExpoProjectMaterializationResult> {
+  const targetDirectory = await assertExistingTargetDirectoryAsync(input.targetDirectory);
+  const generatedFiles = createGeneratedFiles(revision.manifest, input.navigator);
+  const stagingDirectory = await mkdtemp(`${dirname(targetDirectory)}/.ankhorage-projects-`);
+  try {
+    const template = await ownerApis.materializeTemplateRevision({
+      cwd: stagingDirectory,
+      projectSlug: revision.manifest.metadata.slug,
+      template: input.template,
+      manifest: revision.manifest,
+    });
+    const templateFiles = await readTemplateFilesAsync(template.projectPath, template.createdFiles);
+    const files = [...templateFiles, ...generatedFiles];
+    assertNoPathCollisions(
+      templateFiles.map(({ relativePath }) => relativePath),
+      generatedFiles.map(({ relativePath }) => relativePath),
+    );
+    await refreshFilesAsync(targetDirectory, files, managedFiles);
+    return createMaterializationResult(
+      project,
+      revision,
+      targetDirectory,
+      templateFiles,
+      generatedFiles,
+    );
+  } finally {
+    await rm(stagingDirectory, { recursive: true, force: true });
+  }
 }
 
 /*** Coordinate owner plans and Template output into one prevalidated caller-owned Expo target. */
@@ -67,7 +111,6 @@ async function materializeExpoProjectAsync(
   project: Project,
   revision: ProjectManifestRevision,
 ): Promise<ExpoProjectMaterializationResult> {
-  assertReleasedOwnerApis();
   const targetDirectory = await assertEmptyTargetDirectoryAsync(input.targetDirectory);
   const generatedFiles = createGeneratedFiles(revision.manifest, input.navigator);
   const stagingDirectory = await mkdtemp(`${dirname(targetDirectory)}/.ankhorage-projects-`);
@@ -139,6 +182,9 @@ function createMaterializationResult(
     files: [...templateFiles, ...generatedFiles]
       .map(({ relativePath }) => relativePath)
       .sort((left, right) => left.localeCompare(right)),
+    managedFiles: [...templateFiles, ...generatedFiles]
+      .map(({ relativePath }) => relativePath)
+      .sort((left, right) => left.localeCompare(right)),
   };
 }
 
@@ -167,19 +213,6 @@ type RuntimePlan = Readonly<{
   diagnostics: readonly Readonly<{ severity: 'error' | 'warning'; message: string }>[];
 }>;
 
-/*** Reject unavailable owner emitters rather than reproducing their source in Projects. */
-function assertReleasedOwnerApis(): void {
-  if (
-    typeof ownerApis.materializeTemplateRevision !== 'function' ||
-    typeof ownerApis.createNavigatorPlan !== 'function' ||
-    typeof ownerApis.generateNavigator !== 'function' ||
-    typeof ownerApis.resolveExpoRuntimePlan !== 'function' ||
-    typeof ownerApis.resolveExpoRuntimeGeneratedAppScaffold !== 'function'
-  ) {
-    throw new Error('Required released owner materialization API is unavailable.');
-  }
-}
-
 /*** Resolve one existing, empty, non-symlink target directory before writing any output. */
 async function assertEmptyTargetDirectoryAsync(target: string): Promise<string> {
   const resolvedTarget = resolve(target);
@@ -189,6 +222,16 @@ async function assertEmptyTargetDirectoryAsync(target: string): Promise<string> 
   }
   if ((await readdir(resolvedTarget)).length > 0) {
     throw new Error(`Materialization target must be empty: ${resolvedTarget}`);
+  }
+  return realpath(resolvedTarget);
+}
+
+/*** Resolve one existing non-symlink generated-app target before replacing declared managed files. */
+async function assertExistingTargetDirectoryAsync(target: string): Promise<string> {
+  const resolvedTarget = resolve(target);
+  const stats = await lstat(resolvedTarget);
+  if (!stats.isDirectory() || stats.isSymbolicLink()) {
+    throw new Error(`Materialization target must be a regular directory: ${resolvedTarget}`);
   }
   return realpath(resolvedTarget);
 }
@@ -232,6 +275,21 @@ async function writeFilesAsync(
   }
 }
 
+/*** Replace only files explicitly owned by the prior Projects materialization and exclusively create new files. */
+async function refreshFilesAsync(
+  targetDirectory: string,
+  files: readonly MaterializedFile[],
+  managedFiles: readonly string[],
+): Promise<void> {
+  const managed = new Set(managedFiles);
+  for (const file of files) {
+    const relativePath = assertSafeRelativePath(targetDirectory, file.relativePath);
+    const targetPath = resolve(targetDirectory, relativePath);
+    await mkdir(dirname(targetPath), { recursive: true });
+    await writeFile(targetPath, file.source, { flag: managed.has(relativePath) ? 'w' : 'wx' });
+  }
+}
+
 /*** Ensure an owner-reported project-relative path never crosses its designated directory. */
 function assertSafeRelativePath(directory: string, candidate: string): string {
   const resolvedPath = resolve(directory, candidate);
@@ -247,16 +305,14 @@ function assertSafeRelativePath(directory: string, candidate: string): string {
   }
   return pathRelative;
 }
-
-/*** Reject duplicate paths emitted by one owner before any write can begin. */
-function assertUniqueRelativePaths(paths: readonly string[]): void {
+/*** Reject duplicate paths emitted by one owner before any write can begin. */ function assertUniqueRelativePaths(
+  paths: readonly string[],
+): void {
   if (new Set(paths).size !== paths.length) {
     throw new Error('An owner emitted duplicate generated file paths.');
   }
 }
-
-/*** Reject a collision across owner outputs instead of silently selecting one producer. */
-function assertNoPathCollisions(
+/*** Reject a collision across owner outputs instead of silently selecting one producer. */ function assertNoPathCollisions(
   templatePaths: readonly string[],
   generatedPaths: readonly string[],
 ): void {
