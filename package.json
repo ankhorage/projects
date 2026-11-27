@@ -54,24 +54,24 @@
     "version-packages": "ankhorage-changeset version"
   },
   "devDependencies": {
-    "@ankhorage/devtools": "^2.12.2",
-    "@ankhorage/paradox": "^0.3.6",
+    "@ankhorage/devtools": "^2.12.3",
+    "@ankhorage/paradox": "^0.3.7",
     "@types/bun": "^1.4.5",
-    "@types/node": "^26.6.6",
+    "@types/node": "^26.6.11",
     "typescript": "~6.0.3"
   },
   "dependencies": {
-    "@ankhorage/api": "^0.5.1",
+    "@ankhorage/api": "^0.5.2",
     "@ankhorage/api-fastify": "^0.4.0",
-    "@ankhorage/contracts": "^26.11.1",
+    "@ankhorage/contracts": "^26.19.0",
     "@ankhorage/data-sources": "^2.4.0",
-    "@ankhorage/expo-runtime": "^7.5.0",
-    "@ankhorage/navigator": "^3.5.22",
+    "@ankhorage/expo-runtime": "^7.6.0",
+    "@ankhorage/navigator": "^3.7.0",
     "@ankhorage/permissions": "^0.2.64",
     "@ankhorage/runtime": "^5.6.4",
     "@ankhorage/secrets": "^0.3.2",
-    "@ankhorage/templates": "^12.6.30",
-    "@ankhorage/utility": "^1.10.0"
+    "@ankhorage/templates": "^12.7.7",
+    "@ankhorage/utility": "^1.11.0"
   },
   "ankh": {
     "category": "projects",
