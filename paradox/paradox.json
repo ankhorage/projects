@@ -14,7 +14,7 @@
     {
       "id": "npm",
       "label": "npm",
-      "value": "v0.6.0",
+      "value": "v0.7.0",
       "color": "cb3837"
     },
     {
@@ -1075,7 +1075,7 @@
       "security": [],
       "sourceLocation": {
         "filePath": "src/features/projects/composition/composeGeneratedRuntimeMaterialization.ts",
-        "line": 4,
+        "line": 14,
         "column": 1
       }
     },
@@ -1086,7 +1086,7 @@
       "security": [],
       "sourceLocation": {
         "filePath": "src/features/projects/composition/composeGeneratedRuntimeMaterialization.ts",
-        "line": 33,
+        "line": 50,
         "column": 1
       }
     },

@@ -1,5 +1,11 @@
 # Changelog
 
+## 0.7.0
+
+### Minor Changes
+
+- 6a34f31: Materialize standalone Expo projects with the canonical TypeScript and Devtools toolchain, including the local Devtools synchronization command.
+
 ## 0.6.0
 
 ### Minor Changes
